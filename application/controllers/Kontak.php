@@ -26,3 +26,4 @@ class Kontak extends CI_Controller {
 		$this->load->view('st_front', $data);
 	}
 }
+
