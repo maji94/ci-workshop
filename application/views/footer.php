@@ -1,7 +1,7 @@
 <footer class="section footer-classic">
   <div class="footer-inner-1">
     <div class="container">
-      <div class="row row-40">
+      <div class="row row-30">
         <div class="col-md-12 col-lg-3">
           <h5>Kontak</h5><hr style="margin-top:5px;">
           <div class="row row-30 align-items-left">
@@ -62,6 +62,12 @@
           </div>
         </div>
       </div>
+      <!-- <div class="row row-30 align-items-center text-center">
+        <div class="col-6 col-md-4 col-lg-2"><a class="link-image" href="#"><img src="<?php echo base_url('assets/front/'); ?>images/footer-1-brand-3-121x33.png" alt="" width="121" height="16"/></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="link-image" href="#"><img src="<?php echo base_url('assets/front/'); ?>images/footer-1-brand-3-121x33.png" alt="" width="121" height="16"/></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="link-image" href="#"><img src="<?php echo base_url('assets/front/'); ?>images/footer-1-brand-3-121x33.png" alt="" width="121" height="16"/></a></div>
+        <div class="col-6 col-md-4 col-lg-2"><a class="link-image" href="#"><img src="<?php echo base_url('assets/front/'); ?>images/footer-1-brand-3-121x33.png" alt="" width="121" height="16"/></a></div>
+      </div> -->
     </div>
   </div>
   <div class="footer-inner-2">
