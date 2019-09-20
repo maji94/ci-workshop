@@ -10,62 +10,82 @@
 <!-- Our Story-->
 <section class="section section-lg-top-50 bg-gray-100">
   <div class="container">
-    <h2 class="title-icon"><span class="icon icon-default mercury-icon-speak"></span><span><span class="text-light">Our</span> Speakers</h2>
+    <h2 class="title-icon"><span class="icon icon-default mercury-icon-cup"></span><span><span class="text-light">Our</span> Galeri</h2>
     <div class="row row-30 justify-content-xl-between">
-      <div class="col-md-6 col-xl-4">
-        <blockquote class="quote quote-center quote-center-active">
-          <q class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut interdum quam. In hac habitasse platea dictumst. Phasellus ex metus, mattis et elit et.</q>
-          <div class="quote-meta"><img class="quote-img" src="<?php echo base_url('assets/front/'); ?>images/testimonials-2-138x138.jpg" alt="" width="138" height="69"/>
-            <div class="author">
-              <cite>Victor Jackson</cite>
+      <div class="col-md-4 col-6">
+        <div class="box-shadow-2">
+          <img class="img-responsive" src="<?php echo base_url('assets/front/'); ?>images/about-1-569x338.jpg" alt="" width="569" height="169"/>
+          <div class="box-shadow-header">
+            <div class="unit flex-column flex-md-row">
+              <div class="unit-left">
+                <div class="heading-5">1996</div>
+              </div>
+              <div class="unit-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat</p>
+              </div>
             </div>
-            <div class="position">Lawyer</div>
           </div>
-        </blockquote>
+        </div>
       </div>
-      <div class="col-md-6 col-xl-4">
-        <blockquote class="quote quote-center quote-center-active">
-          <q class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut interdum quam. In hac habitasse platea dictumst. Phasellus ex metus, mattis et elit et.</q>
-          <div class="quote-meta"><img class="quote-img" src="<?php echo base_url('assets/front/'); ?>images/testimonials-2-138x138.jpg" alt="" width="138" height="69"/>
-            <div class="author">
-              <cite>Victor Jackson</cite>
+      <div class="col-md-4 col-6">
+        <div class="box-shadow-2">
+          <img class="img-responsive" src="<?php echo base_url('assets/front/'); ?>images/about-1-569x338.jpg" alt="" width="569" height="169"/>
+          <div class="box-shadow-header">
+            <div class="unit flex-column flex-md-row">
+              <div class="unit-left">
+                <div class="heading-5">1996</div>
+              </div>
+              <div class="unit-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat</p>
+              </div>
             </div>
-            <div class="position">Lawyer</div>
           </div>
-        </blockquote>
+        </div>
       </div>
-      <div class="col-md-6 col-xl-4">
-        <blockquote class="quote quote-center quote-center-active">
-          <q class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut interdum quam. In hac habitasse platea dictumst. Phasellus ex metus, mattis et elit et.</q>
-          <div class="quote-meta"><img class="quote-img" src="<?php echo base_url('assets/front/'); ?>images/testimonials-2-138x138.jpg" alt="" width="138" height="69"/>
-            <div class="author">
-              <cite>Victor Jackson</cite>
+      <div class="col-md-4 col-6">
+        <div class="box-shadow-2">
+          <img class="img-responsive" src="<?php echo base_url('assets/front/'); ?>images/about-1-569x338.jpg" alt="" width="569" height="169"/>
+          <div class="box-shadow-header">
+            <div class="unit flex-column flex-md-row">
+              <div class="unit-left">
+                <div class="heading-5">1996</div>
+              </div>
+              <div class="unit-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat</p>
+              </div>
             </div>
-            <div class="position">Lawyer</div>
           </div>
-        </blockquote>
+        </div>
       </div>
-      <div class="col-md-6 col-xl-4">
-        <blockquote class="quote quote-center quote-center-active">
-          <q class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut interdum quam. In hac habitasse platea dictumst. Phasellus ex metus, mattis et elit et.</q>
-          <div class="quote-meta"><img class="quote-img" src="<?php echo base_url('assets/front/'); ?>images/testimonials-2-138x138.jpg" alt="" width="138" height="69"/>
-            <div class="author">
-              <cite>Victor Jackson</cite>
+      <div class="col-md-4 col-6">
+        <div class="box-shadow-2">
+          <img class="img-responsive" src="<?php echo base_url('assets/front/'); ?>images/about-1-569x338.jpg" alt="" width="569" height="169"/>
+          <div class="box-shadow-header">
+            <div class="unit flex-column flex-md-row">
+              <div class="unit-left">
+                <div class="heading-5">1996</div>
+              </div>
+              <div class="unit-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat</p>
+              </div>
             </div>
-            <div class="position">Lawyer</div>
           </div>
-        </blockquote>
+        </div>
       </div>
-      <div class="col-md-6 col-xl-4">
-        <blockquote class="quote quote-center quote-center-active">
-          <q class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut interdum quam. In hac habitasse platea dictumst. Phasellus ex metus, mattis et elit et.</q>
-          <div class="quote-meta"><img class="quote-img" src="<?php echo base_url('assets/front/'); ?>images/testimonials-2-138x138.jpg" alt="" width="138" height="69"/>
-            <div class="author">
-              <cite>Victor Jackson</cite>
+      <div class="col-md-4 col-6">
+        <div class="box-shadow-2">
+          <img class="img-responsive" src="<?php echo base_url('assets/front/'); ?>images/about-1-569x338.jpg" alt="" width="569" height="169"/>
+          <div class="box-shadow-header">
+            <div class="unit flex-column flex-md-row">
+              <div class="unit-left">
+                <div class="heading-5">1996</div>
+              </div>
+              <div class="unit-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat</p>
+              </div>
             </div>
-            <div class="position">Lawyer</div>
           </div>
-        </blockquote>
+        </div>
       </div>
     </div>
   </div>
