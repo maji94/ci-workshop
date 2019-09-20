@@ -9,8 +9,7 @@
             <div class="icon novi-icon mdi mdi-phone"></div><a style="font-size: 11px;">Telp. (0726) 21097, 21597, 344602, 28123 | Fax. (0726) 21597</a>
           </div>
           <ul class="list-lined" style="font-size: 11px;">
-            <li><a href="#"><div class="icon novi-icon mdi mdi-account"></div> &nbsp;Masuk / Log in</a></li>
-            <li><a href="#">Daftar</a></li>
+            <li><p><?php echo nama_hari(date('Y-m-d')).', '.tgl_indo(date('Y-m-d')); ?></p></li>
           </ul>
         </div>
       </div>
@@ -35,12 +34,10 @@
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('galeri'); ?>">Galeri</a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('berita'); ?>">Berita</a>
-                  </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('tentang'); ?>">Tentang</a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('kontak'); ?>">Kontak</a>
-                  </li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="#">Masuk / Log in</a></li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="#"><strong>Daftar</strong></a></li>
                 </ul>
               </div>
             </div>

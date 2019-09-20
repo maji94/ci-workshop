@@ -7,8 +7,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-7 offset-md-1 offset-xxl-0">
               <h1><span class="d-block" data-caption-animate="fadeInUp" data-caption-delay="200" style="text-shadow: 5px 5px 10px #2e3844;">Wawasan Multikultural dan Dialog Lintas Agama</span></h1>
-              <p class="lead" data-caption-animate="fadeInUp" data-caption-delay="350">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vitae dolorem accusamus,...</p>
-              <div class="button-wrap-default" data-caption-animate="fadeInUp" data-caption-delay="450"><a class="button button-secondary-text" href="#">Read more</a></div>
+              <div class="button-wrap-default" data-caption-animate="fadeInUp" data-caption-delay="450"></div>
             </div>
           </div>
         </div>
@@ -20,8 +19,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-7 offset-md-1 offset-xxl-0">
               <h1><span class="d-block" data-caption-animate="fadeInUp" data-caption-delay="200" style="text-shadow: 5px 5px 10px #2e3844;">Penyusunan KTSP dan Rencana Kerja Serta Review Kurikulum K13 MAN 2 Bengkulu</span></h1>
-              <p class="lead" data-caption-animate="fadeInUp" data-caption-delay="350">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vitae dolorem accusamus,...</p>
-              <div class="button-wrap-default" data-caption-animate="fadeInUp" data-caption-delay="450"><a class="button button-secondary-text" href="#">Read more</a></div>
+              <div class="button-wrap-default" data-caption-animate="fadeInUp" data-caption-delay="450"></div>
             </div>
           </div>
         </div>
@@ -33,8 +31,7 @@
           <div class="row">
             <div class="col-md-9 col-lg-7 offset-md-1 offset-xxl-0">
               <h1><span class="d-block" data-caption-animate="fadeInUp" data-caption-delay="200" style="text-shadow: 5px 5px 10px #2e3844;">Peningkatan Kapasitas Kelembagaan FKUB</span></h1>
-              <p class="lead" data-caption-animate="fadeInUp" data-caption-delay="350">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero vitae dolorem accusamus,...</p>
-              <div class="button-wrap-default" data-caption-animate="fadeInUp" data-caption-delay="450"><a class="button button-secondary-text" href="#">Read more</a></div>
+              <div class="button-wrap-default" data-caption-animate="fadeInUp" data-caption-delay="450"></div>
             </div>
           </div>
         </div>
@@ -588,11 +585,20 @@
         </div>
       </div>
       <div class="col-md-4">
-        <h2 class="title-icon"><span class="icon icon-default mercury-icon-news"></span><span>Last <span class="text-light">News</span></span></h2><hr style="margin: 10px 0;">
-        <h5>Penyusunan KTSP dan Rencana Kerja Serta Review Kurikulum K13 MAN 2 Bengkulu</h5>
-        <figure class="figure-light"><img class="img-centered" src="<?php echo base_url(); ?>assets/front/images/typography-2-544x342.jpg" alt="">
-        </figure>
-        <p class="big">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum veritatis iure excepturi quae dolorum, cupiditate voluptatibus ullam officiis eveniet aliquid, consequuntur ducimus deleniti veniam a quo nihil provident! Dolor, soluta?</p><a class="button button-primary" href="#">View all news</a>
+        <h2 class="title-icon"><span class="icon icon-default mercury-icon-cup"></span><span>Our <span class="text-light">Galery</span></span></h2><hr style="margin: 10px 0;">
+        <div class="box-shadow-2">
+          <img class="img-responsive" src="<?php echo base_url('assets/front/'); ?>images/about-1-569x338.jpg" alt="" width="569" height="169"/>
+          <div class="box-shadow-header">
+            <div class="unit flex-column flex-md-row">
+              <div class="unit-left">
+                <div class="heading-5">1996</div>
+              </div>
+              <div class="unit-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat</p>
+              </div>
+            </div>
+          </div>
+        </div><a class="button button-primary" href="#">View all galery</a>
       </div>
     </div>
   </div>

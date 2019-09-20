@@ -71,7 +71,7 @@ if ( ! function_exists('nama_hari'))
 
 		$nama = date("l", mktime(0,0,0,$bln,$tgl,$thn));
 		$nama_hari = "";
-		if($nama=="Sunday") {$nama_hari="Minggu";}
+		if($nama=="Sunday") {$nama_hari="Ahad";}
 		else if($nama=="Monday") {$nama_hari="Senin";}
 		else if($nama=="Tuesday") {$nama_hari="Selasa";}
 		else if($nama=="Wednesday") {$nama_hari="Rabu";}
