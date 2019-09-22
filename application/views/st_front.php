@@ -16,7 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"> -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap4.min.css">
-    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}
+  </style>
   </head>
   <body>
     <div class="container">
@@ -78,15 +79,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         })
       } );
 
-      $('#exampleModal').on('show.bs.modal', function (event) {
-        //var button = $(event.relatedTarget) // Button that triggered the modal
+      $('#exampleModal').on('show.bs.modal', function (e) {
+        $('.modal .modal-dialog').attr('class', 'modal-dialog modal-dialog-centered  fadeInDown  animated ');
+        //var button = $(e.relatedTarget) // Button that triggered the modal
         //var recipient = button.data('whatever') // Extract info from data-* attributes
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
        // var modal = $(this)
         //modal.find('.modal-title').text('New message to ' + recipient)
         //modal.find('.modal-body input').val(recipient)
-      })
+      });
+      $('#exampleModal').on('hide.bs.modal', function (e) {
+        $('.modal .modal-dialog').attr('class', 'modal-dialog  modal-dialog-centered fadeOut animated');
+      });
     </script>
     </div>
   </body>
