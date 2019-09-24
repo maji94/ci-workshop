@@ -76,6 +76,7 @@
     </div>
   </div>
 </footer>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -102,40 +103,137 @@
           <!-- <a class="button button-primary" href="#">Get iOS app</a>
           <a class="button button-icon button-icon-right button-secondary" href="#"><span>Get Android app</span><span class="icon fa fa-android"></span></a> -->
         <!-- </div> -->
-        <button type="button" class="button button-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="button button-primary">Masuk</button>
-      </div>
+          <button type="button" class="button button-secondary" data-dismiss="modal">Batal</button>
+          <button type="button" class="button button-primary">Masuk</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-<div class="modal fade" id="exampleModa2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Masuk / Login</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Daftar / Registrasi</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">NIP :</label>
-            <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Nama :</label>
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Silahkan masukkan nama anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="foto" class="col-form-label">Foto :</label>
+              <input type="file" class="form-control-file" id="foto" name="foto">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Password :</label>
-            <input type="password" class="form-control" id="  password" name="password" placeholder="Silahkan masukkan password anda">
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">No KTP :</label>
+              <input type="text" class="form-control" id="ktp" name="ktp" placeholder="Silahkan masukkan no KTP anda (tanpa spasi)">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="nip" class="col-form-label">NIP :</label>
+              <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
+            </div>
           </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Tempat Lahir :</label>
+              <input type="text" class="form-control" id="tmp_lahir" name="tmp_lahir" placeholder="Silahkan masukkan tempat lahir anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Golongan :</label>
+              <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Silahkan masukkan golongan anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Tanggal Lahir :</label>
+              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo date('Y-m-d'); ?>">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Jabatan :</label>
+              <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Silahkan masukkan jabatan anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Jenis Kelamin :</label>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio1" name="jns_kelamin" class="custom-control-input" checked>
+                <label class="custom-control-label" for="customRadio1" style="color: black;">Laki-laki</label>
+              </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" id="customRadio2" name="jns_kelamin" class="custom-control-input">
+                <label class="custom-control-label" for="customRadio2" style="color: black;">Perempuan</label>
+              </div>
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Unit Kerja :</label>
+              <input type="text" class="form-control" id="unker" name="unker" placeholder="Silahkan masukkan unit kerja anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Agama :</label>
+              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" placeholder="Silahkan masukkan agama anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Kabupaten/Kota :</label>
+              <input type="text" class="form-control" id="kab" name="kab" placeholder="Silahkan masukkan nama kabupaten/kota  anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Pendidikan Terakhir :</label>
+              <input type="text" class="form-control" id="pendidikan" name="pendidikan" placeholder="Silahkan masukkan pendidikan terakhir anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Alamat Kantor :</label>
+              <textarea class="form-control" name="alamat_kt" id="alamat_kt" cols="30" rows="3" placeholder="Silahkan masukkan alamat kantor anda"></textarea>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Alamat Rumah :</label>
+              <textarea class="form-control" name="alamat_rm" id="alamat_rm" cols="30" rows="3" placeholder="Silahkan masukkan alamat rumah anda"></textarea>
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">NPWP :</label>
+              <input type="text" class="form-control" id="npwp" name="npwp" placeholder="Silahkan masukkan NPWP anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">Email :</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Silahkan masukkan email anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">No. Rekening dan Bank :</label>
+              <input type="text" class="form-control" id="norek" name="norek" placeholder="Contoh. 123456789 (Bank Mandiri Syariah)">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="recipient-name" class="col-form-label">No HP :</label>
+              <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Silahkan masukkan nomor handphone anda">
+            </div>
+          </div>
+        </form>
+        </form>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+        <div class="group-sm group-wrap-2">
+          <button type="button" class="button button-secondary" data-dismiss="modal">Batal</button>
+          <button type="button" class="button button-primary">Daftar</button>
+        </div>
       </div>
     </div>
   </div>

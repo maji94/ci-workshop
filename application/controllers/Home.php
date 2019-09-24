@@ -31,3 +31,28 @@ class Home extends CI_Controller {
 		$this->load->view('st_front', $data);
 	}
 }
+
+// data pribadi
+// ============
+// -foto
+// -nama
+// -no KTP
+// -tempat lahir
+// -tanggal lahir
+// -jenis kelamin
+// -agama
+// -pendidikan terakhir
+// -alamat rumah
+// -email
+// -no hp
+
+// data kerjaan
+// ============
+// -nip
+// -golongan
+// -jabatan
+// -unit kerja
+// -kabupaten/kota
+// -alamat kantor
+// -npwp
+// -norek dan bank

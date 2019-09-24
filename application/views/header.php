@@ -37,7 +37,7 @@
                   <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('tentang'); ?>">Tentang</a>
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Masuk / Log in</a></li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Daftar</a></li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal2" style="cursor: pointer;">Daftar</a></li>
                 </ul>
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
               </div>
