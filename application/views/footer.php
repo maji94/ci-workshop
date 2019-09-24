@@ -121,11 +121,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <?php echo form_open_multipart('#'); ?>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Nama :</label>
-              <input type="text" class="form-control" id="nama" name="nama" placeholder="Silahkan masukkan nama anda">
+              <label for="nama" class="col-form-label">Nama :</label>
+              <input type="text" class="form-control" id="nama" name="nama" placeholder="Silahkan masukkan nama anda" required>
             </div>
             <div class="form-group col-md-6 col-12">
               <label for="foto" class="col-form-label">Foto :</label>
@@ -134,37 +134,21 @@
           </div>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">No KTP :</label>
-              <input type="text" class="form-control" id="ktp" name="ktp" placeholder="Silahkan masukkan no KTP anda (tanpa spasi)">
+              <label for="ktp" class="col-form-label">No KTP :</label>
+              <input type="text" class="form-control" id="ktp" name="ktp" placeholder="Silahkan masukkan no KTP anda (tanpa spasi)" required>
             </div>
             <div class="form-group col-md-6 col-12">
-              <label for="nip" class="col-form-label">NIP :</label>
-              <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Tempat Lahir :</label>
-              <input type="text" class="form-control" id="tmp_lahir" name="tmp_lahir" placeholder="Silahkan masukkan tempat lahir anda">
-            </div>
-            <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Golongan :</label>
-              <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Silahkan masukkan golongan anda">
+              <label for="tmp_lahir" class="col-form-label">Tempat Lahir :</label>
+              <input type="text" class="form-control" id="tmp_lahir" name="tmp_lahir" placeholder="Silahkan masukkan tempat lahir anda" required>
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Tanggal Lahir :</label>
-              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo date('Y-m-d'); ?>">
+              <label for="tgl_lahir" class="col-form-label">Tanggal Lahir :</label>
+              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo date('Y-m-d'); ?>" required>
             </div>
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Jabatan :</label>
-              <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Silahkan masukkan jabatan anda">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Jenis Kelamin :</label>
+              <label for="jns_kelamin" class="col-form-label">Jenis Kelamin :</label>
               <div class="custom-control custom-radio">
                 <input type="radio" id="customRadio1" name="jns_kelamin" class="custom-control-input" checked>
                 <label class="custom-control-label" for="customRadio1" style="color: black;">Laki-laki</label>
@@ -174,60 +158,84 @@
                 <label class="custom-control-label" for="customRadio2" style="color: black;">Perempuan</label>
               </div>
             </div>
+          </div>
+          <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Unit Kerja :</label>
-              <input type="text" class="form-control" id="unker" name="unker" placeholder="Silahkan masukkan unit kerja anda">
+              <label for="agama" class="col-form-label">Agama :</label>
+              <input type="text" class="form-control" id="agama" name="agama" placeholder="Silahkan masukkan agama anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="pendidikan" class="col-form-label">Pendidikan Terakhir :</label>
+              <input type="text" class="form-control" id="pendidikan" name="pendidikan" placeholder="Silahkan masukkan pendidikan terakhir anda">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Agama :</label>
-              <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" placeholder="Silahkan masukkan agama anda">
+              <label for="alamat_rm" class="col-form-label">Alamat Rumah :</label>
+              <textarea class="form-control" name="alamat_rm" id="alamat_rm" cols="30" rows="3" placeholder="Silahkan masukkan alamat rumah anda"></textarea>
             </div>
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Kabupaten/Kota :</label>
+              <label for="email" class="col-form-label">Email :</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Silahkan masukkan email anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="nohp" class="col-form-label">No HP :</label>
+              <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Silahkan masukkan nomor handphone anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="nip_reg" class="col-form-label">NIP :</label>
+              <input type="text" class="form-control" id="nip_reg" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="golongan" class="col-form-label">Golongan :</label>
+              <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Silahkan masukkan golongan anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="jabatan" class="col-form-label">Jabatan :</label>
+              <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Silahkan masukkan jabatan anda">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              <label for="unker" class="col-form-label">Unit Kerja :</label>
+              <input type="text" class="form-control" id="unker" name="unker" placeholder="Silahkan masukkan unit kerja anda">
+            </div>
+            <div class="form-group col-md-6 col-12">
+              <label for="kab" class="col-form-label">Kabupaten/Kota :</label>
               <input type="text" class="form-control" id="kab" name="kab" placeholder="Silahkan masukkan nama kabupaten/kota  anda">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Pendidikan Terakhir :</label>
-              <input type="text" class="form-control" id="pendidikan" name="pendidikan" placeholder="Silahkan masukkan pendidikan terakhir anda">
-            </div>
-            <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Alamat Kantor :</label>
+              <label for="alamat_kt" class="col-form-label">Alamat Kantor :</label>
               <textarea class="form-control" name="alamat_kt" id="alamat_kt" cols="30" rows="3" placeholder="Silahkan masukkan alamat kantor anda"></textarea>
             </div>
-          </div>
-          <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Alamat Rumah :</label>
-              <textarea class="form-control" name="alamat_rm" id="alamat_rm" cols="30" rows="3" placeholder="Silahkan masukkan alamat rumah anda"></textarea>
-            </div>
-            <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">NPWP :</label>
+              <label for="npwp" class="col-form-label">NPWP :</label>
               <input type="text" class="form-control" id="npwp" name="npwp" placeholder="Silahkan masukkan NPWP anda">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">Email :</label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Silahkan masukkan email anda">
+              <label for="norek" class="col-form-label">No. Rekening dan Bank :</label>
+              <input type="text" class="form-control" id="norek" name="norek" placeholder="Contoh. 123456789 (Bank Mandiri Syariah)">
             </div>
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">No. Rekening dan Bank :</label>
-              <input type="text" class="form-control" id="norek" name="norek" placeholder="Contoh. 123456789 (Bank Mandiri Syariah)">
+              <label for="password_reg" class="col-form-label">Password :</label>
+              <input type="password" class="form-control" id="password_reg" name="password_reg" placeholder="Silahkan masukkan password anda">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6 col-12">
-              <label for="recipient-name" class="col-form-label">No HP :</label>
-              <input type="text" class="form-control" id="nohp" name="nohp" placeholder="Silahkan masukkan nomor handphone anda">
+              <label for="konf_password" class="col-form-label">Konfirmasi Password :</label>
+              <input type="password" class="form-control" id="konf_password" name="konf_password" placeholder="Silahkan ulangin password anda">
             </div>
           </div>
-        </form>
-        </form>
-        </form>
+        <?php echo form_close(); ?>
       </div>
       <div class="modal-footer">
         <div class="group-sm group-wrap-2">

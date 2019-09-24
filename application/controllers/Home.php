@@ -8,21 +8,6 @@ class Home extends CI_Controller {
     date_default_timezone_set('Asia/Jakarta');
   }
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		$data = array(
@@ -30,6 +15,58 @@ class Home extends CI_Controller {
 		);
 		$this->load->view('st_front', $data);
 	}
+
+	public function getLogin() {
+    $u = $this->security->xss_clean($this->input->post('user'));
+    $p = md5($this->security->xss_clean($this->input->post('password')));
+    $duser = array(
+      'username'  => $u,
+      'password'  => $p,
+    );
+
+    $q_cek_login = $this->m_admin->getLogin($duser);
+    if (count($q_cek_login)>0) {
+      foreach ($q_cek_login as $qck) {
+        $sess_data['logged_in']  = 'yes';
+        $sess_data['foto']  		 = $qck->foto;
+        $sess_data['lvl_user']   = $qck->level;
+        $sess_data['id_user']    = $qck->id_user;
+        $sess_data['username']   = $qck->username;
+        $this->session->set_userdata($sess_data);
+
+        redirect('admin');
+      }
+    }
+    else{
+      echo "<script>alert('Username Atau Password Tidak Valid');</script>";
+    }
+  }
+
+  public function getRegister() {
+    $u = $this->security->xss_clean($this->input->post('user'));
+    $p = md5($this->security->xss_clean($this->input->post('password')));
+    $duser = array(
+      'username'  => $u,
+      'password'  => $p,
+    );
+
+    $q_cek_login = $this->m_admin->getLogin($duser);
+    if (count($q_cek_login)>0) {
+      foreach ($q_cek_login as $qck) {
+        $sess_data['logged_in']  = 'yes';
+        $sess_data['foto']  		 = $qck->foto;
+        $sess_data['lvl_user']   = $qck->level;
+        $sess_data['id_user']    = $qck->id_user;
+        $sess_data['username']   = $qck->username;
+        $this->session->set_userdata($sess_data);
+
+        redirect('admin');
+      }
+    }
+    else{
+      echo "<script>alert('Username Atau Password Tidak Valid');</script>";
+    }
+  }
 }
 
 // data pribadi
