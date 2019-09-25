@@ -43,29 +43,31 @@ class Home extends CI_Controller {
   }
 
   public function getRegister() {
-    $u = $this->security->xss_clean($this->input->post('user'));
-    $p = md5($this->security->xss_clean($this->input->post('password')));
-    $duser = array(
-      'username'  => $u,
-      'password'  => $p,
-    );
+  	echo "<pre>";
+  	print_r($_POST);
+    // $u = $this->security->xss_clean($this->input->post('user'));
+    // $p = md5($this->security->xss_clean($this->input->post('password')));
+    // $duser = array(
+    //   'username'  => $u,
+    //   'password'  => $p,
+    // );
 
-    $q_cek_login = $this->m_admin->getLogin($duser);
-    if (count($q_cek_login)>0) {
-      foreach ($q_cek_login as $qck) {
-        $sess_data['logged_in']  = 'yes';
-        $sess_data['foto']  		 = $qck->foto;
-        $sess_data['lvl_user']   = $qck->level;
-        $sess_data['id_user']    = $qck->id_user;
-        $sess_data['username']   = $qck->username;
-        $this->session->set_userdata($sess_data);
+    // $q_cek_login = $this->m_admin->getLogin($duser);
+    // if (count($q_cek_login)>0) {
+    //   foreach ($q_cek_login as $qck) {
+    //     $sess_data['logged_in']  = 'yes';
+    //     $sess_data['foto']  		 = $qck->foto;
+    //     $sess_data['lvl_user']   = $qck->level;
+    //     $sess_data['id_user']    = $qck->id_user;
+    //     $sess_data['username']   = $qck->username;
+    //     $this->session->set_userdata($sess_data);
 
-        redirect('admin');
-      }
-    }
-    else{
-      echo "<script>alert('Username Atau Password Tidak Valid');</script>";
-    }
+    //     redirect('admin');
+    //   }
+    // }
+    // else{
+    //   echo "<script>alert('Username Atau Password Tidak Valid');</script>";
+    // }
   }
 }
 
