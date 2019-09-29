@@ -5,6 +5,7 @@ class Home extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		$this->load->model('m_admin');
     date_default_timezone_set('Asia/Jakarta');
   }
 
@@ -42,15 +43,28 @@ class Home extends CI_Controller {
     }
   }
 
+  public function cek_status_nip(){
+    $nip_reg = array(
+    	'username' => $_POST['nip_reg']
+    	// 'username' => '1771022407940004'
+    );
+    $hasil_nip = $this->m_admin->getContent('tb_user', $nip_reg);
+    if(count($hasil_nip)==0){
+        echo "1";
+    }else{
+        echo "2";
+    }    
+  }
+
   public function getRegister() {
   	echo "<pre>";
   	print_r($_POST);
-    // $u = $this->security->xss_clean($this->input->post('user'));
-    // $p = md5($this->security->xss_clean($this->input->post('password')));
-    // $duser = array(
-    //   'username'  => $u,
-    //   'password'  => $p,
-    // );
+    $u = $this->security->xss_clean($this->input->post('nip_reg'));
+    $p = md5($this->security->xss_clean($this->input->post('konf_password')));
+    $duser = array(
+      'username'  => $u,
+      'password'  => $p,
+    );
 
     // $q_cek_login = $this->m_admin->getLogin($duser);
     // if (count($q_cek_login)>0) {

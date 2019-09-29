@@ -59,23 +59,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
     <!--coded by Starlight-->
     <script>
+      var error = 1;var status_nip = 1;
+
       $(document).ready(function() {
-          var table = $('#example').DataTable();
-          $('.owl-carousel').owlCarousel({
-            loop:true,
-            margin:10,
-            nav:true,
-            responsive:{
-                0:{
-                    items:1
-                },
-                600:{
-                    items:3
-                },
-                1000:{
-                    items:5
-                }
+        var table = $('#example').DataTable();
+        $('.owl-carousel').owlCarousel({
+          loop:true,
+          margin:10,
+          nav:true,
+          responsive:{
+            0:{
+              items:1
+            },
+            600:{
+              items:3
+            },
+            1000:{
+              items:5
             }
+          }
         })
       } );
 
@@ -92,6 +94,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $('#exampleModal2').on('show.bs.modal', function (e) {
         $('.modal .modal-dialog').attr('class', 'modal-dialog modal-dialog-centered modal-lg fadeInDown animated ');
       });
+
+      function cek_register(){
+        var passBaru = $('#password_reg').val();
+        var konfir = $('#konf_password').val();
+        
+        if (konfir == "") {
+          $("#pesan_konfir").css('color','#fc5d32');
+          $("#konf_password").css('border-color','#fc5d32');
+          $("#pesan_konfir").html('Konfirmasi password tidak boleh kosong');
+          $("#pesan_konfir").fadeIn(1000);
+          error = 1;
+        }else{
+          if(konfir != passBaru){
+            $("#pesan_konfir").css('color','#fc5d32');
+            $("#konf_password").css('border-color','#fc5d32');
+            $("#pesan_konfir").html('Maaf Konfirmasi password tidak valid');
+            $("#pesan_konfir").fadeIn(1000);
+            error = 1;
+          }else{
+            $("#pesan_konfir").css("color","#59c113");
+            $("#konf_password").css("border-color","#59c113");
+            $("#pesan_konfir").html("Konfirmasi password valid");
+            $("#pesan_konfir").fadeIn(1000);
+            error = 0;
+          }
+        }
+      }
+
+      function cek_nip(){
+        var nip_reg = $("#nip_reg").val();
+        $.ajax({
+          url: "<?php echo site_url('home/cek_status_nip/'); ?>", //arahkan pada submit di controller register
+          data: 'nip_reg='+nip_reg,
+          type: "POST",
+          success: function(msg){
+            if(msg==1){
+              status_nip = 0;
+            }else{
+              status_nip = 1;
+              alert('NIP sudah terdaftar.\nSilahkan hubungi admin untuk informasi lebih lanjut.');
+            }
+          }
+          status_nip = status_nip;
+        });
+      }
+
+      function cek_submit_reg(){
+        cek_nip();
+        var passBaru = $('#password_reg').val();
+        var konfir = $('#konf_password').val();
+        alert('error = '+error);
+        alert('status_nip = '+status_nip);
+      
+        if (status_nip == 1 || error==1 || konfir!=passBaru || konfir=="" || passBaru=="") {
+          alert('Data harus diisi dan valid');
+          return false;
+        }
+      }
     </script>
     </div>
   </body>
