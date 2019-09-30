@@ -67,14 +67,14 @@ class Home extends CI_Controller {
 		$config['max_size']				= '150000';
 		$this->load->library('upload', $config);
 
-		$ins_user = array(
+		$data_user = array(
 			'id'				=> "",
 			'username'	=> $this->input->post("nip_reg"),
 			'password'	=> md5($this->input->post('konf_password')),
 			'hak_ses'		=> "peserta",
 		);
 
-		$ins_peserta = array(
+		$data_peserta = array(
 			'id'				  => "",
 			'nip'	        => $this->input->post('nip'),
 			'nama'	      => $this->input->post('nama'),
@@ -98,16 +98,30 @@ class Home extends CI_Controller {
 
 		// KONDISI SAAT MEMASUKKAN FOTO
     if ($_FILES['foto']['name'] == "") {
-    	$ins_peserta['foto'] = "";
+    	$data_peserta['foto'] = "";
 		}else{
 			if ( ! $this->upload->do_upload('lampiran')){	
 			$error = array('error' => $this->upload->display_errors());
 			$pesan = $error['error'];
 			echo $pesan;
       }else{
-      	$ins_peserta['foto'] = $this->upload->file_name;
+      	$data_peserta['foto'] = $this->upload->file_name;
       }
 		}
+
+    $ins_peserta = $this->m_admin->InsertData('tb_peserta', $data_peserta);
+    if ($ins_peserta) {
+      $ins_user = $this->m_admin->InsertData('tb_user', $data_user);
+      if ($ins_user) {
+        echo "<script>alert('Registrasi Sukses !!\nData registrasi akan diverifikasi terlebih dahulu oleh admin.<');</script>";
+        // $this->session->set_flashdata('notif','<div class="alert alert-success">Registrasi Sukses !!<br>Data registrasi akan diverifikasi terlebih dahulu oleh admin.</div>');
+        redirect('home');
+      }else{
+        echo "<script>alert('Terjadi Kesalahan !!\nSilahkan coba lagi nanti atau hubungi admin.');</script>";
+        // $this->session->set_flashdata('notif','<div class="alert alert-danger">Terjadi Kesalahan !!<br>Silahkan coba lagi nanti atau hubungi admin.</div>');
+        redirect('home');
+      }
+    }
 
     // $q_cek_login = $this->m_admin->getLogin($duser);
     // if (count($q_cek_login)>0) {
