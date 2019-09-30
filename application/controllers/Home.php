@@ -57,9 +57,6 @@ class Home extends CI_Controller {
   }
 
   public function getRegister() {
-  	echo "<pre>";
-  	print_r($_POST);
-
 		$time = time();
 		$path = './assets/back/image/peserta/';
 		$config['upload_path']		= $path;
@@ -69,9 +66,9 @@ class Home extends CI_Controller {
 
 		$data_user = array(
 			'id'				=> "",
-			'username'	=> $this->input->post("nip_reg"),
+			'username'	=> $this->input->post("nip"),
 			'password'	=> md5($this->input->post('konf_password')),
-			'hak_ses'		=> "peserta",
+			'hak_akses'		=> "peserta",
 		);
 
 		$data_peserta = array(
@@ -100,7 +97,7 @@ class Home extends CI_Controller {
     if ($_FILES['foto']['name'] == "") {
     	$data_peserta['foto'] = "";
 		}else{
-			if ( ! $this->upload->do_upload('lampiran')){	
+			if ( ! $this->upload->do_upload('foto')){	
 			$error = array('error' => $this->upload->display_errors());
 			$pesan = $error['error'];
 			echo $pesan;
@@ -113,11 +110,11 @@ class Home extends CI_Controller {
     if ($ins_peserta) {
       $ins_user = $this->m_admin->InsertData('tb_user', $data_user);
       if ($ins_user) {
-        echo "<script>alert('Registrasi Sukses !!\nData registrasi akan diverifikasi terlebih dahulu oleh admin.<');</script>";
+        $this->session->set_flashdata('notif', "<script>alert('Registrasi Sukses !!Data registrasi akan diverifikasi terlebih dahulu oleh admin. Terimakasih');</script>");
         // $this->session->set_flashdata('notif','<div class="alert alert-success">Registrasi Sukses !!<br>Data registrasi akan diverifikasi terlebih dahulu oleh admin.</div>');
         redirect('home');
       }else{
-        echo "<script>alert('Terjadi Kesalahan !!\nSilahkan coba lagi nanti atau hubungi admin.');</script>";
+        $this->session->set_flashdata('notif', "<script>alert('Terjadi Kesalahan !!Silahkan coba lagi nanti atau hubungi admin.');</script>");
         // $this->session->set_flashdata('notif','<div class="alert alert-danger">Terjadi Kesalahan !!<br>Silahkan coba lagi nanti atau hubungi admin.</div>');
         redirect('home');
       }

@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </style>
   </head>
   <body>
+    <?php echo $this->session->flashdata('notif'); ?>
     <div class="container">
     <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="<?php echo base_url('assets/front/'); ?>images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
     <div class="preloader">

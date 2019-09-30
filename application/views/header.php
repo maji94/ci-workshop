@@ -47,7 +47,7 @@
       </div>
     </nav>
   </div>
-  <?php if ($this->uri->segment(1) != "") { ?>
+  <?php if ($this->uri->segment(1) == "pembicara" OR $this->uri->segment(1) == "galeri" OR $this->uri->segment(1) == "tentang") { ?>
     <div class="rd-navbar-bg novi-background bg-image" style="background-image: url(<?php echo base_url('assets/front/images/bg-navbar.jpg'); ?>)"></div>
   <?php } ?>
 </header>
