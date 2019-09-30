@@ -133,19 +133,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               status_nip = 0;
             }else{
               status_nip = 1;
-              alert('NIP sudah terdaftar.\nSilahkan hubungi admin untuk informasi lebih lanjut.');
             }
           }
-          status_nip = status_nip;
         });
       }
 
       function cek_submit_reg(){
-        cek_nip();
         var passBaru = $('#password_reg').val();
         var konfir = $('#konf_password').val();
-        alert('error = '+error);
-        alert('status_nip = '+status_nip);
+        
+        if (status_nip == 1) {
+          alert('NIP sudah terdaftar.\nSilahkan hubungi admin untuk informasi lebih lanjut.');
+          return false;
+        }
       
         if (status_nip == 1 || error==1 || konfir!=passBaru || konfir=="" || passBaru=="") {
           alert('Data harus diisi dan valid');

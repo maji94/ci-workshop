@@ -59,12 +59,55 @@ class Home extends CI_Controller {
   public function getRegister() {
   	echo "<pre>";
   	print_r($_POST);
-    $u = $this->security->xss_clean($this->input->post('nip_reg'));
-    $p = md5($this->security->xss_clean($this->input->post('konf_password')));
-    $duser = array(
-      'username'  => $u,
-      'password'  => $p,
-    );
+
+		$time = time();
+		$path = './assets/back/image/peserta/';
+		$config['upload_path']		= $path;
+		$config['allowed_types']	= 'pdf|jpeg|jpg|png|bmp';
+		$config['max_size']				= '150000';
+		$this->load->library('upload', $config);
+
+		$ins_user = array(
+			'id'				=> "",
+			'username'	=> $this->input->post("nip_reg"),
+			'password'	=> md5($this->input->post('konf_password')),
+			'hak_ses'		=> "peserta",
+		);
+
+		$ins_peserta = array(
+			'id'				  => "",
+			'nip'	        => $this->input->post('nip'),
+			'nama'	      => $this->input->post('nama'),
+			'ktp'	        => $this->input->post('ktp'),
+			'tmp_lahir'	  => $this->input->post('tmp_lahir'),
+			'tgl_lahir'	  => $this->input->post('tgl_lahir'),
+			'jns_kelamin'	=> $this->input->post('jns_kelamin'),
+			'agama'	      => $this->input->post('agama'),
+			'pendidikan'	=> $this->input->post('pendidikan'),
+			'alamat_rm'	  => $this->input->post('alamat_rm'),
+			'email'	      => $this->input->post('email'),
+			'nohp'	      => $this->input->post('nohp'),
+			'golongan'	  => $this->input->post('golongan'),
+			'jabatan'	    => $this->input->post('jabatan'),
+			'unker'	      => $this->input->post('unker'),
+			'kab'	        => $this->input->post('kab'),
+			'alamat_kt'	  => $this->input->post('alamat_kt'),
+			'npwp'	      => $this->input->post('npwp'),
+			'norek'	      => $this->input->post('norek'),
+		);
+
+		// KONDISI SAAT MEMASUKKAN FOTO
+    if ($_FILES['foto']['name'] == "") {
+    	$ins_peserta['foto'] = "";
+		}else{
+			if ( ! $this->upload->do_upload('lampiran')){	
+			$error = array('error' => $this->upload->display_errors());
+			$pesan = $error['error'];
+			echo $pesan;
+      }else{
+      	$ins_peserta['foto'] = $this->upload->file_name;
+      }
+		}
 
     // $q_cek_login = $this->m_admin->getLogin($duser);
     // if (count($q_cek_login)>0) {

@@ -141,11 +141,11 @@
           <div class="form-group col-md-6 col-12">
             <label for="jns_kelamin" class="col-form-label">Jenis Kelamin : *</label>
             <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio1" name="jns_kelamin" class="custom-control-input" checked>
+              <input type="radio" id="customRadio1" name="jns_kelamin" value="laki" class="custom-control-input" checked>
               <label class="custom-control-label" for="customRadio1" style="color: black;">Laki-laki</label>
             </div>
             <div class="custom-control custom-radio">
-              <input type="radio" id="customRadio2" name="jns_kelamin" class="custom-control-input">
+              <input type="radio" id="customRadio2" name="jns_kelamin" value="perempuan" class="custom-control-input">
               <label class="custom-control-label" for="customRadio2" style="color: black;">Perempuan</label>
             </div>
           </div>
@@ -177,7 +177,7 @@
           </div>
           <div class="form-group col-md-6 col-12">
             <label for="nip_reg" class="col-form-label">NIP : *</label>
-            <input type="text" class="form-control" id="nip_reg" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)"  minlength="16" maxlength="18" required>
+            <input type="text" class="form-control" id="nip_reg" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)"  minlength="16" maxlength="18" onkeyup="cek_nip();" required>
           </div>
         </div>
         <div class="form-row">
