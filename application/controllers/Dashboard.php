@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Dashboard extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 		$data = array(
 			'page' => "home",
 		);
-		$this->load->view('st_front', $data);
+		$this->load->view('dashboard/st_dashboard');
 	}
 
 	public function getLogin() {
@@ -36,7 +36,7 @@ class Home extends CI_Controller {
         $sess_data['hak_akses'] = $qck->hak_akses;
         $this->session->set_userdata($sess_data);
 
-        redirect('dashboard');
+        redirect('admin');
       }
     }
     else{

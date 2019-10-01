@@ -80,24 +80,24 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <?php echo form_open('home/getLogin'); ?>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">NIP :</label>
-            <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Password :</label>
-            <input type="password" class="form-control" id="  password" name="password" placeholder="Silahkan masukkan password anda">
-          </div>
-        </form>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">NIP :</label>
+          <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Password :</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Silahkan masukkan password anda">
+        </div>
       </div>
       <div class="modal-footer">
         <div class="group-sm group-wrap-2">
           <button type="button" class="button button-secondary" data-dismiss="modal">Batal</button>
-          <button type="button" class="button button-primary">Masuk</button>
+          <button type="submit" class="button button-primary">Masuk</button>
         </div>
       </div>
+      <?php echo form_close(); ?>
     </div>
   </div>
 </div>

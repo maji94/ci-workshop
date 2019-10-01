@@ -17,7 +17,9 @@ class M_admin extends CI_Model {
   }
 
 	public function getLogin($data){
-		$data = $this->db->get_where('tb_user',$data);
+		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama');
+		$this->db->join('tb_peserta tp','tp.nip = tu.username');
+		$data = $this->db->get_where('tb_user tu',$data);
 		return $data->result();
 	}
 

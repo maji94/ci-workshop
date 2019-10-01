@@ -9,6 +9,9 @@
             <div class="icon novi-icon mdi mdi-phone"></div><a style="font-size: 11px;">Telp. (0726) 21097, 21597, 344602, 28123 | Fax. (0726) 21597</a>
           </div>
           <ul class="list-lined" style="font-size: 11px;">
+            <?php if ($this->session->userdata('nama') != null) { ?>
+              <li><a href="<?php echo site_url('dashboard') ?>"><span class="icon novi-icon mdi mdi-account-outline"></span> <?php echo strtoupper($this->session->userdata('nama')); ?></a></li>
+            <?php } ?>
             <li><p><?php echo nama_hari(date('Y-m-d')).', '.tgl_indo(date('Y-m-d')); ?></p></li>
           </ul>
         </div>
