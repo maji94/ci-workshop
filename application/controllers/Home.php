@@ -40,7 +40,8 @@ class Home extends CI_Controller {
       }
     }
     else{
-      echo "<script>alert('Username Atau Password Tidak Valid');</script>";
+      $this->session->set_flashdata('notif',"<script>alert('Username Atau Password Tidak Valid');</script>");
+      redirect('home');
     }
   }
 

@@ -6,18 +6,43 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('m_admin');
+    $this->cek = $this->session->userdata('logged_in');
+    $this->set = $this->session->userdata('hak_akses');
     date_default_timezone_set('Asia/Jakarta');
+    if (empty($this->cek)) {
+      redirect('home');
+    }
   }
 
 	public function index()
 	{
 		$data = array(
-			'page' => "home",
+			'page' => "dashboard/a_main_content",
 		);
-		$this->load->view('dashboard/st_dashboard');
+		$this->load->view('dashboard/st_dashboard', $data);
 	}
 
-	public function getLogin() {
+  public function narasumber(){
+    $links = $this->uri->segment(3);
+
+    if(!isset($_SESSION['logged_in'])){
+      redirect('home');
+    }else{
+      if ($links == "add") {
+        $data = array(
+          'page' => "dashboard/crud_narasumber",
+        );
+      }else{
+        $data = array(
+          'page'  => "dashboard/narasumber",
+        ); 
+      }
+    }
+
+    $this->load->view('dashboard/st_dashboard', $data);
+  }
+
+	public function getLogin(){
     $u = $this->security->xss_clean($this->input->post('nip'));
     $p = md5($this->security->xss_clean($this->input->post('password')));
     $duser = array(
@@ -129,6 +154,15 @@ class Dashboard extends CI_Controller {
         $this->session->set_flashdata('notif', "<script>alert('Terjadi Kesalahan !!Silahkan coba lagi nanti atau hubungi admin.');</script>");
         redirect('home');
       }
+    }
+  }
+
+  public function getLogout(){
+    if (empty($this->cek)) {
+      header('location:'.site_url());
+    }else{
+      $this->session->sess_destroy();
+      header('location:'.site_url());
     }
   }
 }
