@@ -1,9 +1,23 @@
 <?php
   $links = $this->uri->segment('3');
   if ($links == "add") {
+    $action = "do_add";
     $header = "Tambah";
+    $id = "";
+    $foto = "";
+    $nama = "";
+    $jns_kelamin = "";
+    $keterangan = "";
+    $req = "required";
   }else{
+    $action = "do_edit";
     $header = "Ubah";
+    $id = $data[0]->id;
+    $foto = str_replace('.', '_thumb.', $data[0]->foto);
+    $nama = $data[0]->nama;
+    $jns_kelamin = $data[0]->jns_kelamin;
+    $keterangan = $data[0]->keterangan;
+    $req = "";
   }
 ?>
 <div class="right_col" role="main">
@@ -25,53 +39,28 @@
           </div>
           <div class="x_content">
             <!-- start form for validation -->
-            <form id="demo-form" data-parsley-validate>
-              <label for="fullname">Full Name * :</label>
-              <input type="text" id="fullname" class="form-control" name="fullname" required>
+            <?php echo form_open_multipart('dashboard/narasumber/'.$action,'id="demo-form data-parsley-validate"'); ?>
+            <!-- <form id="demo-form" data-parsley-validate> -->
+              <label for="nama">Nama * :</label>
+              <input type="hidden" name="id" value="<?php echo $id; ?>">
+              <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama beserta gelar" required value="<?php echo $nama; ?>">
               <br>
-              <label for="email">Email * :</label>
-              <input type="email" id="email" class="form-control" name="email" data-parsley-trigger="change" required>
-              <br>
-              <label>Gender *:</label>
+              <label>Jenis Kelamin *:</label>
               <p>
-                Laki-laki:
-                <input type="radio" class="flat" name="gender" id="genderM" value="lakilaki" checked="" required> Perempuan:
-                <input type="radio" class="flat" name="gender" id="genderF" value="perempuan">
+                <input type="radio" class="flat" name="jns_kelamin" id="genderM" value="laki" required <?php if ($jns_kelamin == "laki" OR $jns_kelamin == "") {echo "checked";} ?>>
+                Laki-laki: <br>
+                <input type="radio" class="flat" name="jns_kelamin" id="genderF" value="perempuan" <?php if ($jns_kelamin == "perempuan") {echo "checked";} ?>>
+                Perempuan:
               </p>
-
-              <label>Hobbies (2 minimum):</label>
-              <p style="padding: 5px;">
-                <label>
-                  <input type="checkbox" name="hobbies[]" id="hobby1" value="ski" data-parsley-mincheck="2" required class="flat"> Skiing
-                </label>
-                <br>
-                <label>
-                  <input type="checkbox" name="hobbies[]" id="hobby2" value="run" class="flat"> Running
-                </label>
-                <br>
-                <label>
-                  <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat"> Eating
-                </label>
-                <br>
-                <label>
-                  <input type="checkbox" name="hobbies[]" id="hobby4" value="sleep" class="flat"> Sleeping
-                </label>
-                <br>
-              </p>
-
-              <label for="heard">Heard us by *:</label>
-              <select id="heard" class="form-control" required>
-                <option value="">Choose..</option>
-                <option value="press">Press</option>
-                <option value="net">Internet</option>
-                <option value="mouth">Word of mouth</option>
-              </select>
+              <label for="bio">Biografi/Informasi Kompetensi, dan lain-lain :</label>
+              <textarea id="bio" required="required" class="form-control" name="bio" rows="5" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" placeholder="Biografi, Informasi Kompentensi, Pengalaman Pembicara dan lain-lain"><?php echo $keterangan; ?></textarea>
               <br>
-              <label for="message">Message (20 chars min, 100 max) :</label>
-              <textarea id="message" required="required" class="form-control" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.." data-parsley-validation-threshold="10"></textarea>
+              <label for="foto">Foto * :</label>
+              <input type="hidden" name="oldfoto" value="<?php echo $foto; ?>">
+              <input type="file" id="foto" class="form-control" name="foto" <?php echo $req; ?>>
               <br>
-                <span class="btn btn-primary">Validate form</span>
-            </form>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+            <?php echo form_close(); ?>
             <!-- end form for validations -->
           </div>
         </div>

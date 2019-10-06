@@ -1,6 +1,6 @@
 <footer>
   <div class="pull-right">
-    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+    &copy; 2019. Kementerian Agama Kantor Wilayah Bengkulu. All right reserve.
   </div>
   <div class="clearfix"></div>
 </footer>

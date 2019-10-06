@@ -23,14 +23,22 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
-	public function getContent($tableName, $id){
-		$data = $this->db->get_where($tableName, $id);
+	public function getContent($tableName, $field){
+		$data = $this->db->get_where($tableName, $field);
 		return $data->result();
 	}
 
 	public function getByTime($tableName, $time){
 		$data = $this->db->get_where($tableName, $time);
 		return $data->result();	
+	}
+
+	public function getNarasumber($id=null){
+		if ($id != null) {
+			$this->db->where('id', $id);
+		}
+		$data = $this->db->get('tb_narasumber');
+		return $data->result();
 	}
 
 	public function getProfil($jenis){

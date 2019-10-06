@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Sistem Pendaftaran Workshop Online | v 1.0</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/back'); ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,12 +34,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link href="<?php echo base_url('assets/back'); ?>/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/back'); ?>/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/back'); ?>/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="<?php echo base_url('assets/back'); ?>/vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/back'); ?>/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/back'); ?>/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url('assets/back'); ?>/build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" <?php echo $this->session->flashdata('notif'); ?>>
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -144,8 +148,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url('assets/back'); ?>/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="<?php echo base_url('assets/back'); ?>/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="<?php echo base_url('assets/back'); ?>/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <!-- PNotify -->
+    <script src="<?php echo base_url('assets/back'); ?>/vendors/pnotify/dist/pnotify.js"></script>
+    <script src="<?php echo base_url('assets/back'); ?>/vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="<?php echo base_url('assets/back'); ?>/vendors/pnotify/dist/pnotify.nonblock.js"></script>
     
     <!-- Custom Theme Scripts -->
     <script src="<?php echo base_url('assets/back'); ?>/build/js/custom.min.js"></script>
+    <script>
+      $(document).ready(function (){
+        $('.ui-pnotify').remove();
+        // $('#datatable_wrapper').DataTable();
+      });
+    </script>
   </body>
 </html>
