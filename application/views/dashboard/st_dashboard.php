@@ -78,8 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li class="<?php if($this->uri->segment(2) == ""){echo "active";} ?>"><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-home"></i> Beranda </a>
                   </li>
                   <li class="<?php if($this->uri->segment(2) == "narasumber"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/narasumber'); ?>"><i class="fa fa-edit"></i> Narasumber </a></li>
-                  <li class="<?php if($this->uri->segment(2) == "materi"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-table"></i> Materi </a></li>
-                  <li class="<?php if($this->uri->segment(2) == "workshop"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-bar-chart-o"></i> Workshop </a></li>
+                  <li class="<?php if($this->uri->segment(2) == "workshop"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/workshop'); ?>"><i class="fa fa-table"></i> Workshop </a></li>
                   <li class="<?php if($this->uri->segment(2) == "peserta"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-desktop"></i> Peserta </a></li>
                   <li class="<?php if($this->uri->segment(2) == "galeri"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-image"></i> Galeri </a></li>
                   <li class="<?php if($this->uri->segment(2) == "bidang"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-clone"></i>Admin Bidang </a></li>

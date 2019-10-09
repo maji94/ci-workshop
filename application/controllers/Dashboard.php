@@ -135,16 +135,137 @@ class Dashboard extends CI_Controller {
           $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
           redirect('dashboard/narasumber');
         }
-      }
-      else{
+      }else{
         $data = array(
           'page'  => "dashboard/narasumber",
           'data'  => $this->m_admin->getNarasumber(),
         ); 
       }
     }
-    // echo "<pre>";
-    // print_r($data);
+
+    $this->load->view('dashboard/st_dashboard', $data);
+  }
+
+  public function workshop(){
+    $links = $this->uri->segment(3);
+    $links2 = $this->uri->segment(4);
+
+    $time = time();
+    $path = './assets/back/docs/materi/';
+    $config['upload_path']    = $path;
+    $config['allowed_types']  = 'pdf|docx|doc|pptx|ppt|xlsx|xls';
+    $config['max_size']       = '150000';
+    // $config['file_name']      = $time;
+    $this->load->library('upload', $config);
+
+    if(!isset($_SESSION['logged_in'])){
+      redirect('home');
+    }else{
+      if ($links == "add") {
+        $data = array(
+          'page' => "dashboard/crud_workshop",
+          'narsum' => $this->m_admin->getNarasumber(),
+        );
+      }else if ($links == "do_add") {
+        echo "<pre>";
+        print_r($_POST);
+        $data_workshop = array(
+          'id'            => "",
+          'id_peserta'    => "",
+          'id_narasumber' => $this->input->post('id_narasumber'),
+          'nm_moderator'  => $this->input->post('nm_moderator'),
+          'nm_kegiatan'   => $this->input->post('nm_kegiatan'),
+          'status'        => $this->input->post('status'),
+          'tgl_buka'      => $this->input->post('tgl_buka'),
+          'tgl_tutup'     => $this->input->post('tgl_tutup'),
+          'lokasi'        => $this->input->post('lokasi'),
+          'kuota'         => $this->input->post('kuota'),
+          'judul_materi'  => $this->input->post('judul_materi'),
+          'keterangan'    => $this->input->post('keterangan'),
+        );
+
+        // KONDISI SAAT MEMASUKKAN FOTO
+        if ($_FILES['file_materi']['name'] == "") {
+          $data_workshop['file_materi'] = "";
+        }else{
+          if ( ! $this->upload->do_upload('file_materi')){ 
+          $error = array('error' => $this->upload->display_errors());
+          $pesan = $error['error'];
+          echo $pesan;
+          }else{
+            $data_workshop['file_materi'] = $this->upload->file_name;
+          }
+        }
+
+        $ins_workshop = $this->m_admin->InsertData('tb_workshop', $data_workshop);
+        if ($ins_workshop) {
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil ditambahkan.\",type: \"info\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/workshop');
+        }else{
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal ditambahkan.\",type: \"error\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/workshop');
+        }
+      }else if ($links == "edit"){
+        $data = array(
+          'page'  => "dashboard/crud_narasumber",
+          'data'  => $this->m_admin->getNarasumber($links2),
+        );
+      }else if ($links == "do_edit") {
+        $data_narasumber = array(
+          'nama' => $this->input->post('nama'),
+          'jns_kelamin' => $this->input->post('jns_kelamin'),
+          'keterangan' => $this->input->post('bio'),
+        );
+
+        // KONDISI SAAT MEMASUKKAN FOTO
+        if ($_FILES['foto']['name'] != "") {
+          if ( ! $this->upload->do_upload('foto')){ 
+          $error = array('error' => $this->upload->display_errors());
+          $pesan = $error['error'];
+          echo $pesan;
+          }else{
+            $data_narasumber['foto'] = $this->upload->file_name;
+
+            $thumb['source_image'] = 'assets/back/images/narasumber/'.$this->upload->file_name;
+            $this->load->library('image_lib');
+            $this->image_lib->initialize($thumb);
+            $this->image_lib->resize();
+            unlink($path.$this->upload->file_name);
+            unlink($path.$this->input->post('oldfoto'));
+          }
+        }
+
+        $where = array('id'=>$this->input->post('id'));
+        $upd_narasumber = $this->m_admin->UpdateData('tb_narasumber', $data_narasumber, $where);
+        if ($upd_narasumber) {
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil diperbarui.\",type: \"info\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/narasumber');
+        }else{
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal diperbarui.\",type: \"error\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/narasumber');
+        }
+      }else if ($links == "delete") {
+        $where = array('id'=>$links2);
+        $filefoto = $this->m_admin->getContent('tb_narasumber', $where);
+        $path = './assets/back/images/narasumber/';
+        unlink($path.str_replace('.', '_thumb.', $filefoto[0]->foto));
+
+        $del_narasumber = $this->m_admin->DeleteData('tb_narasumber', $where);
+        if ($del_narasumber) {
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil dihapus.\",type: \"info\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/narasumber');
+        }else{
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/narasumber');
+        }
+      }else{
+        $data = array(
+          'page'  => "dashboard/workshop",
+          'data'  => $this->m_admin->getNarasumber(),
+        ); 
+      }
+    }
+
     $this->load->view('dashboard/st_dashboard', $data);
   }
 
@@ -185,82 +306,6 @@ class Dashboard extends CI_Controller {
     }else{
         echo "2";
     }    
-  }
-
-  public function getRegister() {
-		$time = time();
-		$path = './assets/back/images/peserta/';
-		$config['upload_path']		= $path;
-		$config['allowed_types']	= 'pdf|jpeg|jpg|png|bmp';
-		$config['max_size']				= '150000';
-		$config['file_name']			= $time;
-		$this->load->library('upload', $config);
-
-		$thumb['image_library']  = 'gd2';
-    $thumb['create_thumb']   = TRUE;
-    $thumb['maintain_ratio'] = TRUE;
-    $thumb['width']          = 600;
-    $thumb['height']         = 600;		
-
-		$data_user = array(
-			'id'				=> "",
-			'username'	=> $this->input->post("nip"),
-			'password'	=> md5($this->input->post('konf_password')),
-			'hak_akses'		=> "peserta",
-		);
-
-		$data_peserta = array(
-			'id'				  => "",
-			'nip'	        => $this->input->post('nip'),
-			'nama'	      => $this->input->post('nama'),
-			'ktp'	        => $this->input->post('ktp'),
-			'tmp_lahir'	  => $this->input->post('tmp_lahir'),
-			'tgl_lahir'	  => $this->input->post('tgl_lahir'),
-			'jns_kelamin'	=> $this->input->post('jns_kelamin'),
-			'agama'	      => $this->input->post('agama'),
-			'pendidikan'	=> $this->input->post('pendidikan'),
-			'alamat_rm'	  => $this->input->post('alamat_rm'),
-			'email'	      => $this->input->post('email'),
-			'nohp'	      => $this->input->post('nohp'),
-			'golongan'	  => $this->input->post('golongan'),
-			'jabatan'	    => $this->input->post('jabatan'),
-			'unker'	      => $this->input->post('unker'),
-			'kab'	        => $this->input->post('kab'),
-			'alamat_kt'	  => $this->input->post('alamat_kt'),
-			'npwp'	      => $this->input->post('npwp'),
-			'norek'	      => $this->input->post('norek'),
-		);
-
-		// KONDISI SAAT MEMASUKKAN FOTO
-    if ($_FILES['foto']['name'] == "") {
-    	$data_peserta['foto'] = "";
-		}else{
-			if ( ! $this->upload->do_upload('foto')){	
-			$error = array('error' => $this->upload->display_errors());
-			$pesan = $error['error'];
-			echo $pesan;
-      }else{
-      	$data_peserta['foto'] = $this->upload->file_name;
-
-      	$thumb['source_image'] = 'assets/back/images/peserta/'.$this->upload->file_name;
-        $this->load->library('image_lib');
-        $this->image_lib->initialize($thumb);
-        $this->image_lib->resize();
-				unlink($path.$this->upload->file_name);
-      }
-		}
-
-    $ins_peserta = $this->m_admin->InsertData('tb_peserta', $data_peserta);
-    if ($ins_peserta) {
-      $ins_user = $this->m_admin->InsertData('tb_user', $data_user);
-      if ($ins_user) {
-        $this->session->set_flashdata('notif', "<script>alert('Registrasi Sukses !!Data registrasi akan diverifikasi terlebih dahulu oleh admin. Terimakasih');</script>");
-        redirect('home');
-      }else{
-        $this->session->set_flashdata('notif', "<script>alert('Terjadi Kesalahan !!Silahkan coba lagi nanti atau hubungi admin.');</script>");
-        redirect('home');
-      }
-    }
   }
 
   public function getLogout(){

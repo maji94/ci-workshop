@@ -45,7 +45,7 @@
               <input type="hidden" name="id" value="<?php echo $id; ?>">
               <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama beserta gelar" required value="<?php echo $nama; ?>">
               <br>
-              <label>Jenis Kelamin *:</label>
+              <label>Jenis Kelamin * :</label>
               <p>
                 <input type="radio" class="flat" name="jns_kelamin" id="genderM" value="laki" required <?php if ($jns_kelamin == "laki" OR $jns_kelamin == "") {echo "checked";} ?>>
                 Laki-laki: <br>
@@ -60,6 +60,8 @@
               <input type="file" id="foto" class="form-control" name="foto" <?php echo $req; ?>>
               <br>
                 <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                <a href="<?php echo site_url('dashboard/narasumber'); ?>" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Kembali</a>
+                <button type="reset" class="btn btn-warning"><i class="fa fa-refresh"></i> Reset</button>
             <?php echo form_close(); ?>
             <!-- end form for validations -->
           </div>
