@@ -41,6 +41,33 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
+	public function getWorkshop($id=null){
+		if ($id != null) {
+			$this->db->where('tw.id', $id);
+		}
+		$this->db->select('tw.*, tn.foto, tn.nama, tn.jns_kelamin, tn.keterangan AS bio');
+		$this->db->join('tb_narasumber tn', 'tn.id = tw.id_narasumber');
+		$data = $this->db->get('tb_workshop tw');
+		return $data->result();
+	}
+
+	public function getAbsen($id=null){
+		if ($id != null) {
+			$this->db->where('id_workshop', $id);
+		}
+		$data = $this->db->get('tb_absen');
+		return $data->result();
+	}
+
+	public function getListPeserta($id){
+		$this->db->select('ta.id AS id_absen, ta.id_workshop, ta.id_peserta, tp.*, tw.nm_kegiatan, tw.tgl_buka');
+		$this->db->join('tb_peserta tp','tp.id = ta.id_peserta');
+		$this->db->join('tb_workshop tw','tw.id = ta.id_workshop');
+		$this->db->where('ta.id_workshop',$id);
+		$data = $this->db->get('tb_absen ta');
+		return $data->result();
+	}
+
 	public function getProfil($jenis){
 		$this->db->select('*');
 		$this->db->where('jenis_profil', $jenis);

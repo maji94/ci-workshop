@@ -11,7 +11,7 @@
     $tgl_buka = "";
     $tgl_tutup = "";
     $lokasi = "";
-    $kuota = "";
+    $kuota = 0;
     $judul_materi = "";
     $file_materi = "";
     $keterangan = "";
@@ -20,9 +20,16 @@
     $action = "do_edit";
     $header = "Ubah";
     $id = $data[0]->id;
-    $foto = str_replace('.', '_thumb.', $data[0]->foto);
-    $nama = $data[0]->nama;
-    $jns_kelamin = $data[0]->jns_kelamin;
+    $id_narasumber = $data[0]->id_narasumber;
+    $nm_moderator = $data[0]->nm_moderator;
+    $nm_kegiatan = $data[0]->nm_kegiatan;
+    $status = $data[0]->status;
+    $tgl_buka = $data[0]->tgl_buka;
+    $tgl_tutup = $data[0]->tgl_tutup;
+    $lokasi = $data[0]->lokasi;
+    $kuota = $data[0]->kuota;
+    $judul_materi = $data[0]->judul_materi;
+    $file_materi = $data[0]->file_materi;
     $keterangan = $data[0]->keterangan;
     $req = "";
   }
@@ -41,7 +48,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2><small style="margin-left: 0;"><?php echo $header; ?> Data Workshop</small></h2>
+            <h2><?php echo $header; ?> Data Workshop</h2>
             <div class="clearfix"></div>
           </div>
           <div class="x_content">
@@ -55,34 +62,34 @@
               <input type="hidden" name="id" value="<?php echo $id; ?>">
               <select name="id_narasumber" id="id_narasumber" class="form-control">
                 <?php foreach ($narsum as $d) { ?>
-                  <option value="<?php echo $d->id; ?>"><?php echo strtoupper($d->nama); ?></option>
+                  <option value="<?php echo $d->id; ?>" <?php if($id_narasumber == $d->id){echo "selected";} ?>><?php echo strtoupper($d->nama); ?></option>
                 <?php } ?>
               </select>
               <br>
               <label for="nm_moderator">Nama Moderator * :</label>
-              <input type="text" id="nm_moderator" class="form-control" name="nm_moderator" placeholder="Silahkan masukkan nama moderator" required value="<?php echo $nm_moderator; ?>">
+              <input type="text" id="nm_moderator" class="form-control" name="nm_moderator" placeholder="Silahkan masukkan nama moderator" required value="<?php echo strtoupper($nm_moderator); ?>">
               <br>
               <label for="status">Status Kegiatan * :</label>
               <select name="status" id="status" class="form-control">
-                <option value="open">Open (Dibuka)</option>
-                <option value="ongoing">On Going (Sedang Berlangsung)</option>
-                <option value="close">Close (Ditutup)</option>
+                <option  value="open" <?php if ($status == "open") {echo "selected";} ?>>Open (Dibuka)</option>
+                <option  value="ongoing" <?php if ($status == "ongoing") {echo "selected";} ?>>On Going (Sedang Berlangsung)</option>
+                <option  value="close" <?php if ($status == "close") {echo "selected";} ?>>Close (Ditutup)</option>
               </select>
               <br>
               <label for="tgl_buka">Tanggal Pembukaan * :</label>
-              <input type="date" class="form-control" name="tgl_buka" id="tgl_buka" required>
+              <input type="date" class="form-control" name="tgl_buka" id="tgl_buka" required value="<?php echo $tgl_buka; ?>">
               <br>
               <label for="tgl_tutup">Tanggal Penutupan * :</label>
-              <input type="date" class="form-control" name="tgl_tutup" id="tgl_tutup" required>
+              <input type="date" class="form-control" name="tgl_tutup" id="tgl_tutup" required value="<?php echo $tgl_tutup; ?>">
               <br>
               <label for="lokasi">Lokasi Kegiatan * :</label>
-              <input type="teks" class="form-control" name="lokasi" id="lokasi" placeholder="Silahkan masukkan lokasi kegiatan">
+              <input type="teks" class="form-control" name="lokasi" id="lokasi" placeholder="Silahkan masukkan lokasi kegiatan" value="<?php echo $lokasi; ?>">
               <br>
               <label for="kuota">Kuota * :</label>
-              <input type="number" class="form-control" name="kuota" id="kuota" required min="0" step="5" value="0">
+              <input type="number" class="form-control" name="kuota" id="kuota" required min="0" step="5" value="<?php echo $kuota; ?>">
               <br>
               <label for="judul_materi">Judul Materi * :</label>
-              <input type="text" class="form-control" name="judul_materi" id="judul_materi" placeholder="Silahkan masukkan judul materi">
+              <input type="text" class="form-control" name="judul_materi" id="judul_materi" placeholder="Silahkan masukkan judul materi" value="<?php echo $judul_materi; ?>">
               <br>
               <label for="file_materi">File Materi (pdf,docx,pptx,xlsx) :</label>
               <input type="hidden" name="oldfile" value="<?php echo $file_materi; ?>">
