@@ -81,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li class="<?php if($this->uri->segment(2) == "workshop"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/workshop'); ?>"><i class="fa fa-table"></i> Workshop </a></li>
                   <li class="<?php if($this->uri->segment(2) == "peserta"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-desktop"></i> Peserta </a></li>
                   <li class="<?php if($this->uri->segment(2) == "galeri"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-image"></i> Galeri </a></li>
-                  <li class="<?php if($this->uri->segment(2) == "bidang"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-clone"></i>Admin Bidang </a></li>
+                  <li class="<?php if($this->uri->segment(2) == "admin"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/admin'); ?>"><i class="fa fa-clone"></i>Admin Bidang </a></li>
                 </ul>
               </div>
 
@@ -157,7 +157,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script>
       $(document).ready(function (){
         $('.ui-pnotify').remove();
-        // $('#datatable_wrapper').DataTable();
+
+        $('#detail').on('show.bs.modal', function (event){
+
+          var div = $(event.relatedTarget)
+          var foto = div.data('foto')
+          var nip = div.data('nip')
+          var nama = div.data('nama')
+          var ktp = div.data('ktp')
+          var tmp_lahir = div.data('tmp_lahir')
+          var tgl_lahir = div.data('tgl_lahir')
+          var jns_kelamin = div.data('jns_kelamin')
+          var agama = div.data('agama')
+          var pendidikan = div.data('pendidikan')
+          var alamat_rm = div.data('alamat_rm')
+          var email = div.data('email')
+          var nohp = div.data('nohp')
+          var jabatan = div.data('jabatan')
+          var golongan = div.data('golongan')
+          var unker = div.data('unker')
+          var kab = div.data('kab')
+          var alamat_kt = div.data('alamat_kt')
+          var npwp = div.data('npwp')
+          var norek = div.data('norek')
+          var keterangan = div.data('keterangan')
+          var modal = $(this)
+
+          modal.find('#foto').attr("src",foto)
+          modal.find('#nip').html(nip)
+          modal.find('#nama').html(nama)
+          modal.find('#ktp').html(ktp)
+          modal.find('#ttl').html(tmp_lahir+", "+tgl_lahir)
+          modal.find('#jns_kelamin').html(jns_kelamin)
+          modal.find('#agama').html(agama)
+          modal.find('#pendidikan').html(pendidikan)
+          modal.find('#alamat_rm').html(alamat_rm)
+          modal.find('#emailhp').html(email+"/<br>"+nohp)
+          modal.find('#jabgol').html(jabatan+"/"+golongan)
+          modal.find('#unkerkab').html(unker+", "+kab)
+          modal.find('#alamat_kt').html(alamat_kt)
+          modal.find('#npwp').html(npwp)
+          modal.find('#norek').html(norek)
+          modal.find('#keterangan').html(keterangan)
+          
+        });
       });
     </script>
   </body>

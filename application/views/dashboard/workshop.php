@@ -42,7 +42,16 @@
                     <?php } ?>
                   </td>
                   <td style="text-transform: capitalize;"><?php echo $d->nm_kegiatan; ?></td>
-                  <td style="text-transform: capitalize;"><?php echo $d->nama; ?></td>
+                  <td style="text-transform: capitalize;">
+                    <a style="width: 80px;cursor: pointer;" 
+                      data-toggle="modal" data-target="#detail" 
+                      data-foto="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>"
+                      data-nama="<?php echo $d->nama; ?>"
+                      data-jns_kelamin="<?php if($d->jns_kelamin == 'laki'){echo "Laki-laki";}else{echo $d->jns_kelamin;} ?>"
+                      data-keterangan="<?php echo $d->bio; ?>" >
+                       <?php echo $d->nama; ?> <br><small>(klik untuk lihat info narasumber)</small>
+                    </a><br>
+                  </td>
                   <td><?php echo "Mulai : <br>".nama_hari(date($d->tgl_buka)).', '.tgl_indo(date($d->tgl_buka))."<br>Selesai : <br>".nama_hari(date($d->tgl_tutup)).', '.tgl_indo(date($d->tgl_tutup)); ?></td>
                   <td>
                     <a style="width: 80px" class="btn btn-warning" href="<?php echo site_url('dashboard/workshop/detail/'.$d->id); ?>"><i class="fa fa-search"></i> Detail</a><br>
@@ -57,6 +66,35 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <img id="foto" alt="img" style="width: 50%;margin: 0 auto 20px;display: block;border: 1px solid grey;">
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 30px;">
+            <span>Nama : <br><label style="text-transform: capitalize;" id="nama"></label></span><br>
+            <span>Jenis Kelamin : <br><label style="text-transform: capitalize;" id="jns_kelamin"></label></span><br>
+            <span>Biografi, Kompetensi dan lain-lain : <br><label style="text-transform: capitalize;text-align: justify;" id="keterangan"></label></span><br>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
     </div>
   </div>
 </div>

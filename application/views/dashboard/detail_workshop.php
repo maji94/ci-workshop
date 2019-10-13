@@ -1,39 +1,3 @@
-<!-- <?php
-  $links = $this->uri->segment('3');
-  if ($links == "add") {
-    $action = "do_add";
-    $header = "Tambah";
-    $id = "";
-    $id_narasumber = "";
-    $nm_moderator = "";
-    $nm_kegiatan = "";
-    $status = "";
-    $tgl_buka = "";
-    $tgl_tutup = "";
-    $lokasi = "";
-    $kuota = 0;
-    $judul_materi = "";
-    $file_materi = "";
-    $keterangan = "";
-    $req = "required";
-  }else{
-    $action = "do_edit";
-    $header = "Ubah";
-    $id = $data[0]->id;
-    $id_narasumber = $data[0]->id_narasumber;
-    $nm_moderator = $data[0]->nm_moderator;
-    $nm_kegiatan = $data[0]->nm_kegiatan;
-    $status = $data[0]->status;
-    $tgl_buka = $data[0]->tgl_buka;
-    $tgl_tutup = $data[0]->tgl_tutup;
-    $lokasi = $data[0]->lokasi;
-    $kuota = $data[0]->kuota;
-    $judul_materi = $data[0]->judul_materi;
-    $file_materi = $data[0]->file_materi;
-    $keterangan = $data[0]->keterangan;
-    $req = "";
-  }
-?> -->
 <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
@@ -46,11 +10,9 @@
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-          <div class="x_title">
-            <h2>Detail Workshop</h2>
-            <div class="clearfix"></div>
-          </div>
           <div class="x_content">
+            <h2 style="margin: 0px;"><small>Detail Workshop</small></h2>
+            <div class="ln_solid"></div>
             <br>
             <form class="form-horizontal form-label-left">
               <div class="form-group">
@@ -110,7 +72,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" style="font-weight: normal;font-style: italic;">File Materi : </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <label class="control-label" style="text-align: left;"><a class="btn btn-default" href="<?php echo site_url('dashboard/download/'.$data[0]->file_materi); ?>" title="DOWNLOAD FILE MATERI WORSHOP"><i class="fa fa-download"></i> DOWNLOAD</a></label>
+                  <label class="control-label" style="text-align: left;"><a class="btn btn-default" href="<?php echo site_url('dashboard/download/'.$this->uri->segment(4).'/'.$data[0]->file_materi); ?>" title="DOWNLOAD FILE MATERI WORSHOP"><i class="fa fa-download"></i> DOWNLOAD</a></label>
                 </div>
               </div>
               <div class="form-group">

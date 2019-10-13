@@ -47,11 +47,9 @@
     <div class="row">
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-          <div class="x_title">
-            <h2><?php echo $header; ?> Data Workshop</h2>
-            <div class="clearfix"></div>
-          </div>
           <div class="x_content">
+            <h2 style="margin: 0px;"><small><?php echo $header; ?> Data Workshop</small></h2>
+            <div class="ln_solid"></div>
             <!-- start form for validation -->
             <?php echo form_open_multipart('dashboard/workshop/'.$action); ?>
             <!-- <form id="demo-form" data-parsley-validate> -->
