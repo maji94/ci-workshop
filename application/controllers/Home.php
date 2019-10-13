@@ -38,10 +38,24 @@ class Home extends CI_Controller {
 
         redirect('dashboard');
       }
-    }
-    else{
-      $this->session->set_flashdata('notif',"<script>alert('Username Atau Password Tidak Valid');</script>");
-      redirect('home');
+    }else{
+    	$q_cek_login2 = $this->m_admin->getLogin2($duser);
+    	if (count($q_cek_login2)>0) {
+	      foreach ($q_cek_login2 as $qck) {
+	        $sess_data['logged_in'] = 'yes';
+	        $sess_data['id']        = $qck->id;
+	        $sess_data['username']  = $qck->username;
+	        $sess_data['nama']      = $qck->nama;
+	        $sess_data['foto']  	  = $qck->foto;
+	        $sess_data['hak_akses'] = $qck->hak_akses;
+	        $this->session->set_userdata($sess_data);
+
+	        redirect('dashboard');
+	      }
+    	}else{
+	      $this->session->set_flashdata('notif',"<script>alert('Username Atau Password Tidak Valid');</script>");
+	      redirect('home');
+    	}
     }
   }
 

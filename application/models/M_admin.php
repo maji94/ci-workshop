@@ -23,6 +23,13 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
+	public function getLogin2($data){
+		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama');
+		$this->db->join('tb_pembina tp','tp.nip = tu.username');
+		$data = $this->db->get_where('tb_user tu',$data);
+		return $data->result();
+	}
+
 	public function getContent($tableName, $field){
 		$data = $this->db->get_where($tableName, $field);
 		return $data->result();
