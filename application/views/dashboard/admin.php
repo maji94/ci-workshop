@@ -26,8 +26,8 @@
                   <th width="8">NIP</th>
                   <th width="15%">Bidang</th>
                   <th width="15%">Email / Hp</th>
-                  <th width="30*">Alamat</th>
-                  <th width="5%">Action</th>
+                  <th width="25*">Alamat</th>
+                  <th width="10%">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -41,8 +41,11 @@
                   <td><?php echo $d->email.' / <br>'.$d->nohp; ?></td>
                   <td><?php echo $d->alamat; ?></td>
                   <td>
-                    <a style="width: 80px" class="btn btn-primary" href="<?php echo site_url('dashboard/admin/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a><br>
-                    <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/admin/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
+                    <a style="width: 140px" class="btn btn-primary" href="<?php echo site_url('dashboard/admin/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a><br>
+                    <a style="width: 140px;cursor: pointer;" class="btn btn-info"
+                      data-toggle="modal" data-target="#ubah_psw" 
+                      data-nip="<?php echo $d->nip; ?>" ><i class="fa fa-unlock-alt"></i> Ubah Password</a><br>
+                    <a style="width: 140px" class="btn btn-default" href="<?php echo site_url('dashboard/admin/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
                 <?php $no++;} ?>
@@ -52,6 +55,40 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ubah_psw" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Ubah Password</h4>
+      </div>
+      <?php echo form_open_multipart('dashboard/admin/ubah_psw'); ?>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <!-- <form id="demo-form" data-parsley-validate> -->
+            <label for="password">Password Baru * :</label>
+            <input type="hidden" name="id" id="id">
+            <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan password baru" required>
+            <br>
+            <label for="konf_psw">Konfirmasi Password Baru * :</label>
+            <input type="hidden" name="id" id="id">
+            <input type="password" id="konf_psw" class="form-control" name="konf_psw" placeholder="Konfirmasi password baru (ulangi password baru)" required>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" data-dismiss="modal">Ubah</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      <?php echo form_close(); ?>
     </div>
   </div>
 </div>
