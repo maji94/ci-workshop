@@ -8,7 +8,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" style="text-transform: capitalize;">
-            <img src="<?php echo base_url('assets/back/') ?>images/img.jpg" alt=""><?php echo $this->session->userdata('nama'); ?>
+            <img src="<?php if($this->session->userdata('hak_akses') != "admin"){echo base_url('assets/back/images/'.$this->session->userdata('hak_akses').'/'.str_replace('.', '_thumb.', $this->session->userdata('foto')));}else{echo base_url('assets/back/images/img.jpg');} ?>" alt="profil pict"><?php echo $this->session->userdata('nama'); ?>
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">

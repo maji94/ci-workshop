@@ -32,7 +32,7 @@
                 <?php $no=1; foreach ($data as $d) { ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td align="center"><img width="150" height="180" src="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>" alt="gambar narasumber"></td>
+                  <td align="center"><img width="80" height="110" src="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>" alt="gambar narasumber"></td>
                   <td style="text-transform: capitalize;"><?php echo $d->nama; ?></td>
                   <td><?php if ($d->jns_kelamin == "laki") {echo "Laki-laki";}else {echo "Perempuan";} ?></td>
                   <td><?php echo $d->keterangan; ?></td>

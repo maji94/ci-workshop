@@ -17,14 +17,14 @@ class M_admin extends CI_Model {
   }
 
 	public function getLogin($data){
-		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama');
+		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama, tp.id AS id_profil');
 		$this->db->join('tb_peserta tp','tp.nip = tu.username');
 		$data = $this->db->get_where('tb_user tu',$data);
 		return $data->result();
 	}
 
 	public function getLogin2($data){
-		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama');
+		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama, tp.id AS id_profil');
 		$this->db->join('tb_pembina tp','tp.nip = tu.username');
 		$data = $this->db->get_where('tb_user tu',$data);
 		return $data->result();
@@ -53,7 +53,7 @@ class M_admin extends CI_Model {
 			$this->db->where('tw.id', $id);
 		}
 		$this->db->select('tw.*, tn.foto, tn.nama, tn.jns_kelamin, tn.keterangan AS bio');
-		$this->db->join('tb_narasumber tn', 'tn.id = tw.id_narasumber');
+		$this->db->join('tb_narasumber tn', 'tn.id = tw.id_narasumber','left');
 		$data = $this->db->get('tb_workshop tw');
 		return $data->result();
 	}
@@ -76,11 +76,25 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
-	public function getAdmin($id=null){
+	public function getAdmin($id=null, $nip=null){
 		if ($id != null) {
 			$this->db->where('id', $id);
 		}
+		if ($nip != null) {
+			$this->db->where('nip', $nip);
+		}
 		$data = $this->db->get('tb_pembina');
+		return $data->result();
+	}
+
+	public function getPeserta($id=null, $nip=null){
+		if ($id != null) {
+			$this->db->where('id', $id);
+		}
+		if ($nip != null) {
+			$this->db->where('nip', $nip);
+		}
+		$data = $this->db->get('tb_peserta');
 		return $data->result();
 	}
 

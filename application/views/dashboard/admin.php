@@ -34,7 +34,7 @@
                 <?php $no=1; foreach ($data as $d) { ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td align="center"><img width="150" height="180" src="<?php echo base_url('assets/back/images/admin/'.str_replace('.', '_thumb.', $d->foto)) ?>" alt="gambar admin"></td>
+                  <td align="center"><img width="80" height="110" src="<?php echo base_url('assets/back/images/admin/'.str_replace('.', '_thumb.', $d->foto)) ?>" alt="gambar admin"></td>
                   <td style="text-transform: capitalize;"><?php echo $d->nama; ?></td>
                   <td style="text-transform: capitalize;"><?php echo $d->nip; ?></td>
                   <td style="text-transform: capitalize;"><?php echo $d->bidang; ?></td>
@@ -68,24 +68,25 @@
         </button>
         <h4 class="modal-title" id="myModalLabel">Ubah Password</h4>
       </div>
-      <?php echo form_open_multipart('dashboard/admin/ubah_psw'); ?>
+      <?php echo form_open('dashboard/admin/ubah_psw','onSubmit="return cek_ubh_psw();"'); ?>
       <div class="modal-body">
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- <form id="demo-form" data-parsley-validate> -->
             <label for="password">Password Baru * :</label>
-            <input type="hidden" name="id" id="id">
-            <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan password baru" required>
+            <input type="hidden" name="nip" id="nip">
+            <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan password baru" required minlength="6" maxlength="12">
             <br>
             <label for="konf_psw">Konfirmasi Password Baru * :</label>
             <input type="hidden" name="id" id="id">
-            <input type="password" id="konf_psw" class="form-control" name="konf_psw" placeholder="Konfirmasi password baru (ulangi password baru)" required>
+            <input type="password" id="konf_psw" class="form-control" name="konf_psw" placeholder="Konfirmasi password baru (ulangi password baru)" minlength="6" maxlength="12" required onkeyup="cek_register();">
+            <span class="error" id="pesan_konfir"></span>
             <br>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" data-dismiss="modal">Ubah</button>
+        <button type="submit" class="btn btn-primary">Ubah</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
       <?php echo form_close(); ?>

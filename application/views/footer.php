@@ -213,7 +213,7 @@
         <div class="form-row">
           <div class="form-group col-md-6 col-12">
             <label for="norek" class="col-form-label">No. Rekening dan Bank :</label>
-            <input type="text" class="form-control" id="norek" name="norek" placeholder="Contoh. 123456789 (Bank Mandiri Syariah)">
+            <input type="text" class="form-control" id="norek" name="norek" placeholder="Contoh : 123456789 (Bank Mandiri Syariah)">
           </div>
           <div class="form-group col-md-6 col-12">
             <label for="password_reg" class="col-form-label">Password : *</label>

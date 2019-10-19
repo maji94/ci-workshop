@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="<?php echo base_url('assets/back/') ?>images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="<?php if($this->session->userdata('hak_akses') != "admin"){echo base_url('assets/back/images/'.$this->session->userdata('hak_akses').'/'.str_replace('.', '_thumb.', $this->session->userdata('foto')));}else{echo base_url('assets/back/images/img.jpg');} ?>" alt="profile pict" class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Online</span>
@@ -79,9 +79,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </li>
                   <li class="<?php if($this->uri->segment(2) == "narasumber"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/narasumber'); ?>"><i class="fa fa-edit"></i> Narasumber </a></li>
                   <li class="<?php if($this->uri->segment(2) == "workshop"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/workshop'); ?>"><i class="fa fa-table"></i> Workshop </a></li>
-                  <li class="<?php if($this->uri->segment(2) == "peserta"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-desktop"></i> Peserta </a></li>
+                  <li class="<?php if($this->uri->segment(2) == "peserta"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/peserta'); ?>"><i class="fa fa-desktop"></i> Peserta </a></li>
                   <li class="<?php if($this->uri->segment(2) == "galeri"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-image"></i> Galeri </a></li>
+                  <?php if ($this->session->userdata('hak_akses') == "admin") { ?>
                   <li class="<?php if($this->uri->segment(2) == "admin"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/admin'); ?>"><i class="fa fa-clone"></i>Admin Bidang </a></li>
+                  <?php }else{ ?>
+                    <li class="<?php if($this->uri->segment(2) == "profil"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/profil'); ?>"><i class="fa fa-clone"></i>Profil </a></li>
+                  <?php } ?>
                 </ul>
               </div>
 
@@ -201,7 +205,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           modal.find('#keterangan').html(keterangan)
           
         });
+
+        $('#ubah_psw').on('show.bs.modal', function (event){
+
+          var div = $(event.relatedTarget)
+          var nip = div.data('nip')
+          var modal = $(this)
+
+          modal.find('#nip').attr("value",nip)
+          // modal.find('#nip').html(nip)
+          
+        });
       });
+
+      function cek_register(){
+        var passBaru = $('#password').val();
+        var konfir = $('#konf_psw').val();
+        
+        if (konfir == "") {
+          $("#pesan_konfir").css('color','#fc5d32');
+          $("#konf_psw").css('border-color','#fc5d32');
+          $("#pesan_konfir").html('Konfirmasi password tidak boleh kosong');
+          $("#pesan_konfir").fadeIn(1000);
+          error = 1;
+        }else{
+          if(konfir != passBaru){
+            $("#pesan_konfir").css('color','#fc5d32');
+            $("#konf_psw").css('border-color','#fc5d32');
+            $("#pesan_konfir").html('Maaf Konfirmasi password tidak valid');
+            $("#pesan_konfir").fadeIn(1000);
+            error = 1;
+          }else{
+            $("#pesan_konfir").css("color","#59c113");
+            $("#konf_psw").css("border-color","#59c113");
+            $("#pesan_konfir").html("Konfirmasi password valid");
+            $("#pesan_konfir").fadeIn(1000);
+            error = 0;
+          }
+        }
+      }
+
+      function cek_ubh_psw(){
+        var passBaru = $('#password').val();
+        var konfir = $('#konf_psw').val();
+      
+        if (error==1 || konfir!=passBaru || konfir=="" || passBaru=="") {
+          alert('Data harus diisi dan valid');
+          return false;
+        }
+      }
     </script>
   </body>
 </html>
