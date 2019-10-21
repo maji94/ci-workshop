@@ -13,6 +13,9 @@
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
             <li><a href="javascript:;"> Profile</a></li>
+            <li><a data-toggle="modal" data-target="#ubah_psw" 
+                  data-nip="<?php echo $this->session->userdata('username'); ?>" ><i class="fa fa-unlock-alt pull-right"></i> Ubah Password</a>
+            </li>
             <li><a href="<?php echo site_url('dashboard/getLogout'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
           </ul>
         </li>

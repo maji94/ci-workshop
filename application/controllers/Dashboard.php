@@ -273,7 +273,7 @@ class Dashboard extends CI_Controller {
           }
         }else if ($links == "detail") {
           $cek_absen = array(
-            'id_peserta' => $this->session->userdata('id'),
+            'id_peserta' => $this->id_profil,
             'id_workshop' => $links2,
           );
           $data = array(
@@ -285,7 +285,7 @@ class Dashboard extends CI_Controller {
           );
         }else if ($links == "register") {
           $data_absen = array(
-            'id_peserta' => $this->session->userdata('id'),
+            'id_peserta' => $this->id_profil,
             'id_workshop' => $links2,
           );
 
@@ -732,12 +732,15 @@ class Dashboard extends CI_Controller {
       }else{
         if ($this->set == "pembina") {
           $page_data = $this->m_admin->getAdmin($this->id_profil);
+          $workshop = $this->m_admin->getWorkshop();
         }else if ($this->set == "peserta") {
           $page_data = $this->m_admin->getPeserta($this->id_profil);
+          $workshop = $this->m_admin->getListWorkshop($this->id_profil);
         }
         $data = array(
           'page'  => "dashboard/profile",
           'data'  => $page_data,
+          'workshop' => $workshop,
         ); 
       }
     }

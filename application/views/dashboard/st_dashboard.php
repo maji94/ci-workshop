@@ -77,14 +77,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <ul class="nav side-menu">
                   <li class="<?php if($this->uri->segment(2) == ""){echo "active";} ?>"><a href="<?php echo site_url('dashboard'); ?>"><i class="fa fa-home"></i> Beranda </a>
                   </li>
+                  <?php if ($this->session->userdata('hak_akses') == "admin" OR $this->session->userdata('hak_akses') == "pembina") { ?>
                   <li class="<?php if($this->uri->segment(2) == "narasumber"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/narasumber'); ?>"><i class="fa fa-edit"></i> Narasumber </a></li>
+                  <?php } ?>
                   <li class="<?php if($this->uri->segment(2) == "workshop"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/workshop'); ?>"><i class="fa fa-table"></i> Workshop </a></li>
+                  <?php if ($this->session->userdata('hak_akses') == "admin" OR $this->session->userdata('hak_akses') == "pembina") { ?>
                   <li class="<?php if($this->uri->segment(2) == "peserta"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/peserta'); ?>"><i class="fa fa-desktop"></i> Peserta </a></li>
                   <li class="<?php if($this->uri->segment(2) == "galeri"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-image"></i> Galeri </a></li>
+                  <?php } ?>
                   <?php if ($this->session->userdata('hak_akses') == "admin") { ?>
                   <li class="<?php if($this->uri->segment(2) == "admin"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/admin'); ?>"><i class="fa fa-clone"></i>Admin Bidang </a></li>
                   <?php }else{ ?>
-                    <li class="<?php if($this->uri->segment(2) == "profil"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/profil'); ?>"><i class="fa fa-clone"></i>Profil </a></li>
+                  <li class="<?php if($this->uri->segment(2) == "profil"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/profil'); ?>"><i class="fa fa-clone"></i>Profil </a></li>
                   <?php } ?>
                 </ul>
               </div>
@@ -161,6 +165,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script>
       $(document).ready(function (){
         $('.ui-pnotify').remove();
+        $('#datatables2').DataTable();
 
         $('#detail').on('show.bs.modal', function (event){
 

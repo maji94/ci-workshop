@@ -155,62 +155,56 @@
                   <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
                     <!-- start user projects -->
-                    <table class="data table table-striped no-margin">
+                    <table id="datatable" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>#</th>
-                          <th>Project Name</th>
-                          <th>Client Company</th>
-                          <th class="hidden-phone">Hours Spent</th>
-                          <th>Contribution</th>
+                          <th width="5%">No.</th>
+                          <th width="12%">Status</th>
+                          <th width="40%">Nama Kegiatan</th>
+                          <th width="20%">Nama Narasumber</th>
+                          <th width="18%">Tanggal Kegiatan</th>
+                          <th width="5%">Action</th>
                         </tr>
                       </thead>
+
                       <tbody>
+                        <?php $no=1; foreach ($workshop as $d) { 
+                          if ($d->status != "close") {
+                        ?>
                         <tr>
-                          <td>1</td>
-                          <td>New Company Takeover Review</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">18</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                            </div>
+                          <td><?php echo $no; ?></td>
+                          <td align="center">
+                            <?php if ($d->status == "open") { ?>
+                              <span class="badge bg-green">Dibuka</span>
+                            <?php } else if ($d->status == "ongoing") { ?>
+                              <span class="badge bg-orange">Sedang<br>Berlangsung</span>
+                            <?php } else if ($d->status == "close") { ?>
+                              <span class="badge bg-red">Ditutup</span>
+                            <?php } ?>
+                          </td>
+                          <td style="text-transform: capitalize;"><?php echo $d->nm_kegiatan; ?></td>
+                          <td style="text-transform: capitalize;">
+                            <a style="width: 80px;cursor: pointer;" 
+                              data-toggle="modal" data-target="#detail" 
+                              data-foto="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>"
+                              data-nama="<?php echo $d->nama; ?>"
+                              data-jns_kelamin="<?php if($d->jns_kelamin == 'laki'){echo "Laki-laki";}else{echo $d->jns_kelamin;} ?>"
+                              data-keterangan="<?php echo $d->bio; ?>" >
+                               <?php echo $d->nama; ?> <br><small>(klik untuk lihat info narasumber)</small>
+                            </a><br>
+                          </td>
+                          <td><?php echo "Mulai : <br>".nama_hari(date($d->tgl_buka)).', '.tgl_indo(date($d->tgl_buka))."<br>Selesai : <br>".nama_hari(date($d->tgl_tutup)).', '.tgl_indo(date($d->tgl_tutup)); ?></td>
+                          <td>
+                            <a style="width: 80px" class="btn btn-warning" href="<?php echo site_url('dashboard/workshop/detail/'.$d->id); ?>"><i class="fa fa-search"></i> Detail</a><br>
+                            <?php if ($this->session->userdata('hak_akses') == "admin" OR $this->session->userdata('hak_akses') == "pembina") { ?>
+                            <a style="width: 80px" class="btn btn-primary" href="<?php echo site_url('dashboard/workshop/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a><br>
+                            <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/workshop/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
+                            <?php } ?>
                           </td>
                         </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>New Partner Contracts Consultanci</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">13</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Partners and Inverstors report</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">30</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>New Company Takeover Review</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">28</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                            </div>
-                          </td>
-                        </tr>
+                        <?php $no++; } } ?>
                       </tbody>
+
                     </table>
                     <!-- end user projects -->
 
@@ -218,61 +212,55 @@
                   <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                     <!-- start user projects -->
-                    <table class="data table table-striped no-margin">
+                    <table id="datatables2" class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>#</th>
-                          <th>Project Name</th>
-                          <th>Client Company</th>
-                          <th class="hidden-phone">Hours Spent</th>
-                          <th>Contribution</th>
+                          <th width="5%">No.</th>
+                          <th width="12%">Status</th>
+                          <th width="40%">Nama Kegiatan</th>
+                          <th width="20%">Nama Narasumber</th>
+                          <th width="18%">Tanggal Kegiatan</th>
+                          <th width="5%">Action</th>
                         </tr>
                       </thead>
+
+
                       <tbody>
+                        <?php $no=1; foreach ($workshop as $d) { 
+                          if ($d->status == "close") {
+                        ?>
                         <tr>
-                          <td>1</td>
-                          <td>New Company Takeover Review</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">18</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                            </div>
+                          <td><?php echo $no; ?></td>
+                          <td align="center">
+                            <?php if ($d->status == "open") { ?>
+                              <span class="badge bg-green">Dibuka</span>
+                            <?php } else if ($d->status == "ongoing") { ?>
+                              <span class="badge bg-orange">Sedang<br>Berlangsung</span>
+                            <?php } else if ($d->status == "close") { ?>
+                              <span class="badge bg-red">Ditutup</span>
+                            <?php } ?>
+                          </td>
+                          <td style="text-transform: capitalize;"><?php echo $d->nm_kegiatan; ?></td>
+                          <td style="text-transform: capitalize;">
+                            <a style="width: 80px;cursor: pointer;" 
+                              data-toggle="modal" data-target="#detail" 
+                              data-foto="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>"
+                              data-nama="<?php echo $d->nama; ?>"
+                              data-jns_kelamin="<?php if($d->jns_kelamin == 'laki'){echo "Laki-laki";}else{echo $d->jns_kelamin;} ?>"
+                              data-keterangan="<?php echo $d->bio; ?>" >
+                               <?php echo $d->nama; ?> <br><small>(klik untuk lihat info narasumber)</small>
+                            </a><br>
+                          </td>
+                          <td><?php echo "Mulai : <br>".nama_hari(date($d->tgl_buka)).', '.tgl_indo(date($d->tgl_buka))."<br>Selesai : <br>".nama_hari(date($d->tgl_tutup)).', '.tgl_indo(date($d->tgl_tutup)); ?></td>
+                          <td>
+                            <a style="width: 80px" class="btn btn-warning" href="<?php echo site_url('dashboard/workshop/detail/'.$d->id); ?>"><i class="fa fa-search"></i> Detail</a><br>
+                            <?php if ($this->session->userdata('hak_akses') == "admin" OR $this->session->userdata('hak_akses') == "pembina") { ?>
+                            <a style="width: 80px" class="btn btn-primary" href="<?php echo site_url('dashboard/workshop/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a><br>
+                            <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/workshop/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
+                            <?php } ?>
                           </td>
                         </tr>
-                        <tr>
-                          <td>2</td>
-                          <td>New Partner Contracts Consultanci</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">13</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Partners and Inverstors report</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">30</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>New Company Takeover Review</td>
-                          <td>Deveint Inc</td>
-                          <td class="hidden-phone">28</td>
-                          <td class="vertical-align-mid">
-                            <div class="progress">
-                              <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                            </div>
-                          </td>
-                        </tr>
+                        <?php $no++; } } ?>
                       </tbody>
                     </table>
                     <!-- end user projects -->
@@ -319,6 +307,35 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
       <?php echo form_close(); ?>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Info Narasumber</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <img id="foto" alt="img" style="width: 50%;margin: 0 auto 20px;display: block;border: 1px solid grey;">
+          </div>
+          <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 30px;">
+            <span>Nama : <br><label style="text-transform: capitalize;" id="nama"></label></span><br>
+            <span>Jenis Kelamin : <br><label style="text-transform: capitalize;" id="jns_kelamin"></label></span><br>
+            <span>Biografi, Kompetensi dan lain-lain : <br><label style="text-transform: capitalize;text-align: justify;" id="keterangan"></label></span><br>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
     </div>
   </div>
 </div>
