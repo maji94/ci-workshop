@@ -49,7 +49,7 @@
           <h5>Twitter</h5><hr style="margin-top:5px;">
           <div class="row row-5 justify-content-between">
             <div class="col-sm-12">
-              <!-- <a class="twitter-timeline" data-height="400" data-theme="dark" href="https://twitter.com/Kemenagbkl?ref_src=twsrc%5Etfw">Tweets by Kemenagbkl</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+              <a class="twitter-timeline" data-height="400" data-theme="dark" href="https://twitter.com/Kemenagbkl?ref_src=twsrc%5Etfw">Tweets by Kemenagbkl</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@
           <h5>Facebook</h5><hr style="margin-top:5px;">
           <div class="row row-30 text-center">
             <div class="col-12">
-              <!-- <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKanwilkemenagbengkulu-Bkl-1610630808947299%2F&tabs=timeline&width=340&height=400&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" height="400" style="border:none;overflow:hidden;width: 100%;" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe> -->
+              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKanwilkemenagbengkulu-Bkl-1610630808947299%2F&tabs=timeline&width=340&height=400&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false&appId" height="400" style="border:none;overflow:hidden;width: 100%;" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
             </div>
           </div>
         </div>

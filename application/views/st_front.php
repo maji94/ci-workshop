@@ -48,8 +48,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- footer -->
       <?php $this->load->view('footer'); ?>
 
-      <?php echo "<pre>";
-      print_r($this->session->userdata()) ?>
+      <!-- <?php echo "<pre>";
+      print_r($this->session->userdata()) ?> -->
     </div>
     <div class="snackbars" id="form-output-global"></div>
     <script src="<?php echo base_url('assets/front/'); ?>js/core.min.js"></script>

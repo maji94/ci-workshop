@@ -57,7 +57,7 @@
                       </button><br>
                       <?php if ($this->session->userdata('hak_akses') == "admin") { ?>
                       <a style="width: 80px" class="btn btn-primary" href="<?php echo site_url('dashboard/peserta/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a>
-                      <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/peserta/delet/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
+                      <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/peserta/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
                       <?php } ?>
                     </td>
                   </tr>

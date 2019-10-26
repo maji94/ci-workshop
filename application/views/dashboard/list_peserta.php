@@ -13,7 +13,9 @@
         <div class="x_panel">
           <div class="x_title">
             <div class="clearfix"></div>
-            <a class="btn btn-success" href="<?php echo site_url('dashboard/workshop/cetak/'.$this->uri->segment(4)); ?>" target="_blank"><i class="fa fa-print"></i> Cetak Daftar Hadir</a>
+            <!-- <a class="btn btn-success" href="<?php// echo site_url('dashboard/workshop/cetak/'.$this->uri->segment(4)); ?>" target="_blank"><i class="fa fa-print"></i> Cetak Daftar Hadir</a> -->
+            <button type="button" class="btn btn-success" style="width: 80px;" 
+            data-toggle="modal" data-target="#cetak"><i class="fa fa-print"></i> Cetak</button>
             <a href="<?php echo site_url('dashboard/workshop/detail/'.$this->uri->segment(4)); ?>" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Kembali</a>
             <div class="clearfix"></div>
           </div>
@@ -85,7 +87,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Detail/Biodata Peserta</h4>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -116,6 +118,112 @@
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
 
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="cetak" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Pilih yang akan dicetak</h4>
+      </div>
+      <?php echo form_open('dashboard/workshop/cetak/'.$this->uri->segment(4), 'target="_blank" method="GET"'); ?>
+      <div class="modal-body">
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12" style="padding-left: 30px;">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="nip" value="1"> NIP
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="nama" value="1"> Nama
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="ktp" value="1"> KTP
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="ttl" value="1"> TTL
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="jns_kelamin" value="1"> Jenis Kelamin
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="agama" value="1"> Agama
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="pendidikan" value="1"> Pendidikan
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="alamat_rm" value="1"> Alamat Rumah
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-6 col-sm-6 col-xs-12" style="padding-left: 30px;">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="emailhp" value="1"> Email/Hp
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="unker" value="1"> Unit Kerja
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="alamat_kt" value="1"> Alamat Kantor
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="jabatan" value="1"> Jabatan/Golongan
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="npwp" value="1"> NPWP
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="norek" value="1"> No. Rekening
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" class="flat" name="ttd" value="1"> Tanda Tangan
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Cetak</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+      <?php echo form_close(); ?>
     </div>
   </div>
 </div>

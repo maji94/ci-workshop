@@ -83,7 +83,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li class="<?php if($this->uri->segment(2) == "workshop"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/workshop'); ?>"><i class="fa fa-table"></i> Workshop </a></li>
                   <?php if ($this->session->userdata('hak_akses') == "admin" OR $this->session->userdata('hak_akses') == "pembina") { ?>
                   <li class="<?php if($this->uri->segment(2) == "peserta"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/peserta'); ?>"><i class="fa fa-desktop"></i> Peserta </a></li>
-                  <li class="<?php if($this->uri->segment(2) == "galeri"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/'); ?>"><i class="fa fa-image"></i> Galeri </a></li>
+                  <li class="<?php if($this->uri->segment(2) == "galeri"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/galeri'); ?>"><i class="fa fa-image"></i> Galeri </a></li>
                   <?php } ?>
                   <?php if ($this->session->userdata('hak_akses') == "admin") { ?>
                   <li class="<?php if($this->uri->segment(2) == "admin"){echo "active";} ?>"><a href="<?php echo site_url('dashboard/admin'); ?>"><i class="fa fa-clone"></i>Admin Bidang </a></li>

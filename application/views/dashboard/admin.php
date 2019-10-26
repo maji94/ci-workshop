@@ -34,7 +34,7 @@
                 <?php $no=1; foreach ($data as $d) { ?>
                 <tr>
                   <td><?php echo $no; ?></td>
-                  <td align="center"><img width="80" height="110" src="<?php echo base_url('assets/back/images/admin/'.str_replace('.', '_thumb.', $d->foto)) ?>" alt="gambar admin"></td>
+                  <td align="center"><img width="80" height="110" src="<?php echo base_url('assets/back/images/pembina/'.str_replace('.', '_thumb.', $d->foto)) ?>" alt="gambar admin"></td>
                   <td style="text-transform: capitalize;"><?php echo $d->nama; ?></td>
                   <td style="text-transform: capitalize;"><?php echo $d->nip; ?></td>
                   <td style="text-transform: capitalize;"><?php echo $d->bidang; ?></td>

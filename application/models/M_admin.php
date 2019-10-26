@@ -107,10 +107,9 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
-	public function getGaleri($jenis_media){
+	public function getGaleri(){
 		$this->db->select('*');
-		$this->db->where('jenis_media',$jenis_media);
-		$this->db->order_by('id_galeri','DESC');
+		$this->db->order_by('id','DESC');
 		$data = $this->db->get('tb_galeri');
 		return $data->result();
 	}
