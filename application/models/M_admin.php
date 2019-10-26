@@ -66,11 +66,14 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
-	public function getListPeserta($id){
+	public function getListPeserta($id,$id_peserta=null){
 		$this->db->select('ta.id AS id_absen, ta.id_workshop, ta.id_peserta, tp.*, tw.nm_kegiatan, tw.tgl_buka, tw.tgl_tutup');
 		$this->db->join('tb_peserta tp','tp.id = ta.id_peserta');
 		$this->db->join('tb_workshop tw','tw.id = ta.id_workshop');
 		$this->db->where('ta.id_workshop',$id);
+		if ($id_peserta != null) {
+			$this->db->where('ta.id_peserta',$id_peserta);
+		}
 		$this->db->order_by('tp.nama','ASC');
 		$data = $this->db->get('tb_absen ta');
 		return $data->result();

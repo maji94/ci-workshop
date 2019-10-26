@@ -150,6 +150,7 @@ class Dashboard extends CI_Controller {
   public function workshop(){
     $links = $this->uri->segment(3);
     $links2 = $this->uri->segment(4);
+    $links3 = $this->uri->segment(5);
 
     $time = time();
     $path = './assets/back/docs/materi/';
@@ -188,9 +189,25 @@ class Dashboard extends CI_Controller {
           'norek'       => $this->input->get('norek'),
           'ttd'         => $this->input->get('ttd'),
         );
-        echo "<pre>";
-        print_r($data);
-        // $this->load->view('dashboard/print_daftar_hadir', $data);
+        // echo "<pre>";
+        // print_r($data);
+        $this->load->view('dashboard/print_daftar_hadir', $data);
+      } else if ($links == "cetak_biodata") {
+        $narasumber=array();
+        $peserta = $this->m_admin->getListPeserta($links2, $links3);
+        if (!empty($peserta)) {
+          $narasumber = $this->m_admin->getWorkshop($peserta[0]->id_workshop);
+        }
+
+        $data = array(
+          'peserta' => $peserta,
+          'narasumber' => $narasumber,
+        );
+
+        // echo "<pre>";
+        // print_r($data);
+
+        $this->load->view('dashboard/print_biodata', $data);
       } else {
         if ($links == "add") {
           $data = array(

@@ -43,7 +43,8 @@
                     <td><?php echo $d->nip; ?></td>
                     <td><?php echo $d->unker; ?></td>
                     <td align="center">
-                      <button type="button" class="btn btn-warning" style="width: 80px;" 
+                      <a style="width: 90px" class="btn btn-success" href="<?php echo site_url('dashboard/workshop/cetak_biodata/'.$this->uri->segment(4).'/'.$d->id_peserta); ?>" target="_blank"><i class="fa fa-print"></i> Biodata</a>
+                      <button type="button" class="btn btn-warning" style="width: 90px;" 
                         data-toggle="modal" data-target="#detail" 
                         data-foto="<?php echo base_url('assets/back/images/peserta/'.str_replace('.', '_thumb.', $d->foto)) ?>"
                         data-nip="<?php echo $d->nip; ?>"
@@ -66,7 +67,7 @@
                         data-norek="<?php echo $d->norek; ?>" >
                         <i class="fa fa-search"></i> Detail
                       </button><br>
-                      <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/workshop/delete_peserta/'.$d->id_peserta); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
+                      <a style="width: 90px" class="btn btn-default" href="<?php echo site_url('dashboard/workshop/delete_peserta/'.$d->id_peserta); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
                     </td>
                   </tr>
                 <?php $no++; } ?>
@@ -212,7 +213,7 @@
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" class="flat" name="ttd" value="1"> Tanda Tangan
+                  <input type="checkbox" class="flat" name="ttd" value="2"> Tanda Tangan
                 </label>
               </div>
             </div>
