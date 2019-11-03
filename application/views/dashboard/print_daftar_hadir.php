@@ -46,8 +46,8 @@
 	</center><br>
 	<label>Judul Workshop : </label>
 	<p style="margin: 0px;font-weight: bold;"><?php if (!empty($peserta)) {echo $peserta[0]->nm_kegiatan;} ?></p>
-	<label>Narasumber : </label>
-	<p style="margin: 0px;font-weight: bold;"><?php if (!empty($narasumber)) {echo $narasumber[0]->nama;} ?></p>
+	<label>Lokasi Kegiatan : </label>
+	<p style="margin: 0px;font-weight: bold;"><?php if (!empty($peserta)) {echo $peserta[0]->lokasi;} ?></p>
 	<label>Waktu Pelaksanaan : </label>
 	<p style="margin: 0px;font-weight: bold;"><?php if (!empty($peserta)) {
 		echo nama_hari(date($peserta[0]->tgl_buka)).', '.tgl_indo(date($peserta[0]->tgl_buka))." s/d ".nama_hari(date($peserta[0]->tgl_tutup)).', '.tgl_indo(date($peserta[0]->tgl_tutup));} ?>

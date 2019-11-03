@@ -73,7 +73,7 @@ class M_admin extends CI_Model {
 	}
 
 	public function getListPeserta($id,$id_peserta=null){
-		$this->db->select('ta.id AS id_absen, ta.id_workshop, ta.id_peserta, tp.*, tw.nm_kegiatan, tw.tgl_buka, tw.tgl_tutup');
+		$this->db->select('ta.id AS id_absen, ta.id_workshop, ta.id_peserta, tp.*, tw.nm_kegiatan, tw.tgl_buka, tw.tgl_tutup, tw.lokasi');
 		$this->db->join('tb_peserta tp','tp.id = ta.id_peserta');
 		$this->db->join('tb_workshop tw','tw.id = ta.id_workshop');
 		$this->db->where('ta.id_workshop',$id);
@@ -108,9 +108,8 @@ class M_admin extends CI_Model {
 	}
 
 	public function getListWorkshop($id=null){
-		$this->db->select('tw.*, tn.foto, tn.nama, tn.jns_kelamin, tn.keterangan AS bio');
+		$this->db->select('tw.*');
 		$this->db->join('tb_workshop tw', 'tw.id = ta.id_workshop');
-		$this->db->join('tb_narasumber tn', 'tn.id = tw.id_narasumber');
 		$this->db->where('ta.id_peserta', $id);
 		$data = $this->db->get('tb_absen ta');
 		return $data->result();

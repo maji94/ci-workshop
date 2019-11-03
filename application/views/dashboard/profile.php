@@ -161,7 +161,7 @@
                           <th width="5%">No.</th>
                           <th width="12%">Status</th>
                           <th width="40%">Nama Kegiatan</th>
-                          <th width="20%">Nama Narasumber</th>
+                          <th width="20%">Lokasi Kegiatan</th>
                           <th width="18%">Tanggal Kegiatan</th>
                           <th width="5%">Action</th>
                         </tr>
@@ -183,16 +183,7 @@
                             <?php } ?>
                           </td>
                           <td style="text-transform: capitalize;"><?php echo $d->nm_kegiatan; ?></td>
-                          <td style="text-transform: capitalize;">
-                            <a style="width: 80px;cursor: pointer;" 
-                              data-toggle="modal" data-target="#detail" 
-                              data-foto="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>"
-                              data-nama="<?php echo $d->nama; ?>"
-                              data-jns_kelamin="<?php if($d->jns_kelamin == 'laki'){echo "Laki-laki";}else{echo $d->jns_kelamin;} ?>"
-                              data-keterangan="<?php echo $d->bio; ?>" >
-                               <?php echo $d->nama; ?> <br><small>(klik untuk lihat info narasumber)</small>
-                            </a><br>
-                          </td>
+                          <td style="text-transform: capitalize;"><?php echo $d->lokasi; ?>
                           <td><?php echo "Mulai : <br>".nama_hari(date($d->tgl_buka)).', '.tgl_indo(date($d->tgl_buka))."<br>Selesai : <br>".nama_hari(date($d->tgl_tutup)).', '.tgl_indo(date($d->tgl_tutup)); ?></td>
                           <td>
                             <a style="width: 80px" class="btn btn-warning" href="<?php echo site_url('dashboard/workshop/detail/'.$d->id); ?>"><i class="fa fa-search"></i> Detail</a><br>
@@ -218,7 +209,7 @@
                           <th width="5%">No.</th>
                           <th width="12%">Status</th>
                           <th width="40%">Nama Kegiatan</th>
-                          <th width="20%">Nama Narasumber</th>
+                          <th width="20%">Lokasi Kegiatan</th>
                           <th width="18%">Tanggal Kegiatan</th>
                           <th width="5%">Action</th>
                         </tr>
@@ -241,16 +232,7 @@
                             <?php } ?>
                           </td>
                           <td style="text-transform: capitalize;"><?php echo $d->nm_kegiatan; ?></td>
-                          <td style="text-transform: capitalize;">
-                            <a style="width: 80px;cursor: pointer;" 
-                              data-toggle="modal" data-target="#detail" 
-                              data-foto="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>"
-                              data-nama="<?php echo $d->nama; ?>"
-                              data-jns_kelamin="<?php if($d->jns_kelamin == 'laki'){echo "Laki-laki";}else{echo $d->jns_kelamin;} ?>"
-                              data-keterangan="<?php echo $d->bio; ?>" >
-                               <?php echo $d->nama; ?> <br><small>(klik untuk lihat info narasumber)</small>
-                            </a><br>
-                          </td>
+                          <td style="text-transform: capitalize;"><?php echo $d->lokasi; ?>
                           <td><?php echo "Mulai : <br>".nama_hari(date($d->tgl_buka)).', '.tgl_indo(date($d->tgl_buka))."<br>Selesai : <br>".nama_hari(date($d->tgl_tutup)).', '.tgl_indo(date($d->tgl_tutup)); ?></td>
                           <td>
                             <a style="width: 80px" class="btn btn-warning" href="<?php echo site_url('dashboard/workshop/detail/'.$d->id); ?>"><i class="fa fa-search"></i> Detail</a><br>
@@ -311,7 +293,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -338,4 +320,4 @@
 
     </div>
   </div>
-</div>
+</div> -->

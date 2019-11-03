@@ -164,44 +164,33 @@ class Dashboard extends CI_Controller {
       redirect('home');
     }else{
       if ($links == "cetak") {
-        $narasumber=array();
         $peserta = $this->m_admin->getListPeserta($links2);
-        if (!empty($peserta)) {
-          $narasumber = $this->m_admin->getWorkshop($peserta[0]->id_workshop);
-        }
 
         $data = array(
-          'peserta'     => $peserta,
-          'narasumber'  => $narasumber,
-          'nip'         => $this->input->get('nip'),
-          'nama'        => $this->input->get('nama'),
-          'ktp'         => $this->input->get('ktp'),
-          'ttl'         => $this->input->get('ttl'),
-          'jns_kelamin' => $this->input->get('jns_kelamin'),
-          'agama'       => $this->input->get('agama'),
-          'pendidikan'  => $this->input->get('pendidikan'),
-          'alamat_rm'   => $this->input->get('alamat_rm'),
-          'emailhp'     => $this->input->get('emailhp'),
-          'unker'       => $this->input->get('unker'),
-          'alamat_kt'   => $this->input->get('alamat_kt'),
-          'jabatan'     => $this->input->get('jabatan'),
-          'npwp'        => $this->input->get('npwp'),
-          'norek'       => $this->input->get('norek'),
-          'ttd'         => $this->input->get('ttd'),
+          'peserta'          => $peserta,
+          'nip'              => $this->input->get('nip'),
+          'nama'             => $this->input->get('nama'),
+          'ktp'              => $this->input->get('ktp'),
+          'ttl'              => $this->input->get('ttl'),
+          'jns_kelamin'      => $this->input->get('jns_kelamin'),
+          'agama'            => $this->input->get('agama'),
+          'pendidikan'       => $this->input->get('pendidikan'),
+          'alamat_rm'        => $this->input->get('alamat_rm'),
+          'emailhp'          => $this->input->get('emailhp'),
+          'unker'            => $this->input->get('unker'),
+          'alamat_kt'        => $this->input->get('alamat_kt'),
+          'jabatan'          => $this->input->get('jabatan'),
+          'npwp'             => $this->input->get('npwp'),
+          'norek'            => $this->input->get('norek'),
+          'ttd'              => $this->input->get('ttd'),
         );
         // echo "<pre>";
         // print_r($data);
         $this->load->view('dashboard/print_daftar_hadir', $data);
       } else if ($links == "cetak_biodata") {
-        $narasumber=array();
-        $peserta = $this->m_admin->getListPeserta($links2, $links3);
-        if (!empty($peserta)) {
-          $narasumber = $this->m_admin->getWorkshop($peserta[0]->id_workshop);
-        }
 
         $data = array(
-          'peserta' => $peserta,
-          'narasumber' => $narasumber,
+          'peserta' => $this->m_admin->getListPeserta($links2, $links3),
         );
 
         // echo "<pre>";
@@ -306,17 +295,21 @@ class Dashboard extends CI_Controller {
           }
         }else if ($links == "delete") {
           $where = array('id'=>$links2);
-          $filefoto = $this->m_admin->getContent('tb_narasumber', $where);
-          $path = './assets/back/images/narasumber/';
-          unlink($path.str_replace('.', '_thumb.', $filefoto[0]->foto));
+          $where2 = array('id_workshop'=>$links2);
 
-          $del_narasumber = $this->m_admin->DeleteData('tb_narasumber', $where);
-          if ($del_narasumber) {
-            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil dihapus.\",type: \"info\",styling: \"bootstrap3\"});'");
-            redirect('dashboard/narasumber');
+          $del_workshop = $this->m_admin->DeleteData('tb_workshop', $where);
+          if ($del_workshop) {
+            $del_absen = $this->m_admin->DeleteData('tb_absen', $where2);
+            if ($del_absen) {
+              $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil dihapus.\",type: \"info\",styling: \"bootstrap3\"});'");
+              redirect('dashboard/workshop');
+            }else{
+              $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
+              redirect('dashboard/workshop');
+            }
           }else{
             $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
-            redirect('dashboard/narasumber');
+            redirect('dashboard/workshop');
           }
         }else if ($links == "detail") {
           $cek_absen = array(
