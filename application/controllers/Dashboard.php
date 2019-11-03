@@ -807,77 +807,68 @@ class Dashboard extends CI_Controller {
           'field' => "",
         );
       }else if ($links == "do_add") {
-        $path = './assets/backend/dist/img/galeri/';
+        $path = './assets/back/images/galeri/';
+        $time = time();
         $config['upload_path']    = $path;
         $config['allowed_types']  = 'jpeg|jpg|png|bmp';
         $config['max_size']       = '150000';
-        $config['file_name']      = time();
+        $config['file_name']      = $time;
         $this->load->library('upload', $config);
 
         $thumb['image_library']  = 'gd2';
         $thumb['create_thumb']   = TRUE;
         $thumb['maintain_ratio'] = TRUE;
-        $thumb['width']          = 300;
-        $thumb['height']         = 300;
+        $thumb['width']          = 1000;
+        $thumb['height']         = 1000;
 
         $ins_data = array(
-          'id_galeri'  => "",
+          'id'         => "",
           'judul'      => $this->input->post('judul'),
-          'tanggal'    => date('Y-m-d'),
+          'tanggal'    => $this->input->post('tanggal'),
         );
 
-        if ($links2 == "foto") {
+        $input = sizeof($_FILES['foto']['tmp_name']);
+        $files = $_FILES['foto'];
+        for ($i=0; $i < $input ; $i++) {
+          $_FILES['foto']['name'] = $files['name'][$i];
+          $_FILES['foto']['type'] = $files['type'][$i];
+          $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
+          $_FILES['foto']['error'] = $files['error'][$i];
+          $_FILES['foto']['size'] = $files['size'][$i];
+          
+          $this->upload->do_upload('foto');
 
-          $input = sizeof($_FILES['foto']['tmp_name']);
-          $files = $_FILES['foto'];
-          for ($i=0; $i < $input ; $i++) {
-            $_FILES['foto']['name'] = $files['name'][$i];
-            $_FILES['foto']['type'] = $files['type'][$i];
-            $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
-            $_FILES['foto']['error'] = $files['error'][$i];
-            $_FILES['foto']['size'] = $files['size'][$i];
-            
-            $this->upload->do_upload('foto');
+          $thumb['source_image']   = 'assets/back/images/galeri/'.$this->upload->file_name;
+          $this->load->library('image_lib');
+          $this->image_lib->initialize($thumb);
+          $this->image_lib->resize();
 
-            $thumb['source_image']   = 'assets/backend/dist/img/galeri/'.$this->upload->file_name;
-            $this->load->library('image_lib');
-            $this->image_lib->initialize($thumb);
-            $this->image_lib->resize();
-
-            $konten[] = $this->upload->file_name;
-          }
-
-          $ins_data['jenis_media'] = 'foto';
-          $ins_data['konten'] = serialize($konten);
-
-        }else if ($links2 == "video") {
-
-          $ins_data['jenis_media'] = 'video';
-          $ins_data['konten'] = $this->input->post('video');
-
-        }else{
-
-          show_404();
-
+          $konten[] = $this->upload->file_name;
         }
 
-        $res = $this->m_admin->InsertData($tableName, $ins_data);
-        if ($res) {
-          $this->session->set_flashdata('notif','<section class="content" style="min-height: auto;"><div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Sukses</h4>Data berhasil disimpan.</div></section>');
-          redirect('admin/galeri/'.$links2);
+        for ($j=0; $j < $input; $j++) { 
+          unlink($path.$konten[$j]);
+        }
+
+        $ins_data['konten'] = serialize($konten);
+
+        $ins_galeri = $this->m_admin->InsertData($tableName, $ins_data);
+        if ($ins_galeri) {
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil ditambahkan.\",type: \"info\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/galeri');
         }
         else{
-          $this->session->set_flashdata('notif','<section class="content" style="min-height: auto;"><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Terjadi Kesalahan</h4>Data gagal disimpan.</div></section>');
-          redirect('admin/galeri/'.$links2);
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal ditambahkan.\",type: \"error\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/galeri');
         }
       }else if ($links == "edit") {
-        $get = array('id_galeri'=>$links3);
+        $get = array('id'=>$links2);
         $data = array(
           'data' => $this->m_admin->getContent($tableName, $get),
-          'page' => "admin/crud-galeri",
+          'page' => "dashboard/crud_galeri",
         );
       }else if ($links == "do_edit") {
-        $path = './assets/backend/dist/img/galeri/';
+        $path = './assets/back/images/galeri/';
         $config['upload_path']    = $path;
         $config['allowed_types']  = 'jpeg|jpg|png|bmp';
         $config['max_size']       = '150000';
@@ -887,93 +878,83 @@ class Dashboard extends CI_Controller {
         $thumb['image_library']  = 'gd2';
         $thumb['create_thumb']   = TRUE;
         $thumb['maintain_ratio'] = TRUE;
-        $thumb['width']          = 300;
-        $thumb['height']         = 300;
+        $thumb['width']          = 1000;
+        $thumb['height']         = 1000;
 
-        $get =  array('id_galeri' => $this->input->post('id'));
+        $get =  array('id' => $this->input->post('id'));
+        $getData = $this->m_admin->getContent($tableName, $get);
+        $getFoto = unserialize($getData[0]->konten);
+        $n_getFoto = sizeof($getFoto);
 
-        if ($links2 == "foto") {
+        $input = sizeof($_FILES['foto']['tmp_name']);
+        $files = $_FILES['foto'];
 
-          $getData = $this->m_admin->getContent($tableName, $get);
-          $getFoto = unserialize($getData[0]->konten);
-          $n_getFoto = sizeof($getFoto);
+        // echo "<pre>";
+        // print_r($input);
+        for ($i=0; $i < $input ; $i++) {
 
-          $input = sizeof($_FILES['foto']['tmp_name']);
-          $files = $_FILES['foto'];
-          for ($i=0; $i < $input ; $i++) {
-
-            $_FILES['foto']['name'] = $files['name'][$i];
-            $_FILES['foto']['type'] = $files['type'][$i];
-            $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
-            $_FILES['foto']['error'] = $files['error'][$i];
-            $_FILES['foto']['size'] = $files['size'][$i];
-            
-            if ($_FILES['foto']['name']) {
-              $this->upload->do_upload('foto');
-              $konten[] = $this->upload->file_name;
-            }else{
-              $konten[] = $getFoto[$i];
-            }
-            
-            $thumb['source_image'] = 'assets/backend/dist/img/galeri/'.$this->upload->file_name;
-            $this->load->library('image_lib');
-            $this->image_lib->initialize($thumb);
-            $this->image_lib->resize();
-
-          }
-
-          $upd_data = array(
-            'judul' => $this->input->post('judul'),
-            'konten' => serialize($konten),
-          );
-
-          for ($i=0; $i < $n_getFoto ; $i++) { 
-            if ($konten[$i] != $getFoto[$i] ) {
-              unlink($path.$getFoto[$i]);
-              unlink($path.str_replace('.', '_thumb.', $getFoto[$i]));
-            }
-          }
-
-        }else if ($links2 == "video") {
-
-          $upd_data = array(
-            'judul' => $this->input->post('judul'),
-            'konten' => $this->input->post('video'),
-          );
+          $_FILES['foto']['name'] = $files['name'][$i];
+          $_FILES['foto']['type'] = $files['type'][$i];
+          $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
+          $_FILES['foto']['error'] = $files['error'][$i];
+          $_FILES['foto']['size'] = $files['size'][$i];
           
+          if ($_FILES['foto']['name']) {
+            $this->upload->do_upload('foto');
+            $konten[] = $this->upload->file_name;
+          }else{
+            $konten[] = $this->input->post('oldFoto')[$i];
+          }
+          
+          $thumb['source_image'] = 'assets/back/images/galeri/'.$this->upload->file_name;
+          $this->load->library('image_lib');
+          $this->image_lib->initialize($thumb);
+          $this->image_lib->resize();
         }
 
-        $res  = $this->m_admin->UpdateData($tableName, $upd_data, $get);
-        if ($res) {
-          $this->session->set_flashdata('notif','<section class="content" style="min-height: auto;"><div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Sukses</h4>Data berhasil diubah.</div></section>');
-          redirect('admin/galeri/'.$links2);
+        $upd_data = array(
+          'judul' => $this->input->post('judul'),
+          'konten' => serialize($konten),
+        );
+
+        for ($i=0; $i < $n_getFoto; $i++) { 
+          if (in_array($getFoto[$i], $konten) == FALSE) {
+            unlink($path.str_replace('.', '_thumb.', $getFoto[$i]));
+          }
+        }
+
+        for ($j=0; $j < $input; $j++) { 
+          unlink($path.$konten[$j]);
+        }
+
+        $upd_galeri  = $this->m_admin->UpdateData($tableName, $upd_data, $get);
+        if ($upd_galeri) {
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil diperbarui.\",type: \"info\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/galeri');
         }
         else{
-          $this->session->set_flashdata('notif','<section class="content" style="min-height: auto;"><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Terjadi Kesalahan</h4>Data gagal diubah.</div></section>');
-          redirect('admin/galeri/'.$links2);
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal diperbarui.\",type: \"error\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/galeri');
         }
       }else if ($links == "delete") {
-        $path = './assets/backend/dist/img/galeri/';
-        $where = array('id_galeri' => $links2);
+        $path = './assets/back/images/galeri/';
+        $where = array('id' => $links2);
 
         $filefoto = $this->m_admin->getContent($tableName, $where);
-        if ($filefoto[0]->jenis_media == "foto") {
-          $konten = unserialize($filefoto[0]->konten);
-          $n = sizeof($konten);
-          for ($i=0; $i < $n ; $i++) { 
-            unlink($path.$konten[$i]);
-            unlink($path.str_replace('.', '_thumb.', $konten[$i]));
-          }
+        $konten = unserialize($filefoto[0]->konten);
+        $n = sizeof($konten);
+        for ($i=0; $i < $n ; $i++) {
+          unlink($path.str_replace('.', '_thumb.', $konten[$i]));
         }
 
-        $res = $this->m_admin->DeleteData($tableName, $where);
-        if ($res) {
-          $this->session->set_flashdata('notif','<section class="content" style="min-height: auto;"><div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-check"></i> Sukses</h4>Data berhasil dihapus.</div></section>');
-          redirect('admin/galeri/'.$filefoto[0]->jenis_media);
+        $del_galeri = $this->m_admin->DeleteData($tableName, $where);
+        if ($del_galeri) {
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil dihapus.\",type: \"info\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/galeri');
         }
         else{
-          $this->session->set_flashdata('notif','<section class="content" style="min-height: auto;"><div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><h4><i class="icon fa fa-ban"></i> Terjadi Kesalahan</h4>Data gagal dihapus.</div></section>');
-          redirect('admin/galeri/'.$filefoto[0]->jenis_media);
+          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
+          redirect('dashboard/galeri');
         }
       }else{
         $data = array(

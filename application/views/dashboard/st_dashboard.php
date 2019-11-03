@@ -259,6 +259,146 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           return false;
         }
       }
+
+      function hapus(id){
+        $(id).remove();
+      }
+
+      function PreviewImage(upload,uploadPreview) {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById(upload).files[0]);
+
+        oFReader.onload = function (oFREvent) {
+          document.getElementById(uploadPreview).src = oFREvent.target.result;
+        }
+      }
+
+      <?php if ($this->uri->segment(3) == "add") { ?>
+        var i = 1;
+      <?php }else if ($this->uri->segment(3) == "edit") { ?>
+        var i = parseInt($("#n_edit").val());
+      <?php } ?>
+      
+      <?php if ($this->uri->segment(2) == "galeri") { ?>
+        function additem() {
+          //                menentukan target append
+            var itemlist = document.getElementById('itemlist');
+            
+          //                membuat element
+            var col = document.createElement('div');
+            col.setAttribute('class', 'col-md-2 col-sm-3 col-xs-12');
+            var fg = document.createElement('div');
+            fg.setAttribute('class', 'form-group');
+            var label = document.createElement('label');
+            label.innerHTML = 'Unggah Foto * :';
+            var fg2 = document.createElement('div');
+            fg2.setAttribute('class', 'form-group');
+
+          //                meng append element
+            itemlist.appendChild(col);
+            col.appendChild(fg);
+            col.appendChild(fg2);
+            fg.appendChild(label);
+
+          //                membuat element input
+            var jenis_input = document.createElement('input');
+            jenis_input.setAttribute('type', 'file');
+            jenis_input.setAttribute('name', 'foto[]');
+            jenis_input.setAttribute('id', 'foto[' + i + ']');
+            jenis_input.setAttribute('onchange', 'PreviewImage("foto['+i+']","prevFoto['+i+']");');
+
+            var preview = document.createElement('img');
+            preview.setAttribute('id', 'prevFoto[' + i + ']');
+            preview.setAttribute('class', 'form-control');
+            preview.setAttribute('alt', 'Foto Galeri');
+            preview.style = "width : 100%; height : 200px;";
+
+            var hapus = document.createElement('span');
+
+          //                meng append element input
+            fg.appendChild(jenis_input);
+            fg2.appendChild(preview);
+            fg2.appendChild(hapus);
+
+            hapus.innerHTML = '<button class="btn btn-danger btn-xs" type="button"><i class="fa fa-times"></i> Hapus</button><br>';
+          //                membuat aksi delete element
+            hapus.onclick = function () {
+                col.parentNode.removeChild(col);
+            };
+
+            i++;
+        }
+      <?php }else if ($this->uri->segment(2) == "workshop") { ?>
+        function additem() {
+            var j = 1;
+          //                menentukan target append
+            var itemlist = document.getElementById('itemlist');
+            
+          //                membuat element
+            var col = document.createElement('div');
+            col.setAttribute('class', 'col-md-2 col-sm-3 col-xs-12');
+            var fg = document.createElement('div');
+            fg.setAttribute('class', 'form-group');
+            var label = document.createElement('label');
+            label.innerHTML = 'Nama Narasumber * :';
+            var label2 = document.createElement('label');
+            label2.innerHTML = 'Nama Moderator * :';
+            var label3 = document.createElement('label');
+            label3.innerHTML = 'Waktu (jam) * :';
+            var br = document.createElement('br');
+            var br2 = document.createElement('br');
+
+          //                meng append element
+            itemlist.appendChild(col);
+            col.appendChild(fg);
+
+          //                membuat element input
+            var sel = document.createElement('select');
+            sel.setAttribute('class', 'form-control');
+            <?php foreach ($narsum as $d) { ?>
+              var opt = document.createElement('option');
+              opt.setAttribute('value', '<?php echo $d->id; ?>');
+              opt.innerHTML = '<?php echo strtoupper($d->nama); ?>'
+              sel.appendChild(opt);
+            <?php } ?>
+            var moderator = document.createElement('input');
+            moderator.setAttribute('type', 'text');
+            moderator.setAttribute('id', 'nm_moderator[' + i + ']');
+            moderator.setAttribute('class', 'form-control');
+            moderator.setAttribute('name', 'nm_moderator[]');
+            moderator.setAttribute('placeholder', 'Silahkan masukkan nama moderator');
+            moderator.setAttribute('required', '');
+
+            var waktu = document.createElement('input');
+            waktu.setAttribute('type', 'number');
+            waktu.setAttribute('id', 'waktu[' + i + ']');
+            waktu.setAttribute('class', 'form-control');
+            waktu.setAttribute('name', 'waktu[]');
+            waktu.setAttribute('placeholder', 'Masukkan waktu narasumber');
+            waktu.setAttribute('required', '');
+
+            var hapus = document.createElement('span');
+
+          //                meng append element input
+            fg.appendChild(label);
+            fg.appendChild(sel);
+            fg.appendChild(br);
+            fg.appendChild(label2);
+            fg.appendChild(moderator);
+            fg.appendChild(br2);
+            fg.appendChild(label3);
+            fg.appendChild(waktu);
+            fg.appendChild(hapus);
+
+            hapus.innerHTML = '<button class="btn btn-danger btn-xs" type="button"><i class="fa fa-times"></i> Hapus</button><br>';
+          //                membuat aksi delete element
+            hapus.onclick = function () {
+                col.parentNode.removeChild(col);
+            };
+
+            i++;
+        }
+      <?php } ?>
     </script>
   </body>
 </html>

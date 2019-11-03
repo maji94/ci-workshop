@@ -25,7 +25,7 @@
                   <th width="5%">No.</th>
                   <th width="12%">Status</th>
                   <th width="40%">Nama Kegiatan</th>
-                  <th width="20%">Nama Narasumber</th>
+                  <th width="15%">Lokasi Kegiatan</th>
                   <th width="18%">Tanggal Kegiatan</th>
                   <th width="5%">Action</th>
                 </tr>
@@ -44,15 +44,7 @@
                     <?php } ?>
                   </td>
                   <td style="text-transform: capitalize;"><?php echo $d->nm_kegiatan; ?></td>
-                  <td style="text-transform: capitalize;">
-                    <a style="width: 80px;cursor: pointer;" 
-                      data-toggle="modal" data-target="#detail" 
-                      data-foto="<?php echo base_url('assets/back/images/narasumber/'.str_replace('.', '_thumb.', $d->foto)) ?>"
-                      data-nama="<?php echo $d->nama; ?>"
-                      data-jns_kelamin="<?php if($d->jns_kelamin == 'laki'){echo "Laki-laki";}else{echo $d->jns_kelamin;} ?>"
-                      data-keterangan="<?php echo $d->bio; ?>" >
-                       <?php echo $d->nama; ?> <br><small>(klik untuk lihat info narasumber)</small>
-                    </a><br>
+                  <td style="text-transform: capitalize;"><?php echo $d->lokasi; ?>
                   </td>
                   <td><?php echo "Mulai : <br>".nama_hari(date($d->tgl_buka)).', '.tgl_indo(date($d->tgl_buka))."<br>Selesai : <br>".nama_hari(date($d->tgl_tutup)).', '.tgl_indo(date($d->tgl_tutup)); ?></td>
                   <td>
