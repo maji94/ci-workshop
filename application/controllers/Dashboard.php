@@ -215,10 +215,15 @@ class Dashboard extends CI_Controller {
             'narsum' => $this->m_admin->getNarasumber(),
           );
         }else if ($links == "do_add") {
+          $data_narasumber = array(
+            'id_narasumber' => $this->input->post('id_narasumber'),
+            'nm_moderator' => $this->input->post('nm_moderator'),
+            'waktu' => $this->input->post('waktu'),
+          );
+
           $data_workshop = array(
             'id'            => "",
-            'id_narasumber' => $this->input->post('id_narasumber'),
-            'nm_moderator'  => $this->input->post('nm_moderator'),
+            'narasumber'    => serialize($data_narasumber),
             'nm_kegiatan'   => $this->input->post('nm_kegiatan'),
             'status'        => $this->input->post('status'),
             'tgl_buka'      => $this->input->post('tgl_buka'),
@@ -251,15 +256,23 @@ class Dashboard extends CI_Controller {
             redirect('dashboard/workshop');
           }
         }else if ($links == "edit"){
+          $data_workshop = $this->m_admin->getWorkshop($links2);
+          $data_narasumber = unserialize($data_workshop[0]->narasumber);
           $data = array(
             'page'  => "dashboard/crud_workshop",
             'narsum'  => $this->m_admin->getNarasumber(),
-            'data'  => $this->m_admin->getWorkshop($links2),
+            'data_workshop'  => $data_workshop,
+            'data_narasumber' => $data_narasumber,
           );
         }else if ($links == "do_edit") {
-          $data_workshop = array(
+          $data_narasumber = array(
             'id_narasumber' => $this->input->post('id_narasumber'),
-            'nm_moderator'  => $this->input->post('nm_moderator'),
+            'nm_moderator' => $this->input->post('nm_moderator'),
+            'waktu' => $this->input->post('waktu'),
+          );
+
+          $data_workshop = array(
+            'narasumber'    => serialize($data_narasumber),
             'nm_kegiatan'   => $this->input->post('nm_kegiatan'),
             'status'        => $this->input->post('status'),
             'tgl_buka'      => $this->input->post('tgl_buka'),
@@ -310,12 +323,19 @@ class Dashboard extends CI_Controller {
             'id_peserta' => $this->id_profil,
             'id_workshop' => $links2,
           );
+
+          $data_workshop = $this->m_admin->getWorkshop($links2);
+          $list_narasumber = unserialize($data_workshop[0]->narasumber);
+          $data_narasumber = $this->m_admin->getListNarasumber($list_narasumber['id_narasumber']);
+
           $data = array(
-            'page'  => "dashboard/detail_workshop",
-            'narsum'  => $this->m_admin->getNarasumber(),
-            'data'  => $this->m_admin->getWorkshop($links2),
-            'absen' => $this->m_admin->getContent('tb_absen', $cek_absen),
-            'daftar' => $this->m_admin->getAbsen($links2),
+            'page'            => "dashboard/detail_workshop",
+            'narsum'          => $this->m_admin->getNarasumber(),
+            'data_workshop'   => $data_workshop,
+            'data_narasumber' => $data_narasumber,
+            'list_narasumber' => $list_narasumber,
+            'absen'           => $this->m_admin->getContent('tb_absen', $cek_absen),
+            'daftar'          => $this->m_admin->getAbsen($links2),
           );
         }else if ($links == "register") {
           $data_absen = array(
@@ -968,7 +988,6 @@ class Dashboard extends CI_Controller {
     // print_r($data);
 
     $this->load->view('dashboard/st_dashboard',$data);
-
   }
 
   public function download(){

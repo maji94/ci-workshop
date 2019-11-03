@@ -65,32 +65,3 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-        </button>
-        <h4 class="modal-title" id="myModalLabel">Info Narasumber</h4>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-12 col-sm-12 col-xs-12">
-            <img id="foto" alt="img" style="width: 50%;margin: 0 auto 20px;display: block;border: 1px solid grey;">
-          </div>
-          <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left: 30px;">
-            <span>Nama : <br><label style="text-transform: capitalize;" id="nama"></label></span><br>
-            <span>Jenis Kelamin : <br><label style="text-transform: capitalize;" id="jns_kelamin"></label></span><br>
-            <span>Biografi, Kompetensi dan lain-lain : <br><label style="text-transform: capitalize;text-align: justify;" id="keterangan"></label></span><br>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>

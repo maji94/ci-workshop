@@ -328,7 +328,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             i++;
         }
-      <?php }else if ($this->uri->segment(2) == "workshop") { ?>
+      <?php }if ($this->uri->segment(2) == "workshop" AND ($this->uri->segment(3) == "add" OR $this->uri->segment(3) == "edit")) { ?>
         function additem() {
             var j = 1;
           //                menentukan target append
@@ -355,6 +355,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           //                membuat element input
             var sel = document.createElement('select');
             sel.setAttribute('class', 'form-control');
+            sel.setAttribute('name', 'id_narasumber[]');
             <?php foreach ($narsum as $d) { ?>
               var opt = document.createElement('option');
               opt.setAttribute('value', '<?php echo $d->id; ?>');
@@ -375,6 +376,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             waktu.setAttribute('class', 'form-control');
             waktu.setAttribute('name', 'waktu[]');
             waktu.setAttribute('placeholder', 'Masukkan waktu narasumber');
+            waktu.setAttribute('min', '1');
+            waktu.setAttribute('value', '1');
             waktu.setAttribute('required', '');
 
             var hapus = document.createElement('span');

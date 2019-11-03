@@ -48,13 +48,19 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
+	public function getListNarasumber($id_narasumber){
+		$this->db->select('*');
+		$this->db->where_in('id', $id_narasumber);
+		$data = $this->db->get('tb_narasumber');
+		return $data->result();
+	}
+
 	public function getWorkshop($id=null){
 		if ($id != null) {
-			$this->db->where('tw.id', $id);
+			$this->db->where('id', $id);
 		}
-		$this->db->select('tw.*, tn.foto, tn.nama, tn.jns_kelamin, tn.keterangan AS bio');
-		$this->db->join('tb_narasumber tn', 'tn.id = tw.id_narasumber','left');
-		$data = $this->db->get('tb_workshop tw');
+		$this->db->select('*');
+		$data = $this->db->get('tb_workshop');
 		return $data->result();
 	}
 

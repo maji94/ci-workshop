@@ -6,7 +6,7 @@
     $id = "";
     $id_narasumber = "";
     $nm_moderator = "";
-    $waktu = "";
+    $waktu = 1;
     $nm_kegiatan = "";
     $status = "";
     $tgl_buka = "";
@@ -17,25 +17,23 @@
     $file_materi = "";
     $keterangan = "";
     $n_konten = "";
-    $req = "required";
   }else{
     $action = "do_edit";
     $header = "Ubah";
-    $id = $data[0]->id;
-    $id_narasumber = $data[0]->id_narasumber;
-    $nm_moderator = $data[0]->nm_moderator;
-    $waktu = "";
-    $nm_kegiatan = $data[0]->nm_kegiatan;
-    $status = $data[0]->status;
-    $tgl_buka = $data[0]->tgl_buka;
-    $tgl_tutup = $data[0]->tgl_tutup;
-    $lokasi = $data[0]->lokasi;
-    $kuota = $data[0]->kuota;
-    $judul_materi = $data[0]->judul_materi;
-    $file_materi = $data[0]->file_materi;
-    $keterangan = $data[0]->keterangan;
-    $n_konten = "";
-    $req = "";
+    $id = $data_workshop[0]->id;
+    $id_narasumber = $data_narasumber['id_narasumber'][0];
+    $nm_moderator = $data_narasumber['nm_moderator'][0];
+    $waktu = $data_narasumber['waktu'][0];
+    $nm_kegiatan = $data_workshop[0]->nm_kegiatan;
+    $status = $data_workshop[0]->status;
+    $tgl_buka = $data_workshop[0]->tgl_buka;
+    $tgl_tutup = $data_workshop[0]->tgl_tutup;
+    $lokasi = $data_workshop[0]->lokasi;
+    $kuota = $data_workshop[0]->kuota;
+    $judul_materi = $data_workshop[0]->judul_materi;
+    $file_materi = $data_workshop[0]->file_materi;
+    $keterangan = $data_workshop[0]->keterangan;
+    $n_konten = count($data_narasumber['id_narasumber']);
   }
 ?>
 <div class="right_col" role="main">
@@ -74,10 +72,10 @@
                     </select>
                     <br>
                     <label for="nm_moderator[0]">Nama Moderator * :</label>
-                    <input type="text" id="nm_moderator[0]" class="form-control" name="nm_moderator[]" placeholder="Silahkan masukkan nama moderator" required value="<?php echo strtoupper($nm_moderator); ?>">
+                    <input type="text" id="nm_moderator[0]" class="form-control" name="nm_moderator[]" placeholder="Silahkan masukkan nama moderator" required value="<?php echo $nm_moderator; ?>">
                     <br>
                     <label for="waktu[0]">Waktu (jam) * :</label>
-                    <input type="number" id="waktu[0]" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" required value="<?php echo $waktu; ?>">
+                    <input type="number" id="waktu[0]" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" min="1" required value="<?php echo $waktu; ?>">
                     <br>
                     <button type="button" class="btn btn-info btn-sm" onclick="additem(); return false"><i class="fa fa-plus"></i> Tambah Narasumber</button>
                   </div>
@@ -88,18 +86,17 @@
                     <div class="col-md-2 col-sm-3 col-xs-12" id="<?php echo 'finput'.$i; ?>">
                       <div class="form-group">
                         <label for="id_narasumber">Nama Narasumber * :</label>
-                        <select name="id_narasumber[]" id="id_narasumber" class="form-control">
+                        <select name="id_narasumber[]" id="id_narasumber[<?php echo $i?>]" class="form-control">
                           <?php foreach ($narsum as $d) { ?>
-                            <option value="<?php echo $d->id; ?>" <?php if($id_narasumber == $d->id){echo "selected";} ?>><?php echo strtoupper($d->nama); ?></option>
+                            <option value="<?php echo $d->id; ?>" <?php if($data_narasumber['id_narasumber'][$i] == $d->id){echo "selected";} ?>><?php echo strtoupper($d->nama); ?></option>
                           <?php } ?>
                         </select>
                         <br>
                         <label for="nm_moderator">Nama Moderator * :</label>
-                        <input type="text" id="nm_moderator" class="form-control" name="nm_moderator[]" placeholder="Silahkan masukkan nama moderator" required value="<?php echo strtoupper($nm_moderator); ?>">
+                        <input type="text" id="nm_moderator[<?php echo $i?>]" class="form-control" name="nm_moderator[]" placeholder="Silahkan masukkan nama moderator" required value="<?php echo strtoupper($data_narasumber['nm_moderator'][$i]); ?>">
                         <br>
                         <label for="waktu">Waktu (jam) * :</label>
-                        <input type="number" id="waktu" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" required value="<?php echo $waktu; ?>">
-                        <br>
+                        <input type="number" id="waktu[<?php echo $i?>]" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" min="1" required value="<?php echo $data_narasumber['waktu'][$i]; ?>">
                         <span><button class="btn btn-danger btn-xs" type="button" onclick="hapus('#finput<?php echo $i; ?>');"><i class="fa fa-times"></i> Hapus</button></span>
                       </div>
                     </div>
@@ -138,7 +135,7 @@
               <div class="col-md-12 form-group">
                 <label for="file_materi">File Materi (pdf,docx,pptx,xlsx) :</label>
                 <input type="hidden" name="oldfile" value="<?php echo $file_materi; ?>">
-                <input type="file" id="file_materi" class="form-control" name="file_materi" <?php echo $req; ?>>
+                <input type="file" id="file_materi" class="form-control" name="file_materi">
               </div>
               <div class="col-md-12 form-group">
                 <label for="keterangan">Deskripsi Kegiatan :</label>
