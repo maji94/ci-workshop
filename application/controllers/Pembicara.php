@@ -3,26 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pembicara extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-	public function index()
-	{
+	public function __construct(){
+		parent::__construct();
+		$this->load->model('m_admin');
+    date_default_timezone_set('Asia/Jakarta');
+  }
+
+	public function index(){
+	}
+
+	public function all(){
+		$id = $this->uri->segment(2);
+		/* pagination */	
+		$total_row		= $this->db->query("SELECT * FROM `tb_narasumber`")->num_rows();
+		$per_page		= 6;
+		
+		$awal	= $this->uri->segment(3); 
+		$awal	= (empty($awal) || $awal == 1) ? 0 : $awal;
+		
+		//if (empty($awal) || $awal == 1) { $awal = 0; } { $awal = $awal; }
+		$akhir	= $per_page;
+
 		$data = array(
+			'narasumber' => $this->m_admin->getNarasumber('',$akhir,$awal),
 			'page' => "pembicara",
 		);
+
+		$data['pagi']	= _page($total_row, $per_page, 3, site_url("pembicara/".$id));
 		$this->load->view('st_front', $data);
 	}
 }

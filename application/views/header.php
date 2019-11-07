@@ -31,13 +31,13 @@
             <div class="rd-navbar-main-element">
               <div class="rd-navbar-nav-wrap">
                 <ul class="rd-navbar-nav">
-                  <li class="rd-nav-item active"><a class="rd-nav-link" href="<?php echo site_url(); ?>"><span class="icon novi-icon mdi mdi-home"></span></a>
+                  <li class="rd-nav-item <?php if($this->uri->segment(1) == "home" OR $this->uri->segment(1) == ""){echo "active";} ?>"><a class="rd-nav-link" href="<?php echo site_url(); ?>"><span class="icon novi-icon mdi mdi-home"></span></a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('pembicara'); ?>">Pembicara</a>
+                  <li class="rd-nav-item <?php echo $this->uri->segment(1) == "pembicara" ? "active":""; ?>"><a class="rd-nav-link" href="<?php echo site_url('pembicara/all'); ?>">Pembicara</a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('galeri'); ?>">Galeri</a>
+                  <li class="rd-nav-item <?php echo $this->uri->segment(1) == "galeri" ? "active":""; ?>"><a class="rd-nav-link" href="<?php echo site_url('galeri/all'); ?>">Galeri</a>
                   </li>
-                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('tentang'); ?>">Tentang</a>
+                  <li class="rd-nav-item <?php echo $this->uri->segment(1) == "tentang" ? "active":""; ?>"><a class="rd-nav-link" href="<?php echo site_url('tentang'); ?>">Tentang</a>
                   </li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Masuk / Log in</a></li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal2" style="cursor: pointer;">Daftar</a></li>

@@ -12,9 +12,16 @@ class Home extends CI_Controller {
 	public function index()
 	{
 		$data = array(
+			'workshop' => $this->m_admin->getWorkshop(),
+			'galeri' => $this->m_admin->getGaleri(),
+			'narasumber' => $this->m_admin->getOther('tb_narasumber'),
 			'page' => "home",
 		);
 		$this->load->view('st_front', $data);
+		// echo "<pre>";
+		// print_r($data);
+		// echo "<pre>";
+		// print_r($this->session->userdata());
 	}
 
 	public function getLogin() {
@@ -32,8 +39,6 @@ class Home extends CI_Controller {
 	        $sess_data['logged_in'] = 'yes';
 	        $sess_data['id']        = $qck->id;
 	        $sess_data['username']  = $qck->username;
-	        $sess_data['nama']      = $qck->nama;
-	        $sess_data['foto']  	  = $qck->foto;
 	        $sess_data['hak_akses'] = $qck->hak_akses;
 	        $this->session->set_userdata($sess_data);
 

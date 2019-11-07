@@ -15,6 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="<?php echo base_url('assets/front/') ?>css/style.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap4.min.css">
+    <!-- lightbox -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" rel="stylesheet">
     <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}
   </style>
   </head>
@@ -57,6 +59,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
+    <!-- lightbox.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
     <!--coded by Starlight-->
     <script>
       var error = 1;var status_nip = 1;
@@ -145,6 +149,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           return false;
         }
       }
+
+      $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+       event.preventDefault();
+       $(this).ekkoLightbox();
+     });
     </script>
     </div>
   </body>

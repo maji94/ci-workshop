@@ -30,7 +30,7 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
-	public function getContent($tableName, $field){
+	public function getContent($tableName=null, $field=null){
 		$data = $this->db->get_where($tableName, $field);
 		return $data->result();
 	}
@@ -40,10 +40,13 @@ class M_admin extends CI_Model {
 		return $data->result();	
 	}
 
-	public function getNarasumber($id=null){
+	public function getNarasumber($id=null,$limit=null,$offset=null){
 		if ($id != null) {
 			$this->db->where('id', $id);
 		}
+    if ($limit != null) {
+      $this->db->limit($limit,$offset);
+    }
 		$data = $this->db->get('tb_narasumber');
 		return $data->result();
 	}
@@ -115,10 +118,23 @@ class M_admin extends CI_Model {
 		return $data->result();
 	}
 
-	public function getGaleri(){
+	public function getGaleri($id=null,$limit=null,$offset=null){
+		if ($id != null) {
+			$this->db->where('id', $id);
+		}
+    if ($limit != null) {
+      $this->db->limit($limit,$offset);
+    }
 		$this->db->select('*');
 		$this->db->order_by('id','DESC');
 		$data = $this->db->get('tb_galeri');
+		return $data->result();
+	}
+
+	public function getOther($tableName=null){
+		$this->db->order_by('id','RANDOM');
+		$this->db->limit(3);
+		$data = $this->db->get($tableName);
 		return $data->result();
 	}
 
