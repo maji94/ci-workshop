@@ -10,7 +10,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Sistem Pendaftaran Workshop Online | v 1.0</title>
+    <title>Aplikasi Pendaftaran Workshop Online v.1.0</title>
+    <link href="<?php echo base_url('assets/front/') ?>images/logo-kemenag.png" rel="icon">
+    <link href="<?php echo base_url('assets/front/') ?>images/logo-kemenag.png" rel="apple-touch-icon">
 
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/back'); ?>/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">

@@ -25,7 +25,7 @@
               <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
               <!--RD Navbar Brand-->
               <div class="rd-navbar-brand">
-                <!--Brand--><a class="brand" href="<?php echo site_url(); ?>"><img class="brand-logo-dark" src="<?php echo base_url('assets/front/'); ?>images/logo-bengkulu-kemenag.png" alt="" width="146" height="22"/><img class="brand-logo-light" src="<?php echo base_url('assets/front/'); ?>images/logo-bengkulu-kemenag.png" alt="" height="22" style="max-width: unset;"/></a>
+                <!--Brand--><a class="brand" href="<?php echo site_url(); ?>"><img class="brand-logo-dark" src="<?php echo base_url('assets/front/'); ?>images/logo-bengkulu-kemenag-black.png" alt="" width="146" height="22"/><img class="brand-logo-light" src="<?php echo base_url('assets/front/'); ?>images/logo-bengkulu-kemenag.png" alt="" height="22" style="max-width: unset;"/></a>
               </div>
             </div>
             <div class="rd-navbar-main-element">

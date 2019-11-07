@@ -2,7 +2,7 @@
 <section class="breadcrumbs-custom bg-image novi-background bg-primary">
   <div class="container">
     <ul class="breadcrumbs-custom-path">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="<?php echo site_url(); ?>">Home</a></li>
       <li class="active">Galeri</li>
     </ul>
   </div>

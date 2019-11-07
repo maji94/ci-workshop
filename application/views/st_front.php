@@ -4,11 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
   <head>
-    <title>Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <title>Aplikasi Pendaftaran Workshop Online v.1.1</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta name="author" content="Kementerian Agama Kantor Wilayah Agama Provinsi Bengkulu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="<?php echo base_url('assets/front/') ?>images/favicon.ico" type="image/x-icon">
+    <link href="<?php echo base_url('assets/front/') ?>images/logo-kemenag.png" rel="icon">
+    <link href="<?php echo base_url('assets/front/') ?>images/logo-kemenag.png" rel="apple-touch-icon">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,900">
     <link rel="stylesheet" href="<?php echo base_url('assets/front/') ?>css/bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url('assets/front/') ?>css/fonts.css">
