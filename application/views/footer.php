@@ -88,7 +88,7 @@
         </div>
         <div class="form-group">
           <label for="message-text" class="col-form-label">Password :</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Silahkan masukkan password anda" minlength="6" maxlength="12">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Silahkan masukkan password anda" minlength="6">
         </div>
       </div>
       <div class="modal-footer">

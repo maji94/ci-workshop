@@ -60,40 +60,46 @@
 </section>
 
 <!-- Our Principles-->
-<section class="section section-lg bg-primary">
-  <div class="container text-center text-lg-left">
-    <h2><span class="text-light">Our</span> Principles</h2>
-    <div class="row row-30 number-counter-2">
-      <div class="col-md-4">
+<section class="section" style="color: #fff">
+  <div class="container text-center">
+    <div class="row">
+      <div class="col" style="background-color: #2ecc71;">
         <div class="box-numbered-left unit">
-          <div class="unit-left">
-            <div class="index-counter"></div>
-          </div>
           <div class="unit-body">
-            <h5 class="title">Trust</h5>
-            <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam a fermentum turpis. Nulla metus diam, feugiat ac lectus vitae, tempus porttitor sem. Vestibulum non lacus vulputate, placerat ligula ut, dignissim tortor.</div>
+            <h5 class="title" style="color: #fff">Integritas</h5>
+            <div class="content">Keselarasan antara hati, pikiran, perkataan, dan perbuatan yang baik dan benar</div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2" style="background-color: #4765a0;">
         <div class="box-numbered-left unit">
-          <div class="unit-left">
-            <div class="index-counter"></div>
-          </div>
           <div class="unit-body">
-            <h5 class="title">Integrity</h5>
-            <div class="content">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+            <h5 class="title" style="color: #fff">Profesionalitas</h5>
+            <div class="content">Bekerja secara disiplin, kompeten, dan tepat waktu dengan hasil terbaik</div>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2" style="background-color: #e74c3c;">
         <div class="box-numbered-left unit">
-          <div class="unit-left">
-            <div class="index-counter"></div>
-          </div>
           <div class="unit-body">
-            <h5 class="title">Honesty</h5>
-            <div class="content">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit.</div>
+            <h5 class="title" style="color: #fff">Inovasi</h5>
+            <div class="content">Menyempurnakan yang sudah ada dan mengkreasi hal baru yang lebih baik</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2" style="background-color: #f1c40f;">
+        <div class="box-numbered-left unit">
+          <div class="unit-body">
+            <h5 class="title" style="color: #fff">Tanggung Jawab</h5>
+            <div class="content">Bekerja secara tuntas dan konsekuen</div>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="background-color: #3498db;">
+        <div class="box-numbered-left unit">
+          <div class="unit-body">
+            <h5 class="title" style="color: #fff">Keteladanan</h5>
+            <div class="content">Menjadi contoh yang baik bagi orang lain</div>
           </div>
         </div>
       </div>
@@ -102,11 +108,11 @@
 </section>
 
 <!-- Our Schedule-->
-<section class="section bg-default section-md">
+<section class="section bg-default section-sm">
   <div class="container">
     <div class="row row-30">
-      <div class="col-md-8">
-        <h2 class="title-icon"><span class="icon icon-default mercury-icon-pin"></span><span>Schedule <span class="text-light">Workshop</span></span></h2><hr style="margin: 10px 0;">
+      <div class="col-md-7">
+        <h2 class="title-icon"><span class="icon icon-default mercury-icon-pin"></span><span>Jadwal <span class="text-light">Workshop</span></span></h2><hr style="margin: 10px 0;">
         
         <div class="table-responsive text-nowrap">
           <!--Table-->
@@ -147,8 +153,8 @@
           <!--Table-->
         </div>
       </div>
-      <div class="col-md-4">
-        <h2 class="title-icon"><span class="icon icon-default mercury-icon-cup"></span><span>Our <span class="text-light">Galery</span></span></h2><hr style="margin: 10px 0;">
+      <div class="col-md-5">
+        <h2 class="title-icon"><span class="icon icon-default mercury-icon-cup"></span><span>Foto <span class="text-light">Kegiatan</span></span></h2><hr style="margin: 10px 0;">
         <?php for ($i=0; $i < 1; $i++) { ?>
           <a href="<?php echo site_url('galeri/detail/'.$galeri[$i]->id.'/'.create_url($galeri[$i]->judul)); ?>" title="<?php echo $galeri[$i]->judul; ?>">
             <div class="box-shadow-2">
@@ -166,7 +172,7 @@
             </div>
           </a>
         <?php } ?>
-        <a class="button button-primary" href="<?php echo site_url('galeri/all'); ?>">View all galery</a>
+        <a class="button button-primary" href="<?php echo site_url('galeri/all'); ?>">Lihat semua foto</a>
       </div>
     </div>
   </div>
@@ -175,7 +181,7 @@
 <!-- Our Team-->
 <section class="section section-lg bg-default">
   <div class="container text-center text-lg-left">
-    <h2 class="title-icon"><span class="icon icon-default mercury-icon-speak"></span><span><span class="text-light">Our</span> Speakers</h2>
+    <h2 class="title-icon"><span class="icon icon-default mercury-icon-speak"></span><span><span class="text-light">Daftar</span> Pembicara</h2>
     <div class="row row-40">
       <?php foreach ($narasumber as $n) { ?>
       <div class="col-md-4">
@@ -192,6 +198,6 @@
       </div>
       <?php } ?>
     </div>
-    <a class="button button-primary" href="<?php echo site_url('pembicara/all'); ?>">View all speakers</a>
+    <a class="button button-primary" href="<?php echo site_url('pembicara/all'); ?>">Lihat semua pembicara</a>
   </div>
 </section>

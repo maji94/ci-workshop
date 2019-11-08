@@ -10,7 +10,7 @@
 <!-- Our Story-->
 <section class="section section-lg-top-50 bg-gray-100">
   <div class="container">
-    <h2 class="title-icon"><span class="icon icon-default mercury-icon-cup"></span><span><span class="text-light">Our</span> Galeri</h2>
+    <h2 class="title-icon"><span class="icon icon-default mercury-icon-cup"></span><span><span class="text-light">Foto</span> Kegiatan</h2>
     <div class="row row-30">
       <?php foreach ($galeri as $d) { ?>
         <div class="col-md-4 col-6">

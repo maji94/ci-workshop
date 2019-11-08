@@ -79,7 +79,7 @@
             <br>
             <label for="konf_psw">Konfirmasi Password Baru * :</label>
             <input type="hidden" name="id" id="id">
-            <input type="password" id="konf_psw" class="form-control" name="konf_psw" placeholder="Konfirmasi password baru (ulangi password baru)" minlength="6" maxlength="12" required onkeyup="cek_register();">
+            <input type="password" id="konf_psw" class="form-control" name="konf_psw" placeholder="Konfirmasi password baru (ulangi password baru)" minlength="6" required onkeyup="cek_register();">
             <span class="error" id="pesan_konfir"></span>
             <br>
           </div>

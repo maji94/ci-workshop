@@ -10,7 +10,7 @@
 <!-- Our Story-->
 <section class="section section-lg-top-50 bg-default" style="margin-bottom: 7rem;">
   <div class="container">
-    <h2><span class="text-light">Our</span> Contacts</h2>
+    <h2><span class="text-light">Tentang Kami</span> dan Kontak</h2>
     <div class="row row-40">
       <div class="col-md-10 col-lg-4">
         <h5>Kantor Kami</h5>

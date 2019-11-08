@@ -35,8 +35,9 @@
                   <td><?php echo $d->judul; ?></td>
                   <td><?php echo tgl_indo($d->tanggal) ?></td>
                   <td>
-                    <a style="width: 80px" class="btn btn-primary" href="<?php echo site_url('dashboard/galeri/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a><br>
-                    <a style="width: 80px" class="btn btn-default" href="<?php echo site_url('dashboard/galeri/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
+                    <a style="width: 90px" class="btn btn-success" href="<?php echo site_url('dashboard/galeri/cetak/'.$d->id); ?>" target="_blank"><i class="fa fa-print"></i> Cetak</a>
+                    <a style="width: 90px" class="btn btn-primary" href="<?php echo site_url('dashboard/galeri/edit/'.$d->id); ?>"><i class="fa fa-pencil"></i> Edit</a><br>
+                    <a style="width: 90px" class="btn btn-default" href="<?php echo site_url('dashboard/galeri/delete/'.$d->id); ?>" onclick="return confirm('Data ini akan terhapus. Lanjutkan ?');"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
                 <?php $no++;} ?>

@@ -10,7 +10,7 @@
 <!-- Our Story-->
 <section class="section section-lg-top-50 bg-gray-100">
   <div class="container">
-    <h2 class="title-icon"><span class="icon icon-default mercury-icon-speak"></span><span><span class="text-light">Our</span> Speakers</h2>
+    <h2 class="title-icon"><span class="icon icon-default mercury-icon-speak"></span><span><span class="text-light">Daftar</span> Pembicara</h2>
     <div class="row row-30">
       <?php foreach ($narasumber as $d) { ?>
         <div class="col-md-6 col-xl-4">

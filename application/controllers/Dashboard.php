@@ -814,173 +814,184 @@ class Dashboard extends CI_Controller {
     if(!isset($_SESSION['logged_in'])){
       redirect('login');
     }else{
-      if ($links == "add") {
-        $data = array(
-          'page' => "dashboard/crud_galeri",
-          'field' => "",
-        );
-      }else if ($links == "do_add") {
-        $path = './assets/back/images/galeri/';
-        $time = time();
-        $config['upload_path']    = $path;
-        $config['allowed_types']  = 'jpeg|jpg|png|bmp';
-        $config['max_size']       = '150000';
-        $config['file_name']      = $time;
-        $this->load->library('upload', $config);
-
-        $thumb['image_library']  = 'gd2';
-        $thumb['create_thumb']   = TRUE;
-        $thumb['maintain_ratio'] = TRUE;
-        $thumb['width']          = 1000;
-        $thumb['height']         = 1000;
-
-        $ins_data = array(
-          'id'         => "",
-          'judul'      => $this->input->post('judul'),
-          'tanggal'    => $this->input->post('tanggal'),
-        );
-
-        $input = sizeof($_FILES['foto']['tmp_name']);
-        $files = $_FILES['foto'];
-        for ($i=0; $i < $input ; $i++) {
-          $_FILES['foto']['name'] = $files['name'][$i];
-          $_FILES['foto']['type'] = $files['type'][$i];
-          $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
-          $_FILES['foto']['error'] = $files['error'][$i];
-          $_FILES['foto']['size'] = $files['size'][$i];
-          
-          $this->upload->do_upload('foto');
-
-          $thumb['source_image']   = 'assets/back/images/galeri/'.$this->upload->file_name;
-          $this->load->library('image_lib');
-          $this->image_lib->initialize($thumb);
-          $this->image_lib->resize();
-
-          $konten[] = $this->upload->file_name;
-        }
-
-        for ($j=0; $j < $input; $j++) { 
-          unlink($path.$konten[$j]);
-        }
-
-        $ins_data['konten'] = serialize($konten);
-
-        $ins_galeri = $this->m_admin->InsertData($tableName, $ins_data);
-        if ($ins_galeri) {
-          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil ditambahkan.\",type: \"info\",styling: \"bootstrap3\"});'");
-          redirect('dashboard/galeri');
-        }
-        else{
-          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal ditambahkan.\",type: \"error\",styling: \"bootstrap3\"});'");
-          redirect('dashboard/galeri');
-        }
-      }else if ($links == "edit") {
+      if ($links == "cetak") {
         $get = array('id'=>$links2);
         $data = array(
           'data' => $this->m_admin->getContent($tableName, $get),
-          'page' => "dashboard/crud_galeri",
         );
-      }else if ($links == "do_edit") {
-        $path = './assets/back/images/galeri/';
-        $config['upload_path']    = $path;
-        $config['allowed_types']  = 'jpeg|jpg|png|bmp';
-        $config['max_size']       = '150000';
-        $config['file_name']      = time();
-        $this->load->library('upload', $config);
 
-        $thumb['image_library']  = 'gd2';
-        $thumb['create_thumb']   = TRUE;
-        $thumb['maintain_ratio'] = TRUE;
-        $thumb['width']          = 1000;
-        $thumb['height']         = 1000;
-
-        $get =  array('id' => $this->input->post('id'));
-        $getData = $this->m_admin->getContent($tableName, $get);
-        $getFoto = unserialize($getData[0]->konten);
-        $n_getFoto = sizeof($getFoto);
-
-        $input = sizeof($_FILES['foto']['tmp_name']);
-        $files = $_FILES['foto'];
-
+        $this->load->view('dashboard/print_galeri', $data);
         // echo "<pre>";
-        // print_r($input);
-        for ($i=0; $i < $input ; $i++) {
-
-          $_FILES['foto']['name'] = $files['name'][$i];
-          $_FILES['foto']['type'] = $files['type'][$i];
-          $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
-          $_FILES['foto']['error'] = $files['error'][$i];
-          $_FILES['foto']['size'] = $files['size'][$i];
-          
-          if ($_FILES['foto']['name']) {
-            $this->upload->do_upload('foto');
-            $konten[] = $this->upload->file_name;
-          }else{
-            $konten[] = $this->input->post('oldFoto')[$i];
-          }
-          
-          $thumb['source_image'] = 'assets/back/images/galeri/'.$this->upload->file_name;
-          $this->load->library('image_lib');
-          $this->image_lib->initialize($thumb);
-          $this->image_lib->resize();
-        }
-
-        $upd_data = array(
-          'judul' => $this->input->post('judul'),
-          'konten' => serialize($konten),
-        );
-
-        for ($i=0; $i < $n_getFoto; $i++) { 
-          if (in_array($getFoto[$i], $konten) == FALSE) {
-            unlink($path.str_replace('.', '_thumb.', $getFoto[$i]));
-          }
-        }
-
-        for ($j=0; $j < $input; $j++) { 
-          unlink($path.$konten[$j]);
-        }
-
-        $upd_galeri  = $this->m_admin->UpdateData($tableName, $upd_data, $get);
-        if ($upd_galeri) {
-          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil diperbarui.\",type: \"info\",styling: \"bootstrap3\"});'");
-          redirect('dashboard/galeri');
-        }
-        else{
-          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal diperbarui.\",type: \"error\",styling: \"bootstrap3\"});'");
-          redirect('dashboard/galeri');
-        }
-      }else if ($links == "delete") {
-        $path = './assets/back/images/galeri/';
-        $where = array('id' => $links2);
-
-        $filefoto = $this->m_admin->getContent($tableName, $where);
-        $konten = unserialize($filefoto[0]->konten);
-        $n = sizeof($konten);
-        for ($i=0; $i < $n ; $i++) {
-          unlink($path.str_replace('.', '_thumb.', $konten[$i]));
-        }
-
-        $del_galeri = $this->m_admin->DeleteData($tableName, $where);
-        if ($del_galeri) {
-          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil dihapus.\",type: \"info\",styling: \"bootstrap3\"});'");
-          redirect('dashboard/galeri');
-        }
-        else{
-          $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
-          redirect('dashboard/galeri');
-        }
+        // print_r($data);
       }else{
-        $data = array(
-          'data'  => $this->m_admin->getGaleri(),
-          'page' => "dashboard/galeri",
-        );
+        if ($links == "add") {
+          $data = array(
+            'page' => "dashboard/crud_galeri",
+            'field' => "",
+          );
+        }else if ($links == "do_add") {
+          $path = './assets/back/images/galeri/';
+          $time = time();
+          $config['upload_path']    = $path;
+          $config['allowed_types']  = 'jpeg|jpg|png|bmp';
+          $config['max_size']       = '150000';
+          $config['file_name']      = $time;
+          $this->load->library('upload', $config);
+
+          $thumb['image_library']  = 'gd2';
+          $thumb['create_thumb']   = TRUE;
+          $thumb['maintain_ratio'] = TRUE;
+          $thumb['width']          = 1000;
+          $thumb['height']         = 1000;
+
+          $ins_data = array(
+            'id'         => "",
+            'judul'      => $this->input->post('judul'),
+            'tanggal'    => $this->input->post('tanggal'),
+          );
+
+          $input = sizeof($_FILES['foto']['tmp_name']);
+          $files = $_FILES['foto'];
+          for ($i=0; $i < $input ; $i++) {
+            $_FILES['foto']['name'] = $files['name'][$i];
+            $_FILES['foto']['type'] = $files['type'][$i];
+            $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
+            $_FILES['foto']['error'] = $files['error'][$i];
+            $_FILES['foto']['size'] = $files['size'][$i];
+            
+            $this->upload->do_upload('foto');
+
+            $thumb['source_image']   = 'assets/back/images/galeri/'.$this->upload->file_name;
+            $this->load->library('image_lib');
+            $this->image_lib->initialize($thumb);
+            $this->image_lib->resize();
+
+            $konten[] = $this->upload->file_name;
+          }
+
+          for ($j=0; $j < $input; $j++) { 
+            unlink($path.$konten[$j]);
+          }
+
+          $ins_data['konten'] = serialize($konten);
+
+          $ins_galeri = $this->m_admin->InsertData($tableName, $ins_data);
+          if ($ins_galeri) {
+            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil ditambahkan.\",type: \"info\",styling: \"bootstrap3\"});'");
+            redirect('dashboard/galeri');
+          }
+          else{
+            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal ditambahkan.\",type: \"error\",styling: \"bootstrap3\"});'");
+            redirect('dashboard/galeri');
+          }
+        }else if ($links == "edit") {
+          $get = array('id'=>$links2);
+          $data = array(
+            'data' => $this->m_admin->getContent($tableName, $get),
+            'page' => "dashboard/crud_galeri",
+          );
+        }else if ($links == "do_edit") {
+          $path = './assets/back/images/galeri/';
+          $config['upload_path']    = $path;
+          $config['allowed_types']  = 'jpeg|jpg|png|bmp';
+          $config['max_size']       = '150000';
+          $config['file_name']      = time();
+          $this->load->library('upload', $config);
+
+          $thumb['image_library']  = 'gd2';
+          $thumb['create_thumb']   = TRUE;
+          $thumb['maintain_ratio'] = TRUE;
+          $thumb['width']          = 1000;
+          $thumb['height']         = 1000;
+
+          $get =  array('id' => $this->input->post('id'));
+          $getData = $this->m_admin->getContent($tableName, $get);
+          $getFoto = unserialize($getData[0]->konten);
+          $n_getFoto = sizeof($getFoto);
+
+          $input = sizeof($_FILES['foto']['tmp_name']);
+          $files = $_FILES['foto'];
+
+          // echo "<pre>";
+          // print_r($input);
+          for ($i=0; $i < $input ; $i++) {
+
+            $_FILES['foto']['name'] = $files['name'][$i];
+            $_FILES['foto']['type'] = $files['type'][$i];
+            $_FILES['foto']['tmp_name'] = $files['tmp_name'][$i];
+            $_FILES['foto']['error'] = $files['error'][$i];
+            $_FILES['foto']['size'] = $files['size'][$i];
+            
+            if ($_FILES['foto']['name']) {
+              $this->upload->do_upload('foto');
+              $konten[] = $this->upload->file_name;
+            }else{
+              $konten[] = $this->input->post('oldFoto')[$i];
+            }
+            
+            $thumb['source_image'] = 'assets/back/images/galeri/'.$this->upload->file_name;
+            $this->load->library('image_lib');
+            $this->image_lib->initialize($thumb);
+            $this->image_lib->resize();
+          }
+
+          $upd_data = array(
+            'judul' => $this->input->post('judul'),
+            'konten' => serialize($konten),
+          );
+
+          for ($i=0; $i < $n_getFoto; $i++) { 
+            if (in_array($getFoto[$i], $konten) == FALSE) {
+              unlink($path.str_replace('.', '_thumb.', $getFoto[$i]));
+            }
+          }
+
+          for ($j=0; $j < $input; $j++) { 
+            unlink($path.$konten[$j]);
+          }
+
+          $upd_galeri  = $this->m_admin->UpdateData($tableName, $upd_data, $get);
+          if ($upd_galeri) {
+            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil diperbarui.\",type: \"info\",styling: \"bootstrap3\"});'");
+            redirect('dashboard/galeri');
+          }
+          else{
+            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal diperbarui.\",type: \"error\",styling: \"bootstrap3\"});'");
+            redirect('dashboard/galeri');
+          }
+        }else if ($links == "delete") {
+          $path = './assets/back/images/galeri/';
+          $where = array('id' => $links2);
+
+          $filefoto = $this->m_admin->getContent($tableName, $where);
+          $konten = unserialize($filefoto[0]->konten);
+          $n = sizeof($konten);
+          for ($i=0; $i < $n ; $i++) {
+            unlink($path.str_replace('.', '_thumb.', $konten[$i]));
+          }
+
+          $del_galeri = $this->m_admin->DeleteData($tableName, $where);
+          if ($del_galeri) {
+            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Berhasil\",text: \"Data Berhasil dihapus.\",type: \"info\",styling: \"bootstrap3\"});'");
+            redirect('dashboard/galeri');
+          }
+          else{
+            $this->session->set_flashdata('notif', "onload='new PNotify({title: \"Terjadi Kesalahan\",text: \"Data gagal dihapus.\",type: \"error\",styling: \"bootstrap3\"});'");
+            redirect('dashboard/galeri');
+          }
+        }else{
+          $data = array(
+            'data'  => $this->m_admin->getGaleri(),
+            'page' => "dashboard/galeri",
+          );
+        }
+
+      $this->load->view('dashboard/st_dashboard',$data);
       }
     }
 
     // echo "<pre>";
     // print_r($data);
-
-    $this->load->view('dashboard/st_dashboard',$data);
   }
 
   public function download(){
