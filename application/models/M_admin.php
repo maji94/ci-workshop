@@ -16,6 +16,14 @@ class M_admin extends CI_Model {
     return $data->result();
   }
 
+  public function cek_status_workshop(){
+  	$this->db->select('id, status, tgl_tutup');
+  	$this->db->where('status !=', "close");
+  	$this->db->order_by('id','DESC');
+  	$data = $this->db->get('tb_workshop');
+  	return$data->result();
+  }
+
 	public function getLogin($data){
 		$this->db->select('tu.*, tp.foto, tp.nip, tp.nama, tp.id AS id_profil');
 		$this->db->join('tb_peserta tp','tp.nip = tu.username');

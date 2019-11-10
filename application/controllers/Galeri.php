@@ -7,10 +7,21 @@ class Galeri extends CI_Controller {
 		parent::__construct();
 		$this->load->model('m_admin');
     date_default_timezone_set('Asia/Jakarta');
+    $this->cek_status_workshop();
   }
 
 	public function index(){
 	}
+
+	public function cek_status_workshop(){
+    $cek = $this->m_admin->cek_status_workshop();
+
+    foreach ($cek as $d) {
+      if (date('Y-m-d') > $d->tgl_tutup) {
+        $this->m_admin->UpdateData('tb_workshop',array('status'=>"close"), array('id'=>$d->id));
+      }
+    }
+  }
 
 	public function all(){
 		$id = $this->uri->segment(2);

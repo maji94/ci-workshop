@@ -84,11 +84,11 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="recipient-name" class="col-form-label">NIP :</label>
-          <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)">
+          <input type="text" class="form-control" id="nip" name="nip" placeholder="Silahkan masukkan NIP anda (tanpa spasi)" required>
         </div>
         <div class="form-group">
           <label for="message-text" class="col-form-label">Password :</label>
-          <input type="password" class="form-control" id="password" name="password" placeholder="Silahkan masukkan password anda" minlength="6">
+          <input type="password" class="form-control" id="password" name="password" placeholder="Silahkan masukkan password anda" minlength="6" required>
         </div>
       </div>
       <div class="modal-footer">
@@ -119,8 +119,8 @@
             <input type="text" class="form-control" id="nama" name="nama" placeholder="Silahkan masukkan nama anda" required>
           </div>
           <div class="form-group col-md-6 col-12">
-            <label for="foto" class="col-form-label">Foto :</label>
-            <input type="file" class="form-control-file" id="foto" name="foto">
+            <label for="foto" class="col-form-label">Foto : *</label>
+            <input type="file" class="form-control-file" id="foto" name="foto" required>
           </div>
         </div>
         <div class="form-row">
@@ -139,7 +139,7 @@
             <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo date('Y-m-d'); ?>" required>
           </div>
           <div class="form-group col-md-6 col-12">
-            <label for="jns_kelamin" class="col-form-label">Jenis Kelamin : *</label>
+            <label for="jns_kelamin" class="col-form-label">Jenis Kelamin :</label>
             <div class="custom-control custom-radio">
               <input type="radio" id="customRadio1" name="jns_kelamin" value="laki" class="custom-control-input" checked>
               <label class="custom-control-label" for="customRadio1" style="color: black;">Laki-laki</label>
@@ -156,13 +156,13 @@
             <input type="text" class="form-control" id="agama" name="agama" placeholder="Silahkan masukkan agama anda" required>
           </div>
           <div class="form-group col-md-6 col-12">
-            <label for="pendidikan" class="col-form-label">Pendidikan Terakhir :</label>
-            <input type="text" class="form-control" id="pendidikan" name="pendidikan" placeholder="Sarjana (III/II/I), Diploma (IV/III/II/I), SMA/Madrasah, dst.">
+            <label for="pendidikan" class="col-form-label">Pendidikan Terakhir : *</label>
+            <input type="text" class="form-control" id="pendidikan" name="pendidikan" placeholder="Sarjana (III/II/I), Diploma (IV/III/II/I), SMA/Madrasah, dst." required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 col-12">
-            <label for="alamat_rm" class="col-form-label">Alamat Rumah : *</label>
+            <label for="alamat_rm" class="col-form-label">Alamat Rumah :</label>
             <textarea class="form-control" name="alamat_rm" id="alamat_rm" cols="30" rows="3" placeholder="Silahkan masukkan alamat rumah anda"></textarea>
           </div>
           <div class="form-group col-md-6 col-12">
@@ -182,7 +182,7 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 col-12">
-            <label for="golongan" class="col-form-label">Golongan :</label>
+            <label for="golongan" class="col-form-label">Pangkat/Golongan :</label>
             <input type="text" class="form-control" id="golongan" name="golongan" placeholder="Silahkan masukkan golongan anda">
           </div>
           <div class="form-group col-md-6 col-12">
@@ -216,14 +216,14 @@
             <input type="text" class="form-control" id="norek" name="norek" placeholder="Contoh : 123456789 (Bank Mandiri Syariah)">
           </div>
           <div class="form-group col-md-6 col-12">
-            <label for="password_reg" class="col-form-label">Password : *</label>
-            <input type="password" class="form-control" id="password_reg" name="password_reg" placeholder="Silahkan masukkan password anda" required minlength="6" maxlength="12">
+            <label for="password_reg" class="col-form-label">Password Login : *</label>
+            <input type="password" class="form-control" id="password_reg" name="password_reg" placeholder="Password anda untuk login nanti" minlength="6" maxlength="12" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6 col-12">
             <label for="konf_password" class="col-form-label">Konfirmasi Password : *</label>
-            <input type="password" class="form-control" id="konf_password" name="konf_password" placeholder="Konfirmasi password, ulangi password anda" required minlength="6" maxlength="12" onkeyup="cek_register();">
+            <input type="password" class="form-control" id="konf_password" name="konf_password" placeholder="Ulangi password login anda" minlength="6" maxlength="12" onkeyup="cek_register();" required>
             <span class="error" id="pesan_konfir"></span>
           </div>
           <div class="form-group col-md-6 col-12">

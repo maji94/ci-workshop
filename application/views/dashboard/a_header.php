@@ -12,7 +12,9 @@
             <span class=" fa fa-angle-down"></span>
           </a>
           <ul class="dropdown-menu dropdown-usermenu pull-right">
-            <!-- <li><a href="javascript:;"> Profile</a></li> -->
+            <?php if ($this->session->userdata('hak_akses') == "admin") { ?>
+              <li><a data-toggle="modal" data-target="#a_ubah_psw"><i class="fa fa-unlock-alt pull-right"></i> Ubah Password</a></li>
+            <?php } ?>
             <li><a href="<?php echo site_url('dashboard/getLogout'); ?>"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
           </ul>
         </li>

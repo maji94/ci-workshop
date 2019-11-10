@@ -6,6 +6,8 @@
 	} 
 
 	?>
+<link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="icon">
+<link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="apple-touch-icon">
 <style type="text/css" media="print">
 	table {border:0solid 1px #000; border-collapse: collapse; width: 100%}
 	tr { border:0solid 1px #000; page-break-inside: avoid;}

@@ -54,7 +54,7 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" style="font-weight: normal;font-style: italic;">Status Kegiatan : </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <label class="control-label" style="text-align: left;"><?php echo $data_workshop[0]->status; ?></label>
+                  <label class="control-label" style="text-align: left;"><?php if ($data_workshop[0]->status == "open") {echo "Dibuka";}else if ($data_workshop[0]->status == "ongoing") {echo "Sedang Berlangsung";}else{echo "Ditutup";} ?></label>
                 </div>
               </div>
               <div class="form-group">
@@ -105,9 +105,13 @@
                   <?php if ($this->session->userdata('hak_akses') == "peserta") {
                     if ($absen!=null) { ?>
                       <button class="btn btn-danger" disabled><i class="fa fa-check"></i> Anda sudah mendaftar</button>
-                    <?php } else { ?>
+                    <?php } else {
+                      if ($data_workshop[0]->status == "close") {
+                     ?>
+                      <a class="btn btn-danger" href="#" disabled><i class="fa fa-close"></i> Pendaftaran Ditutup</a>
+                  <?php }else { ?>
                       <a class="btn btn-success" href="<?php echo site_url('dashboard/workshop/register/'.$this->uri->segment(4)); ?>"><i class="fa fa-edit"></i> Daftar</a>
-                  <?php } } ?>
+                  <?php } } } ?>
                   <?php if ($this->session->userdata('hak_akses') == "admin" OR $this->session->userdata('hak_akses') == "pembina") { ?>
                     <a class="btn btn-primary" href="<?php echo site_url('dashboard/workshop/list_peserta/'.$this->uri->segment(4)); ?>"><i class="fa fa-user"></i> Lihat Peserta</a>
                   <?php } ?>

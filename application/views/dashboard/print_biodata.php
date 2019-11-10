@@ -1,5 +1,7 @@
 <html>
 <head>
+<link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="icon">
+<link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="apple-touch-icon">
 <style type="text/css" media="print">
 	table {border:0solid 1px #000; border-collapse: collapse; width: 100%}
 	tr { border:0solid 1px #000; page-break-inside: avoid;}
@@ -22,6 +24,7 @@
 	label, p {font-size: 12px;}
 </style>
 <style type="text/css" media="screen">
+	body {width: 50%;margin: auto;}
 	table {border:0solid 1px #000; border-collapse: collapse; width: 100%}
 	table tr td { padding: 7px 5px; font-size: 12px; border:0px solid black;}
 	th {

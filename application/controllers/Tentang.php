@@ -6,9 +6,10 @@ class Tentang extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('m_admin');
+    date_default_timezone_set('Asia/Jakarta');
+    $this->cek_status_workshop();
 		// $this->load->helper('security');
 		// $this->load->helper('captcha');
-    date_default_timezone_set('Asia/Jakarta');
   }
 
 	public function index(){
@@ -43,6 +44,16 @@ class Tentang extends CI_Controller {
 
 		$this->load->view('st_front', $data);
 	}
+
+	public function cek_status_workshop(){
+    $cek = $this->m_admin->cek_status_workshop();
+
+    foreach ($cek as $d) {
+      if (date('Y-m-d') > $d->tgl_tutup) {
+        $this->m_admin->UpdateData('tb_workshop',array('status'=>"close"), array('id'=>$d->id));
+      }
+    }
+  }
 
 	// public function lapor(){
 	// 	$tableName = 'tb_pesan';

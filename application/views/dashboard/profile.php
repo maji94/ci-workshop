@@ -33,31 +33,31 @@
                 <label for="nama">Nama :</label>
                 <input type="text" id="nama" class="form-control" name="nama" placeholder="Nama beserta gelar" required value="<?php echo $data[0]->nama; ?>">
                 <br>
-                <label for="ktp">KTP * :</label>
+                <label for="ktp">KTP  :</label>
                 <input type="text" id="ktp" class="form-control" name="ktp" placeholder="Nomor Kartu Tanda Penduduk (KTP)" required value="<?php echo $data[0]->ktp; ?>">
                 <br>
-                <label for="tmp_lahir">Tempat Lahir * :</label>
+                <label for="tmp_lahir">Tempat Lahir  :</label>
                 <input type="text" id="tmp_lahir" class="form-control" name="tmp_lahir" placeholder="Tempat Lahir" required value="<?php echo $data[0]->tmp_lahir; ?>">
                 <br>
-                <label for="tgl_lahir">Tanggal Lahir * :</label>
+                <label for="tgl_lahir">Tanggal Lahir  :</label>
                 <input type="date" id="tgl_lahir" class="form-control" name="tgl_lahir" required value="<?php echo $data[0]->tgl_lahir; ?>">
                 <br>
-                <label>Jenis Kelamin * :</label>
+                <label>Jenis Kelamin  :</label>
                 <p>
                   <input type="radio" class="flat" name="jns_kelamin" id="genderM" value="laki" required <?php if ($data[0]->jns_kelamin == "laki" OR $data[0]->jns_kelamin == "") {echo "checked";} ?>>
                   Laki-laki: <br>
                   <input type="radio" class="flat" name="jns_kelamin" id="genderF" value="perempuan" <?php if ($data[0]->jns_kelamin == "perempuan") {echo "checked";} ?>>
                   Perempuan:
                 </p>
-                <label for="agama">Agama * :</label>
+                <label for="agama">Agama  :</label>
                 <input type="text" id="agama" class="form-control" name="agama" placeholder="Agama peserta" required value="<?php echo $data[0]->agama; ?>">
                 <br>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
-                <label for="pendidikan">Pendidikan * :</label>
+                <label for="pendidikan">Pendidikan  :</label>
                 <input type="text" id="pendidikan" class="form-control" name="pendidikan" placeholder="Pendidikan peserta" required value="<?php echo $data[0]->pendidikan; ?>">
                 <br>
-                <label for="alamat_rm">Alamat Rumah * :</label>
+                <label for="alamat_rm">Alamat Rumah  :</label>
                 <textarea id="alamat_rm" required="required" class="form-control" name="alamat_rm" rows="5" placeholder="Alamat rumah peserta"><?php echo $data[0]->alamat_rm; ?></textarea>
                 <br>
                 <label for="email">Email :</label>
@@ -66,30 +66,30 @@
                 <label for="nohp">No. Handphone :</label>
                 <input type="text" id="nohp" class="form-control" name="nohp" placeholder="Nomor handphone admin pembina" required value="<?php echo $data[0]->nohp; ?>">
                 <br>
-                <label for="golongan">Golongan * :</label>
+                <label for="golongan">Golongan  :</label>
                 <input type="text" id="golongan" class="form-control" name="golongan" placeholder="Golongan peserta" required value="<?php echo $data[0]->golongan; ?>">
                 <br>
-                <label for="jabatan">Jabatan * :</label>
+                <label for="jabatan">Jabatan  :</label>
                 <input type="text" id="jabatan" class="form-control" name="jabatan" placeholder="Jabatan peserta" required value="<?php echo $data[0]->jabatan; ?>">
                 <br>
               </div>
               <div class="col-md-4 col-sm-12 col-xs-12">
-                <label for="unker">Unit Kerja * :</label>
+                <label for="unker">Unit Kerja  :</label>
                 <input type="text" id="unker" class="form-control" name="unker" placeholder="Unit Kerja peserta" required value="<?php echo $data[0]->unker; ?>">
                 <br>
-                <label for="kab">Kabupaten/Kota * :</label>
+                <label for="kab">Kabupaten/Kota  :</label>
                 <input type="text" id="kab" class="form-control" name="kab" placeholder="Kabupater/Kota peserta" required value="<?php echo $data[0]->kab; ?>">
                 <br>
-                <label for="alamat_kt">Alamat Kantor * :</label>
+                <label for="alamat_kt">Alamat Kantor  :</label>
                 <textarea id="alamat_kt" required="required" class="form-control" name="alamat_kt" rows="5" placeholder="Alamat kantor peserta"><?php echo $data[0]->alamat_kt; ?></textarea>
                 <br>
-                <label for="npwp">NPWP * :</label>
+                <label for="npwp">NPWP  :</label>
                 <input type="text" id="npwp" class="form-control" name="npwp" placeholder="Nomor NPWP peserta" required value="<?php echo $data[0]->npwp; ?>">
                 <br>
-                <label for="norek">No. Rekening * :</label>
+                <label for="norek">No. Rekening  :</label>
                 <input type="text" id="norek" class="form-control" name="norek" placeholder="Nomor rekening peserta. Contoh : 123456789 (Bank Bengkulu)" required value="<?php echo $data[0]->norek; ?>">
                 <br>
-                <label for="foto">Foto * :</label>
+                <label for="foto">Foto  :</label>
                 <input type="hidden" name="oldfoto" value="<?php echo $data[0]->foto; ?>">
                 <input type="file" id="foto" class="form-control" name="foto">
                 <br>
@@ -121,7 +121,7 @@
                 <label for="alamat">Alamat :</label>
                 <textarea id="alamat" required="required" class="form-control" name="alamat" rows="5" placeholder="Alamat admin pembina"><?php echo $data[0]->alamat; ?></textarea>
                 <br>
-                <label for="foto">Foto * :</label>
+                <label for="foto">Foto  :</label>
                 <input type="hidden" name="oldfoto" value="<?php echo $data[0]->foto; ?>">
                 <input type="file" id="foto" class="form-control" name="foto">
                 <br>
@@ -272,11 +272,11 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <!-- <form id="demo-form" data-parsley-validate> -->
-            <label for="password">Password Baru * :</label>
+            <label for="password">Password Baru  :</label>
             <input type="hidden" name="nip" id="nip">
             <input type="password" id="password" class="form-control" name="password" placeholder="Masukkan password baru" required minlength="6" maxlength="12">
             <br>
-            <label for="konf_psw">Konfirmasi Password Baru * :</label>
+            <label for="konf_psw">Konfirmasi Password Baru  :</label>
             <input type="hidden" name="id" id="id">
             <input type="password" id="konf_psw" class="form-control" name="konf_psw" placeholder="Konfirmasi password baru (ulangi password baru)" minlength="6" required onkeyup="cek_register();">
             <span class="error" id="pesan_konfir"></span>
