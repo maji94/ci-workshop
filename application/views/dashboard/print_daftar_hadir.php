@@ -3,11 +3,11 @@
 <link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="icon">
 <link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="apple-touch-icon">
 <style type="text/css" media="print">
-	table {border: solid 1px #000; border-collapse: collapse; width: 100%}
-	tr { border: solid 1px #000; page-break-inside: avoid;}
-	table tr td { padding: 7px 5px; font-size: 10px; border:1px solid black;}
+	*{font-family:Arial;}
+	table {border:1px solid 1px #000; border-collapse: collapse; width: 100%}
+	tr { border:1px solid 1px #000; page-break-inside: avoid;}
+	table tr td { padding: 7px 5px; font-size: 12px; border:1px solid black;}
 	th {
-		font-family:Arial;
 		color:black;
 		font-size: 12px;
 		background-color:lightgrey;
@@ -21,32 +21,48 @@
 	}
 	h3 { margin-bottom: -17px }
 	h2 { margin-bottom: 0px }
-	label, p {font-size: 12px;}
+	label, p {font-size: 14px;}
+	p{margin: 2px;}
+	hr{border: 2px solid black;}
 </style>
 <style type="text/css" media="screen">
-	body {width: 50%;margin: auto;}
-	table {border: solid 1px #000; border-collapse: collapse; width: 100%}
-	table tr td { padding: 7px 5px; font-size: 10px; border:1px solid black;}
+	*{font-family:Arial;}
+	body {width: 65%;margin: auto;}
+	table {border:1px solid 1px #000; border-collapse: collapse; width: 100%}
+	table tr td { padding: 7px 5px; font-size: 12px; border:1px solid black;}
 	th {
-		font-family:Arial;
 		color:black;
 		font-size: 12px;
 		background-color: #999;
 		padding: 8px 0;
 		border:1px solid black;
 	}
-	td { padding: 7px 5px;font-size: 10px}
+	td { padding: 7px 5px;font-size: 12px;vertical-align: top;}
 	h3 { margin-bottom: -17px }
 	h2 { margin-bottom: 0px }
-	label, p {font-size: 12px;}
+	label, p {font-size: 14px;}
+	p{margin: 2px;}
+	hr{border: 2px solid black;}
 </style>
 <title>Cetak Data Peserta Workshop</title>
 </head>
 
 <body onload="window.print()">
-	<center>
-		<h3 style="letter-spacing: 2;">KANTOR WILAYAH AGAMA BENGKULU</h3><br><hr>
-	</center><br>
+<!-- <body> -->
+	<table style="border:0px;">
+		<tr style="border:0px;">
+			<td align="left" width="15%" style="border:0px;">
+				<img style="width: 100%;" src="<?php echo base_url('assets/front/images/logo-kemenag.png'); ?>" alt="">
+			</td>
+			<td align="center" style="border:0px;">
+				<h2 style="font-size: 2.5em">KEMENTERIAN AGAMA REPUBLIK INDONESIA<br>KANTOR WILAYAH PROVINSI BENGKULU</h2>
+				<p>Jl. Basuki Rahmat  No.10, Kota BengkuluTelp (0736) 21097, Fax (0736) 21597</p>
+				<p>Website: <a href="">www.bengkulu.kemenag.go.id</a> , email; <a href="">kanwilbengkulu@kemenag.go.id</a></p>
+				<p>KOTA BENGKULU</p>
+			</td>
+		</tr>
+	</table>
+	<hr>
 	<label>Judul Workshop : </label>
 	<p style="margin: 0px;font-weight: bold;"><?php if (!empty($peserta)) {echo $peserta[0]->nm_kegiatan;} ?></p>
 	<label>Lokasi Kegiatan : </label>
