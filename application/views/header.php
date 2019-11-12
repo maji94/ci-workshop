@@ -9,9 +9,6 @@
             <div class="icon novi-icon mdi mdi-phone"></div><a style="font-size: 11px;">Telp. (0726) 21097, 21597, 344602, 28123 | Fax. (0726) 21597</a>
           </div>
           <ul class="list-lined" style="font-size: 11px;">
-            <?php if ($this->session->userdata('nama') != null) { ?>
-              <li><a href="<?php echo site_url('dashboard') ?>"><span class="icon novi-icon mdi mdi-account-outline"></span> <?php echo strtoupper($this->session->userdata('nama')); ?></a></li>
-            <?php } ?>
             <li><p><?php echo nama_hari(date('Y-m-d')).', '.tgl_indo(date('Y-m-d')); ?></p></li>
           </ul>
         </div>
@@ -39,8 +36,16 @@
                   </li>
                   <li class="rd-nav-item <?php echo $this->uri->segment(1) == "tentang" ? "active":""; ?>"><a class="rd-nav-link" href="<?php echo site_url('tentang'); ?>">Tentang</a>
                   </li>
+                  <?php if ($this->session->userdata('logged_in') == "yes") {
+                    if ($this->session->userdata('hak_akses') == "admin") {
+                   ?>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('dashboard') ?>" style="cursor: pointer;"><span class="icon novi-icon mdi mdi-account-outline"></span> ADMIN</a></li>
+                  <?php }else{ ?>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="<?php echo site_url('dashboard') ?>" style="cursor: pointer;"><span class="icon novi-icon mdi mdi-account-outline"></span> <?php echo strtoupper($this->session->userdata('nama')); ?></a></li>
+                  <?php } }else{ ?>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">Masuk / Log in</a></li>
                   <li class="rd-nav-item"><a class="rd-nav-link" href="#" data-toggle="modal" data-target="#exampleModal2" style="cursor: pointer;">Daftar</a></li>
+                  <?php } ?>
                 </ul>
                 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Open modal for @getbootstrap</button> -->
               </div>
