@@ -347,8 +347,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             label2.innerHTML = 'Nama Moderator * :';
             var label3 = document.createElement('label');
             label3.innerHTML = 'Waktu (jam) * :';
+            var label4 = document.createElement('label');
+            label4.innerHTML = 'File Materi (pdf) :';
             var br = document.createElement('br');
             var br2 = document.createElement('br');
+            var br3 = document.createElement('br');
 
           //                meng append element
             itemlist.appendChild(col);
@@ -382,6 +385,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             waktu.setAttribute('value', '1');
             waktu.setAttribute('required', '');
 
+            var oldFile = document.createElement('input');
+            oldFile.setAttribute('type', 'hidden');
+            oldFile.setAttribute('id', 'oldFile[' + i + ']');
+            oldFile.setAttribute('class', 'form-control');
+            oldFile.setAttribute('name', 'oldFile[]');
+
+            var file = document.createElement('input');
+            file.setAttribute('type', 'file');
+            file.setAttribute('id', 'file[' + i + ']');
+            file.setAttribute('class', 'form-control');
+            file.setAttribute('name', 'file[]');
+
+
             var hapus = document.createElement('span');
 
           //                meng append element input
@@ -393,6 +409,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             fg.appendChild(br2);
             fg.appendChild(label3);
             fg.appendChild(waktu);
+            fg.appendChild(br3);
+            fg.appendChild(label4);
+            fg.appendChild(oldFile);
+            fg.appendChild(file);
             fg.appendChild(hapus);
 
             hapus.innerHTML = '<button class="btn btn-danger btn-xs" type="button"><i class="fa fa-times"></i> Hapus</button><br>';

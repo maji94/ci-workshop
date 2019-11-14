@@ -90,7 +90,9 @@
               <div class="form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" style="font-weight: normal;font-style: italic;">File Materi : </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <label class="control-label" style="text-align: left;"><a class="btn btn-default" href="<?php echo site_url('dashboard/download/'.$this->uri->segment(4).'/'.$data_workshop[0]->file_materi); ?>" title="DOWNLOAD FILE MATERI WORSHOP"><i class="fa fa-download"></i> DOWNLOAD</a></label>
+                  <?php for ($i=0; $i < count($list_narasumber['id_narasumber']); $i++) { ?>
+                    <?php echo $i+1; ?>. <label class="control-label" style="text-align: left;"><a class="btn btn-default" href="<?php echo site_url('dashboard/download/'.$this->uri->segment(4).'/'.str_replace(' ', '_', $list_narasumber['file'][$i])); ?>" title="DOWNLOAD FILE MATERI WORSHOP"><i class="fa fa-download"></i> DOWNLOAD</a></label>
+                  <?php } ?>
                 </div>
               </div>
               <div class="form-group">

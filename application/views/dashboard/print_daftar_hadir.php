@@ -52,10 +52,10 @@
 	<table style="border:0px;">
 		<tr style="border:0px;">
 			<td align="left" width="15%" style="border:0px;">
-				<img style="width: 100%;" src="<?php echo base_url('assets/front/images/logo-kemenag.png'); ?>" alt="">
+				<img style="width: 95px;" src="<?php echo base_url('assets/front/images/logo-kemenag.png'); ?>" alt="">
 			</td>
 			<td align="center" style="border:0px;">
-				<h2 style="font-size: 2.5em">KEMENTERIAN AGAMA REPUBLIK INDONESIA<br>KANTOR WILAYAH PROVINSI BENGKULU</h2>
+				<h2 style="font-size: 2em">KEMENTERIAN AGAMA REPUBLIK INDONESIA<br>KANTOR WILAYAH PROVINSI BENGKULU</h2>
 				<p>Jl. Basuki Rahmat  No.10, Kota BengkuluTelp (0736) 21097, Fax (0736) 21597</p>
 				<p>Website: <a href="">www.bengkulu.kemenag.go.id</a> , email; <a href="">kanwilbengkulu@kemenag.go.id</a></p>
 				<p>KOTA BENGKULU</p>

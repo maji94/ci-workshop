@@ -147,7 +147,7 @@
                     <td><?php echo $w->lokasi; ?></td>
                     <td>Mulai : <?php echo tgl_indo(date($w->tgl_buka)); ?><br>Selesai : <?php echo tgl_indo(date($w->tgl_tutup)); ?></td>
                 </tr>
-              <?php } $no++; ?>
+              <?php $no++; } ?>
             </tbody>
           </table>
           <!--Table-->

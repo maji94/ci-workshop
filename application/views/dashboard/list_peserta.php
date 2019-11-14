@@ -221,7 +221,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Cetak</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-print"></i> Cetak</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
       <?php echo form_close(); ?>

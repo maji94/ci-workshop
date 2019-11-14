@@ -255,10 +255,26 @@ class Dashboard extends CI_Controller {
           }
         }else if ($links == "do_add") {
           if ($this->set == "admin" OR $this->set == "pembina" ) {
+            $input = sizeof($_FILES['file']['tmp_name']);
+            $files = $_FILES['file'];
+            for ($i=0; $i < $input ; $i++) {
+              if ($files['name'][$i]) {
+                $_FILES['file']['name']      = $files['name'][$i];
+                $_FILES['file']['type']      = $files['type'][$i];
+                $_FILES['file']['tmp_name']  = $files['tmp_name'][$i];
+                $_FILES['file']['error']     = $files['error'][$i];
+                $_FILES['file']['size']      = $files['size'][$i];
+
+                $this->upload->do_upload('file');
+              }
+              $data_file[] = $files['name'][$i];
+            }
+
             $data_narasumber = array(
               'id_narasumber' => $this->input->post('id_narasumber'),
               'nm_moderator' => $this->input->post('nm_moderator'),
               'waktu' => $this->input->post('waktu'),
+              'file' => $data_file,
             );
 
             $data_workshop = array(
@@ -275,17 +291,17 @@ class Dashboard extends CI_Controller {
             );
 
             // KONDISI SAAT MEMASUKKAN FOTO
-            if ($_FILES['file_materi']['name'] == "") {
-              $data_workshop['file_materi'] = "";
-            }else{
-              if ( ! $this->upload->do_upload('file_materi')){ 
-              $error = array('error' => $this->upload->display_errors());
-              $pesan = $error['error'];
-              echo $pesan;
-              }else{
-                $data_workshop['file_materi'] = $this->upload->file_name;
-              }
-            }
+            // if ($_FILES['file_materi']['name'] == "") {
+            //   $data_workshop['file_materi'] = "";
+            // }else{
+            //   if ( ! $this->upload->do_upload('file_materi')){ 
+            //   $error = array('error' => $this->upload->display_errors());
+            //   $pesan = $error['error'];
+            //   echo $pesan;
+            //   }else{
+            //     $data_workshop['file_materi'] = $this->upload->file_name;
+            //   }
+            // }
 
             $ins_workshop = $this->m_admin->InsertData('tb_workshop', $data_workshop);
             if ($ins_workshop) {
@@ -315,10 +331,38 @@ class Dashboard extends CI_Controller {
           }
         }else if ($links == "do_edit") {
           if ($this->set == "admin" OR $this->set == "pembina" ) {
+
+            $get =  array('id' => $this->input->post('id'));
+            $getData = $this->m_admin->getContent('tb_workshop', $get);
+            $getFile = unserialize($getData[0]->narasumber)['file'];
+            $n_getFile = sizeof($getFile);
+
+            $input = sizeof($_FILES['file']['tmp_name']);
+            $files = $_FILES['file'];
+
+            // echo "<pre>";
+            // print_r($input);
+            for ($i=0; $i < $input ; $i++) {
+
+              $_FILES['file']['name']     = $files['name'][$i];
+              $_FILES['file']['type']     = $files['type'][$i];
+              $_FILES['file']['tmp_name'] = $files['tmp_name'][$i];
+              $_FILES['file']['error']    = $files['error'][$i];
+              $_FILES['file']['size']     = $files['size'][$i];
+              
+              if ($_FILES['file']['name']) {
+                $this->upload->do_upload('file');
+                $data_file[] = $files['name'][$i];
+              }else{
+                $data_file[] = $this->input->post('oldFile')[$i];
+              }
+            }
+
             $data_narasumber = array(
               'id_narasumber' => $this->input->post('id_narasumber'),
               'nm_moderator' => $this->input->post('nm_moderator'),
               'waktu' => $this->input->post('waktu'),
+              'file' => $data_file,
             );
 
             $data_workshop = array(
@@ -334,14 +378,20 @@ class Dashboard extends CI_Controller {
             );
 
             // KONDISI SAAT MEMASUKKAN FOTO
-            if ($_FILES['file_materi']['name'] != "") {
-              if ( ! $this->upload->do_upload('file_materi')){ 
-              $error = array('error' => $this->upload->display_errors());
-              $pesan = $error['error'];
-              echo $pesan;
-              }else{
-                $data_workshop['file_materi'] = $this->upload->file_name;
-                unlink($path.$this->input->post('oldfile'));
+            // if ($_FILES['file_materi']['name'] != "") {
+            //   if ( ! $this->upload->do_upload('file_materi')){ 
+            //   $error = array('error' => $this->upload->display_errors());
+            //   $pesan = $error['error'];
+            //   echo $pesan;
+            //   }else{
+            //     $data_workshop['file_materi'] = $this->upload->file_name;
+            //     unlink($path.$this->input->post('oldfile'));
+            //   }
+            // }
+
+            for ($i=0; $i < $n_getFile; $i++) { 
+              if (in_array($getFile[$i], $data_file) == FALSE) {
+                unlink($path.str_replace(' ', '_', $getFile[$i]));
               }
             }
 
@@ -362,6 +412,14 @@ class Dashboard extends CI_Controller {
           if ($this->set == "admin" OR $this->set == "pembina" ) {
             $where = array('id'=>$links2);
             $where2 = array('id_workshop'=>$links2);
+            
+            $data_file = $this->m_admin->getContent('tb_workshop', $where);
+            $getFile = unserialize($data_file[0]->narasumber)['file'];
+
+            $n = sizeof($getFile);
+            for ($i=0; $i < $n ; $i++) {
+              unlink($path.str_replace(' ', '_', $getFile[$i]));
+            }
 
             $del_workshop = $this->m_admin->DeleteData('tb_workshop', $where);
             if ($del_workshop) {
@@ -446,12 +504,12 @@ class Dashboard extends CI_Controller {
           );
         }
         $this->load->view('dashboard/st_dashboard', $data);
+        // echo "<pre>";
+        // print_r($data_narasumber);
+        // echo "<br>";
+        // print_r($getFile);
       }
     }
-    // echo "<pre>";
-    // print_r($data);
-    // echo "<br>";
-    // print_r($this->session->userdata());
   }
 
   public function admin(){

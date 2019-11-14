@@ -7,6 +7,7 @@
     $id_narasumber = "";
     $nm_moderator = "";
     $waktu = 1;
+    $file = "";
     $nm_kegiatan = "";
     $status = "";
     $tgl_buka = "";
@@ -14,7 +15,6 @@
     $lokasi = "";
     $kuota = 0;
     $judul_materi = "";
-    $file_materi = "";
     $keterangan = "";
     $n_konten = "";
   }else{
@@ -24,6 +24,7 @@
     $id_narasumber = $data_narasumber['id_narasumber'][0];
     $nm_moderator = $data_narasumber['nm_moderator'][0];
     $waktu = $data_narasumber['waktu'][0];
+    $file = $data_narasumber['file'][0];
     $nm_kegiatan = $data_workshop[0]->nm_kegiatan;
     $status = $data_workshop[0]->status;
     $tgl_buka = $data_workshop[0]->tgl_buka;
@@ -31,7 +32,6 @@
     $lokasi = $data_workshop[0]->lokasi;
     $kuota = $data_workshop[0]->kuota;
     $judul_materi = $data_workshop[0]->judul_materi;
-    $file_materi = $data_workshop[0]->file_materi;
     $keterangan = $data_workshop[0]->keterangan;
     $n_konten = count($data_narasumber['id_narasumber']);
   }
@@ -77,6 +77,10 @@
                     <label for="waktu[0]">Waktu (jam) * :</label>
                     <input type="number" id="waktu[0]" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" min="1" required value="<?php echo $waktu; ?>">
                     <br>
+                    <label for="waktu[0]">File Materi (pdf):</label>
+                    <input type="hidden" id="oldFile[0]" class="form-control" name="oldFile[]" value="<?php echo $file; ?>">
+                    <input type="file" id="file[0]" class="form-control" name="file[]">
+                    <br>
                     <button type="button" class="btn btn-info btn-sm" onclick="additem(); return false"><i class="fa fa-plus"></i> Tambah Narasumber</button>
                   </div>
                 </div>
@@ -96,7 +100,10 @@
                         <input type="text" id="nm_moderator[<?php echo $i?>]" class="form-control" name="nm_moderator[]" placeholder="Silahkan masukkan nama moderator" required value="<?php echo strtoupper($data_narasumber['nm_moderator'][$i]); ?>">
                         <br>
                         <label for="waktu">Waktu (jam) * :</label>
-                        <input type="number" id="waktu[<?php echo $i?>]" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" min="1" required value="<?php echo $data_narasumber['waktu'][$i]; ?>">
+                        <input type="number" id="waktu[<?php echo $i?>]" class="form-control" name="waktu[]" placeholder="Masukkan waktu narasumber" min="1" required value="<?php echo $data_narasumber['waktu'][$i]; ?>"><br>
+                        <label for="waktu[0]">File Materi (pdf):</label>
+                        <input type="hidden" id="oldFile[<?php echo $i;?>]" class="form-control" name="oldFile[]" value="<?php echo $data_narasumber['file'][$i]; ?>">
+                        <input type="file" id="file[<?php echo $i;?>]" class="form-control" name="file[]">
                         <span><button class="btn btn-danger btn-xs" type="button" onclick="hapus('#finput<?php echo $i; ?>');"><i class="fa fa-times"></i> Hapus</button></span>
                       </div>
                     </div>
@@ -132,11 +139,11 @@
                 <label for="judul_materi">Judul Materi * :</label>
                 <input type="text" class="form-control" name="judul_materi" id="judul_materi" placeholder="Silahkan masukkan judul materi" value="<?php echo $judul_materi; ?>">
               </div>
-              <div class="col-md-12 form-group">
+              <!-- <div class="col-md-12 form-group">
                 <label for="file_materi">File Materi (pdf,docx,pptx,xlsx) :</label>
-                <input type="hidden" name="oldfile" value="<?php echo $file_materi; ?>">
+                <input type="hidden" name="oldfile" value="<?php// echo $file_materi; ?>">
                 <input type="file" id="file_materi" class="form-control" name="file_materi">
-              </div>
+              </div> -->
               <div class="col-md-12 form-group">
                 <label for="keterangan">Deskripsi Kegiatan :</label>
                 <textarea id="keterangan" required="required" class="form-control" name="keterangan" rows="5" placeholder="Deskripsi kegiatan, dan keterangan lain yang dianggap perlu."><?php echo $keterangan; ?></textarea>

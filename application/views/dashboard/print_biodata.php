@@ -4,8 +4,8 @@
 <link href="<?php echo base_url('assets/front/') ?>images/print.png" rel="apple-touch-icon">
 <style type="text/css" media="print">
 	*{font-family:Arial;}
-	table {border:0solid 1px #000; border-collapse: collapse; width: 100%}
-	tr { border:0solid 1px #000; page-break-inside: avoid;}
+	table {border:0px solid 1px #000; border-collapse: collapse; width: 100%}
+	tr { border:0px solid 1px #000; page-break-inside: avoid;}
 	table tr td { padding: 7px 5px; font-size: 12px; border:0px solid black;}
 	th {
 		color:black;
@@ -52,10 +52,10 @@
 	<table>
 		<tr>
 			<td align="left" width="15%">
-				<img style="width: 100%;" src="<?php echo base_url('assets/front/images/logo-kemenag.png'); ?>" alt="">
+				<img style="width: 95px;" src="<?php echo base_url('assets/front/images/logo-kemenag.png'); ?>" alt="">
 			</td>
 			<td align="center">
-				<h2 style="font-size: 2.5em">KEMENTERIAN AGAMA REPUBLIK INDONESIA<br>KANTOR WILAYAH PROVINSI BENGKULU</h2>
+				<h2 style="font-size: 2em">KEMENTERIAN AGAMA REPUBLIK INDONESIA<br>KANTOR WILAYAH PROVINSI BENGKULU</h2>
 				<p>Jl. Basuki Rahmat  No.10, Kota BengkuluTelp (0736) 21097, Fax (0736) 21597</p>
 				<p>Website: <a href="">www.bengkulu.kemenag.go.id</a> , email; <a href="">kanwilbengkulu@kemenag.go.id</a></p>
 				<p>KOTA BENGKULU</p>
@@ -64,9 +64,9 @@
 	</table>
 	<hr>
 	<center>
-		<h3 style="text-transform: uppercase;">Kegiatan <?php if (!empty($peserta)) {echo $peserta[0]->nm_kegiatan;} ?></h3><br><br>
+		<h3 style="text-transform: uppercase;">Kegiatan <?php if (!empty($peserta)) {echo $peserta[0]->nm_kegiatan;} ?></h3><br>
 		<h3 style="text-transform: uppercase;">Biodata / Daftar Riwayat Hidup Peserta</h3>
-	</center><br><br><br>
+	</center><br><br>
 	<table>
 		<tbody>
 			<?php 
@@ -199,7 +199,7 @@
 				<td align="left"></td>
 				<td width="2%"></td>
 				<td align="left"></td>
-				<td align="center" style="height: 120px;vertical-align: top;">Bengkulu, .............................................. </td>
+				<td align="center" style="height: 90px;vertical-align: top;">Bengkulu, ....................... </td>
 			</tr>
 			<tr>
 				<td width="12%"></td>
